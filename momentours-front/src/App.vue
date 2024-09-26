@@ -1,26 +1,43 @@
 <template>
-  <header>
-    <Header/>
-  </header>
-  <main>
-      <MainPage/>
-  </main>
-  <footer>
-    <Footer/>  
-  </footer>
+  <div class="app-container">
+    <Header @toggle-sidebar="toggleSidebar" />
+    <Sidebar :is-active="isSidebarActive" @close="closeSidebar" />
+      <main>
+        <!-- 메인 콘텐츠가 여기에 들어갑니다 -->
+         <HomeView/>
+      </main>
+    <Footer />
+  </div>
 </template>
 
 <script setup>
-  import Footer from './components/common/footer.vue';
-  import Header from './components/common/Header.vue';
+import { ref } from 'vue';
+import Footer from './components/common/Footer.vue';
+import Header from './components/common/Header.vue';
+import Sidebar from './components/common/Sidebar.vue';
 
-  import MainPage from './views/HomeView.vue';
+import HomeView from './views/HomeView.vue';
+
+const isSidebarActive = ref(false);
+
+const toggleSidebar = () => {
+  isSidebarActive.value = !isSidebarActive.value;
+};
+
+const closeSidebar = () => {
+  isSidebarActive.value = false;
+};
 </script>
 
-
 <style scoped>
-  .dd {
-    margin-top: 10px;
-    height: 50px;
-  }
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+main {
+  flex: 1;
+}
 </style>
