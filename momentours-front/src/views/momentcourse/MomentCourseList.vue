@@ -1,11 +1,12 @@
 <template>
 
     <div class="flex-row-d">
-        <div>
+        <div style="display: flex;">
             <select v-model="selectedOption1">
                 <option value="전체" selected>전체</option>
                 <option value="제목">제목</option>
                 <option value="메모">메모</option>
+                <option value="둘다">제목+메모</option>
                 <option value="공개여부">공개여부</option>
             </select>
 
@@ -17,12 +18,13 @@
             </select>
 
             <div class="input-container">
-                <input type="text" placeholder="검색">
+                <input type="text" placeholder="검색" v-model="searchQuery">
+                <img src="@/assets/icons/search.svg" @click="handleSearch" class="search-icon" alt="Search" />
             </div>
         </div>
 
         <div>
-            <button class="common-button bg-color-pink">코스등록</button>
+            <button class="common-button bg-color-pink" style="margin-right: 130px">코스등록</button>
         </div>
     </div>
 
@@ -41,7 +43,8 @@ export default {
         return {
             posts: [], // 서버에서 받아오는 게시글 데이터
             currentPage: 1,
-            postsPerPage: 10
+            postsPerPage: 10,
+            searchQuery: ''
         };
     },
     methods: {
@@ -59,7 +62,12 @@ export default {
             } catch (error) {
                 console.error("Error fetching posts: ", error);
             }
-        }
+        },
+
+        handleSearch() {
+            console.log('검색어:', this.searchQuery);
+            // 실제 검색 로직을 여기에 추가
+        },
     },
     mounted() {
         this.fetchPosts();
@@ -71,20 +79,16 @@ export default {
 
 .flex-row-d {
     display: flex;
+    justify-content: space-between;
     margin-top: 20px;
-    margin-left: 37vw;
+    margin-left: 34vw;
     z-index: 39;
-    justify-content: space-between; /* 요소들이 양쪽 끝으로 정렬되도록 설정 */
-}
-
-.input-container {
-    flex-grow: 1; /* 이 컨테이너가 남은 공간을 차지하게 만듦 */
-    margin-right: 10px; /* 버튼과의 간격 */
+    justify-content: space-between; 
 }
 
 .common-button {
-    flex-shrink: 0; /* 버튼의 크기가 줄어들지 않도록 설정 */
-    margin-left: auto; /* 버튼을 오른쪽 끝으로 배치 */
+    flex-shrink: 0;
+    margin-left: auto;
 }
 
 select {
@@ -97,22 +101,7 @@ select {
 
 select option {
     color: black;
-}
-
-input {
-    flex: 1;
-    padding: 10px;
     font-size: 14px;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px 0 rgba(13, 10, 44, 0.06);
-    outline: none;
-    background: transparent;
-    z-index: 44;
-}
-
-.input-with-icon {
-    position: relative;
 }
 
 .input-with-icon input {
@@ -121,8 +110,6 @@ input {
 
 .input-with-icon::after {
     content: "";
-    position: absolute;
-    top: 50%;
     left: 8px;
     transform: translateY(-50%);
     width: 16px;
@@ -131,21 +118,28 @@ input {
     background-size: cover;
 }
 
-.input-container input {
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+input {
     flex: 1;
+    padding: 8px 40px 8px 10px;
     font-size: 14px;
     border: none;
-    border-radius: 10px;
     outline: none;
-    background: transparent;
-    z-index: 44;
-    padding-right: 40px;
-    padding: 8px;
-    background-image: url('@/assets/icons/search.svg');
-    background-position: right 10px center;
-    background-repeat: no-repeat;
-    background-size: 20px 20px;
+    border-radius: 10px;
     box-shadow: 0 4px 12px 0 rgba(13, 10, 44, 0.06);
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }
 
 
