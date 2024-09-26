@@ -1,0 +1,135 @@
+ /* 기본 스타일 초기화 */
+ * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 전체 화면 크기 설정 */
+body, html {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+/* 메인 태그 설정 */
+main {
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 메인 배너 스타일 */
+.main-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 20px 0;
+}
+
+/* 배너 안 요소 */
+.banner-item {
+    min-width: 620px; /* 배너 너비를 두 배로 설정 */
+    width: 1240px; /* 배너 전체 너비 */
+    height: 320px; /* 배너 높이 유지 */
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    border-radius: 20px;
+}
+
+/* 좌우 버튼 스타일 (배너 밖으로 이동) */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #000000;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev {
+    left: -60px;
+}
+
+.next {
+    right: -60px;
+}
+
+
+.tour-deals {
+    text-align: center;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    
+
+}
+
+.filter-options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+/* 아래 card 요소의 부모 요소 */
+.deal-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    overflow-x: auto;
+}
+
+/* best 게시글이 보여질 card section */
+.card {
+    border: 1px solid #ccc;
+    width:28vw;
+    height: 240px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    width: 100%;
+    height: 70%; /* 카드의 70%를 이미지로 채움 */
+    object-fit: cover; /* 이미지가 요소에 맞춰지게 조정 */
+    border-radius: 20px 20px 0 0; /* 상단 부분만 둥글게 설정 */
+    border-bottom: 1px solid #ccc; /* 이미지와 텍스트 사이에 구분선을 추가 */
+}
+
+.card-content {
+    padding: 10px;
+    height: 30%; /* 카드의 30%를 텍스트로 채움 */
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* 버튼에 대한 css */
+.filter-options button {
+    border-radius: 45px;
+    padding: 10px 10px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+/* 버튼의 호버 기능 */
+.filter-options button:hover {
+    background-color: #e0e0e0;
+}
