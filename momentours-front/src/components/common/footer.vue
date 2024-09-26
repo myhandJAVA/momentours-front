@@ -31,7 +31,7 @@ body {
   	line-height: normal;
 }
     .divider {
-  	width: 1218px;
+  	width: 100%;
   	position: relative;
   	background-color: #c5b697;
   	height: 1px;
