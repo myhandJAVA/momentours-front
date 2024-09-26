@@ -1,24 +1,64 @@
 <template>
     <div>
-        <h1>Home</h1>
-        <h2>currentRoute = {{ currentRoute }}</h2>
+        <main>
+            <section class="main-banner">
+                <button class="prev">&lt;</button>
+                <div class="banner-item">
+                    <img src="" alt="메인 배너 이미지">
+                    <h2>이벤트 배너</h2>
+                    <p>p태그 영역</p>
+                </div>
+                <button class="next">&gt;</button>
+            </section>
+
+            <section class="tour-deals">
+                <h5>테마 설명 대제목</h5>
+                <p>테마 설명 소제목</p>
+                <div class="filter-options">
+                    <button>카테고리1</button>
+                    <button>카테고리2</button>
+                    <button>카테고리3</button>
+                    <button>카테고리4</button>
+                    <button>카테고리5</button>
+                </div>
+
+                <div class="deal-cards">
+                    <article class="card">
+                        <img src="" alt="이미지 1">
+                        <div class="card-content">
+                            <h3>best1</h3>
+                            <p>대제목1</p>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="" alt="이미지 2">
+                        <div class="card-content">
+                            <h3>best2</h3>
+                            <p>대제목2</p>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="" alt="이미지 3">
+                        <div class="card-content">
+                            <h3>best3</h3>
+                            <p>대제목3</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- <h1>Home</h1>
+            <h2>currentRoute = {{ currentRoute.value }}</h2> -->
+        </main>
     </div>
 </template>
-
-
-<!--
-    userRoute:
-    현재 라우트 객체에 액세스 할 수 있도록 해주는 메소드로 이 객체를 사용하려면 라우트 정보를 확인할 수 있다.
-    주로 현재 라우트의 매개변수 혹은 쿼리 문자열과 같은 정보를 사용하여 동적으로 컴포넌트를 렌더링하거나
-    조건부 렌더링을 구현할 때 사용된다.
-
-    userRouter:
-    useRouter에서 제공하는 push함수를 활용하여 우리가 원하는 라우팅 요청을 보낼 수 있게 되고 해당 컴포넌트로
-    <RouterView>가 바뀌면서 정보도 전달(params 또는 query)할 수 있다.
--->
 
 <script setup>
     import { useRoute } from 'vue-router';
 
     const currentRoute = useRoute();
 </script>
+
+<style src='@/assets/css/mainpage.css' scoped>
+
+</style>

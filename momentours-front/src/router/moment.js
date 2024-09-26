@@ -7,6 +7,10 @@ export default [
                 path: '/regist',
                 component: () => import('@/views/moment/MomentRegist.vue'),
             },
+            {
+                path: '/MomentDetail',
+                component: () => import('@/views/moment/MomentDetail.vue'),
+            }
         ],
     },
 ];
