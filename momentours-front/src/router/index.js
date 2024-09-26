@@ -4,10 +4,10 @@ import { createRouter, createWebHistory } from 'vue-router';
 import coupleRoutes from './couple';
 import diaryRoutes from './diary';
 import momentRoutes from './moment';
-import momentcourseRoutes from './momentcourse';
-import randomquestionRoutes from './randomquestion';
+import momentcourseRoutes from './momentCourse';
+import randomquestionRoutes from './randomQuestion';
 import scheduleRoutes from './schedule';
-import todocourseRoutes from './todocourse';
+import todocourseRoutes from './todoCourse';
 import userRoutes from './user';
 
 // 공통 Home 페이지

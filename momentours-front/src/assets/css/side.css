@@ -1,0 +1,85 @@
+:root {
+  --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
+    "Source Han Sans CN", sans-serif;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #f9f5ea;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  font-family: Pretendard, var(--default-font-family);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin: -5px 0 -10px;
+  height: 66px;
+}
+
+.momentours-logo {
+  width: 64px;
+  height: 68px;
+  margin-left: -30px;
+}
+
+.momentours {
+  font-family: 'Oooh Baby', cursive;
+  font-size: 32px;
+  color: #000000;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 35px;
+}
+
+.menu-item {
+  font-size: 14px;
+  font-weight: 600;
+  color: #202224;
+  margin-bottom: 25px;
+}
+
+.menu-item2 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #202224;
+  margin-bottom: 10px;
+}
+
+.pages {
+  font-size: 12px;
+  font-weight: 700;
+  color: #202224;
+  opacity: 0.6;
+  margin: 5px 0 20px;
+  margin-left: -30px;
+}
+
+.sidebar_divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 20px 0 20px;
+  margin-left: -30px;
+}
