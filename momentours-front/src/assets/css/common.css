@@ -1,1 +1,53 @@
-/* 안녕하세요 여러분 */
+
+/* 배경 분홍 */
+.bg-color-pink {
+    background-color: #FFC7C7;
+}
+
+/* 배경 연한 갈색 */
+.bg-color-lightbrown {
+    background-color: #F9F5EA;
+}
+
+/* 배경 갈색 */
+.bg-color-brown {
+    background-color: #C5B697;
+}
+
+/* 배경 회색 */
+.bg-color-gray {
+    background-color: #999999;
+}
+
+/* 컬러 흰색 */
+.color-white {
+    color: white;
+}
+
+/* 컬러 검정 */
+.color-black {
+    color: black;
+}
+
+/* border-radius: 20px인 버튼 */
+.common-button {
+    color: #333;
+    border: none;
+    padding: 7px 28px;
+    border-radius: 20px;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+/* border-radius: 7px인 버튼 */
+.common-button-radi7 {
+    background-color: #C5B697;
+    color: #333;
+    border: none;
+    padding: 7px 28px;
+    border-radius: 7px;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
