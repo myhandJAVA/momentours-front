@@ -7,7 +7,6 @@
                 <span class="item status">{{ headers[2] }}</span>
                 <span class="item date">{{ headers[3] }}</span>
             </div>
-            <div></div>
             <div class="bg-b">
                 <ul class="course-list">
                     <li v-for="(post, index) in paginatedPosts" :key="index + 1" class="course-item">
@@ -39,24 +38,16 @@ import Pagination from './Pagination.vue';
 export default {
     components: { Pagination },
     props: {
-        headers: { type: Array, required: true },
-        posts: { type: Array, required: true },
+        headers: { type: Array, required: true }, // 헤더 데이터를 prop으로 받음
+        posts: { type: Array, required: true },   // 외부에서 데이터를 받아오는 prop
         currentPage: { type: Number, default: 1 },
         postsPerPage: { type: Number, default: 10 }
-    },
-    data() {
-        return {
-            posts: [], // 서버에서 받아오는 게시글 데이터
-            currentPage: 1,     // 현재 페이지 번호
-            postsPerPage: 10    // 한 페이지에 보여줄 게시글의 개수
-        };
     },
     computed: {
         totalPosts() {
             return this.posts.length;
         },
         paginatedPosts() {
-            // 현재 페이지에 해당하는 게시글 목록을 반환하는 computed 속성
             const start = (this.currentPage - 1) * this.postsPerPage;
             const end = start + this.postsPerPage;
             return this.posts.slice(start, end);
@@ -64,28 +55,8 @@ export default {
     },
     methods: {
         handlePageChange(page) {
-            this.currentPage = page;
-        },
-        async fetchPosts() {
-            try {
-                /* JSON Server에서 fetch를 사용하여 데이터 가져오기 */
-                const response = await fetch('http://localhost:8080/posts');
-                // 응답이 성공적인지 확인
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                // 응답을 JSON 형태로 변환
-                const data = await response.json();
-                this.posts = data;  // 받아온 데이터를 this.posts에 저장
-            } catch (error) {
-                console.error("Error fetching posts: ", error);
-            }
+            this.$emit('page-changed', page);
         }
-    },
-    mounted() {
-        // API 호출로 posts 데이터 가져오기
-        // ex. this.posts = await fetchPosts();
-        this.fetchPosts();
     }
 };
 </script>
