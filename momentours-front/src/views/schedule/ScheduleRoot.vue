@@ -1,16 +1,12 @@
 <template>
 
-<header>
-    <Header/>
-</header>
+
 <main>
     <div class="main">
         <CaleandarBoard/>
     </div>
 </main>
-<footer>
-    <Footer/>  
-</footer>
+
 
 </template>
 
@@ -18,10 +14,7 @@
 
 import Footer from '@/components/common/footer.vue';
 import Header from '@/components/common/Header.vue';
-import CommonPinkButton from '@/components/common/CommonPinkButton.vue';
-import CommonBrownButton from '@/components/common/CommonBrownButton.vue';
-import CommonLightBrownButton from '@/components/common/CommonLightBrownButton.vue';
-import CaleandarBoard from '@/components/schedule/CalenadrBoard.vue';
+import CaleandarBoard from '@/components/schedule/CalendarBoard.vue';
 
 </script>
 

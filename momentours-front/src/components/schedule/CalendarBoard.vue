@@ -13,8 +13,8 @@
 
 <script setup>
 import {ref,reactive} from 'vue';
-import Calendar from '@/components/Calendarl.vue';
-import Board from '@/components/Board.vue';
+import Calendar from '@/components/schedule/Calendar.vue';
+import Board from '@/components/schedule/Board.vue';
 
 const events = reactive([
     { start: '2024-09-25', end: '2024-09-25', title: '회의' , content: '메모'},
