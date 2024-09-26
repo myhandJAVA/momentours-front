@@ -1,5 +1,5 @@
 <template>
-    <div id="test">
+    <div class="calendar">
         <vue-cal
             class="vuecal--green-theme"
             :events="eventList"
@@ -17,9 +17,9 @@
 </template>
 
 <script setup>
-    import { ref, defineProps} from 'vue'
-    import VueCal from 'vue-cal'
-    import 'vue-cal/dist/vuecal.css'
+    import { ref, defineProps} from 'vue';
+    import VueCal from 'vue-cal';
+    import 'vue-cal/dist/vuecal.css';
 
     const props = defineProps({
         events: Object,
@@ -31,13 +31,8 @@
 </script>
 
 <style scoped>
-    #test{
-        width: 500px;
-        height: 500px;
-    }
-
     .vuecal--month-view .vuecal__cell {
-        height: 80px;
+        height: 50px;
     }
 
     .vuecal--month-view .vuecal__cell-content {

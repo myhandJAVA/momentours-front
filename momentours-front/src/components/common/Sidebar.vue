@@ -9,18 +9,18 @@
   </div>
   <div class="menu-container">
     <div class="sidebar_divider"></div>
-    <div class="menu-item2">홈</div>
+    <div class="menu-item2"><RouterLink class="link-button" to="/" replace>홈</RouterLink></div>
     <div class="sidebar_divider"></div>
-    <div class="menu-item">마이페이지</div>
-    <div class="menu-item2">커플페이지</div>
+    <div class="menu-item"><RouterLink class="link-button" to="/mypage">마이페이지</RouterLink></div>
+    <div class="menu-item2"><RouterLink class="link-button" to="/couplepage">커플페이지</RouterLink></div>
     <div class="sidebar_divider"></div>
     <div class="pages">PAGES</div>
-    <div class="menu-item">추억</div>
-    <div class="menu-item">추억코스</div>
-    <div class="menu-item">예정데이트코스</div>
-    <div class="menu-item">일기</div>
-    <div class="menu-item">랜덤질문</div>
-    <div class="menu-item2">일정</div>
+    <div class="menu-item"><RouterLink class="link-button" to="/moment">추억</RouterLink></div>
+    <div class="menu-item"><RouterLink class="link-button" to="/momentcourse">추억코스</RouterLink></div>
+    <div class="menu-item"><RouterLink class="link-button" to="/todocourse">예정데이트코스</RouterLink></div>
+    <div class="menu-item"><RouterLink class="link-button" to="/diary">일기</RouterLink></div>
+    <div class="menu-item"><RouterLink class="link-button" to="/randomquestion">랜덤질문</RouterLink></div>
+    <div class="menu-item2"><RouterLink class="link-button"to="/schedule" replace>일정</RouterLink></div>
     <div class="sidebar_divider"></div>
     <div class="menu-item">공지</div>
     <div class="menu-item">로그아웃</div>
@@ -41,3 +41,11 @@ const closeSidebar = () => {
 </script>
 
 <style src="@/assets/css/side.css"></style>
+<style scoped>
+  .link-button {
+  background-color: #F9F5EA;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #333;
+  }
+</style>

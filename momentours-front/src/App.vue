@@ -3,7 +3,7 @@
     <Header @toggle-sidebar="toggleSidebar" />
     <Sidebar :is-active="isSidebarActive" @close="closeSidebar" />
       <main>
-        <!-- 메인 콘텐츠가 여기에 들어갑니다 -->
+        <RouterView/>
       </main>
     <Footer />
   </div>
