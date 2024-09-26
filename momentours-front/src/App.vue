@@ -2,10 +2,11 @@
   <div class="app-flex-container">
   <header class="header">
     <Header/>
-    <nav style="text-align: center;">
+    <!-- <nav style="text-align: center;">
+      <table>
         <tr>
           <td><RouterLink class="link-button" to="/couple" replace>couple</RouterLink></td>
-          <td><RouterLink class="link-button" to="/diary" replace>diary</RouterLink></td>
+          <td><RouterLink class="link-button" to="/diary/list" replace>diary</RouterLink></td>
           <td><RouterLink class="link-button" to="/moment" replace>moment</RouterLink></td>
           <td><RouterLink class="link-button" to="/momentcourse" replace>momentcourse</RouterLink></td>
           <td><RouterLink class="link-button" to="/randomquestion" replace>randomquestion</RouterLink></td>
@@ -13,10 +14,11 @@
           <td><RouterLink class="link-button" to="/todocourse" replace>todocourse</RouterLink></td>
           <td><RouterLink class="link-button" to="/user" replace>user</RouterLink></td>
         </tr>
-    </nav>
+    </table>
+    </nav>-->
   </header>
   <main class="main">
-        <RouterView/>
+        <PostList/>
   </main>
   <footer class="footer">
     <Footer/>  
@@ -27,6 +29,7 @@
 <script setup>
   import Footer from './components/common/footer.vue';
   import Header from './components/common/Header.vue';
+  import PostList from './components/course/common/PostList.vue';
 </script>
 
 <style scoped>
