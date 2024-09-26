@@ -64,7 +64,7 @@ export default {
 <style scoped>
 
     .flex-row-f {
-        margin: 50px 0 0 300px;
+        margin: 20px 0 0 300px;
         z-index: 124;
     }
 

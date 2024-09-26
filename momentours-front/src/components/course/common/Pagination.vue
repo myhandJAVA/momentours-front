@@ -58,7 +58,7 @@
     display: flex;
     justify-content: center; /* 중앙 정렬 */
     align-items: center;
-    margin: 20px 0;
+    margin: 5px 0;
 }
 
 .pagination button {

@@ -29,6 +29,10 @@
     color: black;
 }
 
+.color-gray {
+    color: #999999;
+}
+
 /* border-radius: 20px인 버튼 */
 .common-button {
     color: #333;
