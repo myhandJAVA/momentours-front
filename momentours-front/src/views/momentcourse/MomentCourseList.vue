@@ -1,25 +1,37 @@
 <template>
     <div>
-        <PostList
-            :headers="['번호', '제목', '기간', '작성일']"
-            :posts="posts" 
-            :currentPage="currentPage"
-            :postsPerPage="postsPerPage"
-            @page-changed="handlePageChange"
-        />
+        <Search :options1="selectOptions1" :options2="selectOptions2" />
+
+        <PostList :headers="['번호', '제목', '기간', '작성일']" :posts="posts" :currentPage="currentPage"
+            :postsPerPage="postsPerPage" @page-changed="handlePageChange" />
     </div>
 </template>
 
 <script>
+import Search from '@/components/course/common/Search.vue';
 import PostList from '@/components/course/common/PostList.vue';
 
 export default {
-    components: { PostList },
+    components: { Search, PostList },
     data() {
         return {
-            posts: [], // 서버에서 받아오는 게시글 데이터
+            posts: [],
             currentPage: 1,
-            postsPerPage: 10
+            postsPerPage: 10,
+            searchQuery: '',
+            selectOptions1: [
+                { value: '전체', text: '전체' },
+                { value: '제목', text: '제목' },
+                { value: '메모', text: '메모' },
+                { value: '둘다', text: '제목+메모' },
+                { value: '공개여부', text: '공개여부' },
+            ],
+            selectOptions2: [
+                { value: '전체', text: '전체' },
+                { value: '당일데이트', text: '당일데이트' },
+                { value: '연인데이트', text: '연인데이트' },
+                { value: '선택없음', text: '선택없음' },
+            ],
         };
     },
     methods: {
@@ -37,14 +49,10 @@ export default {
             } catch (error) {
                 console.error("Error fetching posts: ", error);
             }
-        }
+        },
     },
     mounted() {
         this.fetchPosts();
     }
 };
 </script>
-
-<style scoped>
-/* 스타일 여기에 추가 */
-</style>

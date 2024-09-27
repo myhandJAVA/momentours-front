@@ -61,76 +61,81 @@ export default {
 };
 </script>
 
+
 <style scoped>
+.flex-row-f {
+    margin: 20px 0 0 300px;
+    z-index: 124;
+}
 
-    .flex-row-f {
-        margin: 50px 0 0 300px;
-        z-index: 124;
-    }
+.bg {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    width: 45vw;
+    height: 6vh;
+    background: #c5b697;
+    border: 1px solid #c5b697;
+    z-index: 124;
+    border-radius: 14px 14px 0 0;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    padding: 0 20px;
+}
 
-    .bg {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: absolute;
-        width: 45vw;
-        height: 6vh;
-        background: #c5b697;
-        border: 1px solid #c5b697;
-        z-index: 124;
-        border-radius: 14px 14px 0 0;
-        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-        padding: 0 20px;
-    }
+.bg-b {
+    top: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-    .bg-b {
-        top: 10vh;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+.number {
+    flex-basis: 10%;
+    /* 번호 항목은 상대적으로 더 좁은 공간 할당 */
+}
 
-    .number {
-        flex-basis: 10%; /* 번호 항목은 상대적으로 더 좁은 공간 할당 */
-    }
+.title {
+    flex-basis: 60%;
+    /* 제목은 더 넓은 공간 할당 */
+}
 
-    .title {
-        flex-basis: 60%; /* 제목은 더 넓은 공간 할당 */
-    }
+.status {
+    flex-basis: 20%;
+    /* 나머지 항목들은 균등하게 할당 */
+}
 
-    .status {
-        flex-basis: 20%; /* 나머지 항목들은 균등하게 할당 */
-    }
+.date {
+    flex-basis: 30%;
+}
 
-    .date {
-        flex-basis: 30%;
-    }
+.course-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 42px
+}
 
-    .course-list {
-        list-style: none;
-        padding: 0;
-        margin-top: 42px
-    }
+ul {
+    list-style: none;
+    padding: 0;
+}
 
-    ul {
-        list-style: none;
-        padding: 0;
-    }
-    li {
-        display: flex;
-        width: 45vw;
-        border-bottom: 1px solid #ddd;
-        border-left: 1px solid #ddd;
-        border-right: 1px solid #ddd;
-        padding: 10px 20px;
-    }
+li {
+    display: flex;
+    width: 45vw;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 10px 20px;
+}
 
-    li:hover {
-        background-color: #f0f0f0; /* 연한 회색 배경색 */
-        cursor: pointer;
-    }
+li:hover {
+    background-color: #f0f0f0;
+    /* 연한 회색 배경색 */
+    cursor: pointer;
+}
 
-    li:last-child {
-        border-radius: 0 0 14px 14px;
-    }
+li:last-child {
+    border-radius: 0 0 14px 14px;
+}
 </style>
