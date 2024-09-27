@@ -81,7 +81,7 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-    margin-left: 34vw;
+    margin-left: 35vw;
     z-index: 39;
     justify-content: space-between; 
 }
