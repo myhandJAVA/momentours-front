@@ -2,7 +2,9 @@
     <div class="modal-overlay" v-if="isVisible">
         <div class="modal-content">
             <button class="close-button" @click="closeModal">X</button> 
-            <slot></slot>
+            <div class="modal-message">
+                <slot></slot> <!-- 외부에서 주입된 내용 -->
+            </div>
             <div class="buttons">
                 <button class="common-button-radi7" @click="closeModal">No</button>
                 <button class="common-button-radi7-pink" @click="yesModal">Yes</button>
@@ -31,12 +33,10 @@ const closeModal = () => {
     emit('update:isVisible', false);
 };
 const yesModal = () => {
-    emit('update:isYes',true);
+    emit('update:isYes', true);
 };
 </script>
-
 <style scoped>
-
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -46,16 +46,16 @@ const yesModal = () => {
     background: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; /* 화면의 세로 방향 가운데 정렬 */
     z-index: 5;
 }
 
 .modal-content {
-    position: relative; /* 절대 위치를 사용하려면 relative 필요 */
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end;
+    align-items: center; /* 가로 방향 가운데 정렬 */
+    justify-content: center; /* 세로 방향 가운데 정렬 */
     background: #f9f4e7;
     padding: 20px;
     border-radius: 5px;
@@ -63,12 +63,21 @@ const yesModal = () => {
     height: 27vh;
 }
 
-/* X 버튼 스타일 */
+.modal-message {
+    font-size: 1.5vw; /* 글씨 크기 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    margin-bottom: 20px; /* 버튼들과 간격 */
+    flex-grow: 1; /* 가용 공간을 차지하여 가운데 배치 */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 메시지 세로 가운데 정렬 */
+}
+
 .close-button {
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 2vw;
+    font-size: 1.7vw;
     cursor: pointer;
     border: none;
     background-color: transparent;
@@ -76,12 +85,11 @@ const yesModal = () => {
     font-weight: bold;
 }
 
-/* 버튼들 */
 .buttons {
     display: flex;
     justify-content: flex-end;
-    margin-top: auto;
     gap: 1vw;
+    margin-top: auto;
 }
 
 .common-button-radi7-pink {

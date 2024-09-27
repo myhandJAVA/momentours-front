@@ -10,6 +10,7 @@
         :dayEvents="dayEvents" 
         @update:event="handleSubmit"
         @update:remove="handleRemove"
+        @update:regist="handleRegist"
     />
     </div>
 </div>
@@ -18,6 +19,8 @@
 <script setup>
 import { ref, reactive,onMounted } from 'vue';
 import Calendar from '@/components/schedule/Calendar.vue';
+import '@/assets/css/common.css';
+
 
 const jsonView = async () =>  {
     const scheduleResponse = await fetch("http://localhost:8080/schedule",{
@@ -26,7 +29,7 @@ const jsonView = async () =>  {
     const todocourseResponse = await fetch("http://localhost:8080/todocourse",{
         method:"GET"
     });
-    const metdayResponse = await fetch("http://localhost:8080/metday",{
+    const metdayResponse = await fetch("http://localhost:8080/metdays",{
         method:"GET"
     });
 
@@ -34,7 +37,7 @@ const jsonView = async () =>  {
     const todocourses = await todocourseResponse.json();
     const metdays = await metdayResponse.json();
 
-return [...schedules,...todocourses];
+return [...schedules,...metdays,...todocourses];
 };
 
 const jsonEdit = async() => {
@@ -55,13 +58,29 @@ const jsonEdit = async() => {
 };
 
 const jsonRemove = async()=>{
-    await fetch(`http://localhost:8080/${event.contentType}/${event.id}`,{
+    await fetch(`http://localhost:8080/schedule/${event.id}`,{
         method:"DELETE"
     });
     const newEvents = await jsonView();
     events.length = 0;
     events.push(...newEvents);
-}
+};
+
+const jsonRegist = async(newEvent)=>{
+    await fetch(`http://localhost:8080/schedule`,{
+        method:"POST",
+        body: JSON.stringify({
+            "start":`${newEvent.start}`,
+            "end":`${newEvent.end}`,
+            "title":`${newEvent.title}`,
+            "content":`${newEvent.content}`,
+            "contentType":`${newEvent.contentType}`
+        })
+    })
+    const newEvents = await jsonView();
+    events.length = 0;
+    events.push(...newEvents);
+};
 
 
 
@@ -89,7 +108,7 @@ Object.assign(event, {
     contentType: clickEvent.contentType,
     clickType: "Schedule"
 });
-}
+};
 
 const cellClicked = (clickEvent) => {
 dayEvents.length = 0;
@@ -101,18 +120,18 @@ for (const e of events) {
 }
 event.clickType = "Day";
 event.selectedDay = date;
-}
+};
 
 function formatDate(dateString) {
 if (!dateString) return ''; 
 const date = new Date(dateString);
 return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-}
+};
 
 const handleSubmit = (updatedEvent) => {
 Object.assign(event, updatedEvent);
 jsonEdit();
-}
+};
 
 const handleRemove = () => {
     jsonRemove();
@@ -124,27 +143,59 @@ const handleRemove = () => {
     event.clickType = '';
     event.selectedDay = '';
     event.contentType = '';
+};
 
-}
+const handleRegist = (newEvent) => {
+    jsonRegist(newEvent);
+    event.title = newEvent.title;
+    event.content = newEvent.content;
+    event.start = newEvent.start;
+    event.end = newEvent.end;
+    event.contentType = newEvent.contentType;
+};
 
 </script>
 
 <style scoped>
 .flex-container {
 display: flex;
-padding: 5vw;
+padding: 2rem;
+gap: 2rem;
+background-color: #f0f4f8;
+min-height: 100vh;
 }
+
 .calendar {
+flex: 1;
 background-color: white;
-width: 43vw;
-height: 50vw;
+border-radius: 8px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+padding: 1.5rem;
+max-height: 80vh;
+overflow: auto;
 }
+
 .board {
+flex: 1;
 display: flex;
 justify-content: center;
-align-items: center;
-width: 43vw;
-height: 50vw;
+align-items: flex-start;
 background-color: #F9F5EA;
+border-radius: 8px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+padding: 1.5rem;
+max-height: 80vh;
+overflow: auto;
+}
+
+@media (max-width: 768px) {
+.flex-container {
+    flex-direction: column;
+}
+
+.calendar, .board {
+    width: 100%;
+    height: auto;
+}
 }
 </style>
