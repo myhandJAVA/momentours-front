@@ -2,6 +2,7 @@ export default [
     {
         path: '/schedule',
         component: () => import('@/views/schedule/ScheduleRoot.vue'),
+        redirect: {path:"/schedule/view"},
         children: [
             {
                 path: 'view',
@@ -10,6 +11,10 @@ export default [
             {
                 path: 'edit',
                 component: () => import('@/views/schedule/ScheduleEdit.vue')
+            },
+            {
+                path: 'remove',
+                component: () => import('@/views/schedule/ScheduleRemove.vue')
             }
         ]
     }
