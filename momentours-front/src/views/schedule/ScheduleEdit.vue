@@ -11,8 +11,10 @@
                 <input type="date" v-model="localEvent.start"/>
                 <h2>일정종료일: </h2>
                 <input type="date" v-model="localEvent.end"/>
-                <br><br><br>
-                <button class="common-button" type="button" @click="submitEvent">수정하기</button>
+                <div class="button-box">
+                    <button class="common-button" type="button" @click="submitEvent">수정하기</button>
+                    <button class="common-button" type="button" @click="goToViewPage">뒤로가기</button>
+                </div>
             </div>
         </template>
 
@@ -31,7 +33,7 @@
     <template v-if="localEvent.clickType === 'Day'">
         <div class="content-box">
     <h3>수정할 일정을 선택해주세요</h3>
-    <button @click="goToViewPage">뒤로가기</button>
+    <button class="common-button" @click="goToViewPage">뒤로가기</button>
     </div>
     </template>
 </div>
@@ -83,16 +85,22 @@ const goToViewPage = ()=>{
     align-items: center; /* 세로 중앙 정렬 */
     min-height: 65vh;
 }
-    .content-box{
-    
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* 자식 요소 중앙 정렬 */
-        padding: 2rem; /* 내부 여백 */
-        border: 1px solid #ccc; /* 테두리 */
-        border-radius: 8px; /* 모서리 둥글게 */
-        background-color: white; /* 배경색 */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+.content-box{
 
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 자식 요소 중앙 정렬 */
+    padding: 2rem; /* 내부 여백 */
+    border: 1px solid #ccc; /* 테두리 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    background-color: white; /* 배경색 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+
+    
+}
+.button-box {
+    display: flex; /* 버튼을 가로로 배치 */
+    gap: 1rem; /* 버튼 간의 간격 */
+    margin-top: 1rem; /* 버튼 위쪽 여백 */
+}
 </style>
