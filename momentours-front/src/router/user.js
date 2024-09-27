@@ -1,10 +1,10 @@
 export default [
     {
-        path: '/user',
-        component: () => import('@/views/user/UserRoot.vue'),
+        path: '/login',
+        component: () => import('@/views/user/UserLogin.vue'),
         children: [
             {
-                path: '/login',
+                path: '/signup',
                 component: () => import('@/views/user/UserLogin.vue'),
             },
         ],
