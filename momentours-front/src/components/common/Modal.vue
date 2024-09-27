@@ -1,11 +1,11 @@
 <template>
     <div class="modal-overlay" v-if="isVisible">
         <div class="modal-content">
-            <button class="close-button" @click="closeModal">X</button> <!-- X 버튼 추가 -->
+            <button class="close-button" @click="closeModal">X</button> 
             <slot></slot>
             <div class="buttons">
                 <button class="common-button-radi7" @click="closeModal">No</button>
-                <button class="common-button-radi7-pink" @click="closeModal">Yes</button>
+                <button class="common-button-radi7-pink" @click="yesModal">Yes</button>
             </div>
         </div>
     </div>
@@ -13,19 +13,25 @@
 
 <script setup>
 import '@/assets/css/common.css';
-import { ref } from 'vue';
 
 const props = defineProps({
     isVisible: {
+        type: Boolean,
+        default: true
+    },
+    isYes: {
         type: Boolean,
         default: false
     }
 });
 
-const emit = defineEmits(['update:isVisible']);
+const emit = defineEmits(['update:isVisible','update:isYes']);
 
 const closeModal = () => {
     emit('update:isVisible', false);
+};
+const yesModal = () => {
+    emit('update:isYes',true);
 };
 </script>
 

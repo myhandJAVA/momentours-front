@@ -9,6 +9,7 @@
         :event="event" 
         :dayEvents="dayEvents" 
         @update:event="handleSubmit"
+        @update:remove="handleRemove"
     />
     </div>
 </div>
@@ -53,7 +54,7 @@ const jsonEdit = async() => {
     events.push(...newEvents);
 };
 
-const jsonRemove = async() => {
+const jsonRemove = async()=>{
     await fetch(`http://localhost:8080/${event.contentType}/${event.id}`,{
         method:"DELETE"
     });
@@ -61,6 +62,8 @@ const jsonRemove = async() => {
     events.length = 0;
     events.push(...newEvents);
 }
+
+
 
 const events = reactive([]);
 
@@ -109,6 +112,19 @@ return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${
 const handleSubmit = (updatedEvent) => {
 Object.assign(event, updatedEvent);
 jsonEdit();
+}
+
+const handleRemove = () => {
+    jsonRemove();
+    event.id = '';
+    event.title = '';
+    event.content = '';
+    event.start = '';
+    event.end = '';
+    event.clickType = '';
+    event.selectedDay = '';
+    event.contentType = '';
+
 }
 
 </script>
