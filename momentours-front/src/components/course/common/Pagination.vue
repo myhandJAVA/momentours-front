@@ -54,28 +54,28 @@
 </script>
 
 <style scoped>
-.pagination {
-    display: flex;
-    justify-content: center; /* 중앙 정렬 */
-    align-items: center;
-    margin: 20px 0;
-}
+    .pagination {
+        display: flex;
+        justify-content: center; /* 중앙 정렬 */
+        align-items: center;
+        margin: 5px 0;
+    }
 
-.pagination button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 5px 10px;
-}
+    .pagination button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 5px 10px;
+    }
 
-.pagination button:disabled {
-    color: grey;
-    cursor: not-allowed;
-}
+    .pagination button:disabled {
+        color: grey;
+        cursor: not-allowed;
+    }
 
-.pagination button.active {
-    font-weight: bold;
-    border-bottom: 2px solid black;
+    .pagination button.active {
+        font-weight: bold;
+        border-bottom: 2px solid black;
 
-}
+    }
 </style>

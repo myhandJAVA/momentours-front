@@ -9,10 +9,10 @@
   </div>
   <div class="menu-container">
     <div class="sidebar_divider"></div>
-    <div class="menu-item2"><RouterLink class="link-button" to="/" replace>홈</RouterLink></div>
+    <div class="menu-item"><RouterLink class="link-button" to="/" replace>홈</RouterLink></div>
     <div class="sidebar_divider"></div>
     <div class="menu-item"><RouterLink class="link-button" to="/mypage">마이페이지</RouterLink></div>
-    <div class="menu-item2"><RouterLink class="link-button" to="/couplepage">커플페이지</RouterLink></div>
+    <div class="menu-item"><RouterLink class="link-button" to="/couplepage">커플페이지</RouterLink></div>
     <div class="sidebar_divider"></div>
     <div class="pages">PAGES</div>
     <div class="menu-item"><RouterLink class="link-button" to="/moment">추억</RouterLink></div>
