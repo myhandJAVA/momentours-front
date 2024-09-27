@@ -8,8 +8,12 @@ export default [
                 component: () => import('@/views/moment/MomentRegist.vue'),
             },
             {
-                path: '/MomentDetail',
+                path: '/detail',
                 component: () => import('@/views/moment/MomentDetail.vue'),
+            },
+            {
+                path: '/list',
+                component: () => import('@/views/moment/MomentList.vue'),
             }
         ],
     },

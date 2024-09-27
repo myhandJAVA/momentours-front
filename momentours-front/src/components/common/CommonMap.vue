@@ -1,7 +1,7 @@
 <template>
     <div class="CommonMap">
-        <div class="search-box">
-            <input v-model="StaticRange.searchQuery" type="text" placeholder="장소를 입력하세요.">
+        <div class="search-box" v-if="!singleMarker"> <!-- 싱글 마커일 때는 검색창 숨김 -->
+            <input v-model="state.searchQuery" type="text" placeholder="장소를 입력하세요.">
             <button @click="searchLocation">🔍</button>
         </div>
         <div id="map"></div>
@@ -23,6 +23,10 @@ import {reactive, onMounted} from 'vue';
             level: {
                 type: Number,
                 default: 5
+            },
+            singleMarker: {
+                type: Object,
+                default: null
             }
         },
         setup(props, { emit }) {
@@ -42,12 +46,26 @@ import {reactive, onMounted} from 'vue';
                 };
                 state.map = new window.kakao.maps.Map(container, options);
                 state.placeService = new window.kakao.maps.services.Places();
+
+                if (props.singleMarker) {
+                    addSingleMarker(props.singleMarker); // 단일 마커 표시
+                }
+            };
+
+            const addSingleMarker = (markerData) => {
+                const markerPosition = new window.kakao.maps.LatLng(markerData.lat, markerData.lng);
+                const marker = new window.kakao.maps.Marker({
+                    position: markerPosition,
+                    map: state.map,
+                    title: markerData.placeName || 'Selected Location'
+                });
+                state.map.setCenter(markerPosition);
             };
 
             // 장소 검색
             const searchLocation = () => {
                 clearMarkers();
-                state.placeService.keywordSearch(staet.searchQuery, placeSearchCB);
+                state.placeService.keywordSearch(state.searchQuery, placesSearchCB);
             };
 
             // 검색 콜백 함수
