@@ -1,14 +1,16 @@
 <template>
     <div class="board-box-schedule" v-if="event.clickType == 'Schedule'">
+        <h3>(hidden)pk: {{ event.id }}</h3>
         <h2>일정제목: {{event.title}}</h2>
         <h2>일정메모: {{event.content}}</h2>
-        <h1>일정 시작일: {{ event.start }}</h1>
-        <h1>일정 종료일: {{ event.end }}</h1>
-        <h1>(hidden)일정 타입: {{ event.type }}</h1>
-        <h1>(hidden)선택된 일자: {{ event.selectedDay }}</h1>
-        <h1>(hidden)일정 content type: {{ event.contentType }}</h1>
+        <h2>일정 시작일: {{ event.start }}</h2>
+        <h2>일정 종료일: {{ event.end }}</h2>
+        <h3>(hidden)선택된 일자: {{ event.selectedDay }}</h3>
+        <h3>(hidden)일정 content type: {{ event.contentType }}</h3>
+        <template v-if="event.contentType == 'schedule'">
         <button class="common-button-radi7" @click="toEditRouter">수정</button>
         <button class="common-button-radi7" @click="toRemoveRouter">삭제</button>
+        </template>
     </div>
 
     <div class="board-box-day" v-if="event.clickType == 'Day' && dayEvents.length !== 0">
