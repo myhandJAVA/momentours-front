@@ -2,9 +2,9 @@ reset.css
 /* 사용자 임의로 간격을 조절하기 위해 각 태그별 기본 설정값을 0으로 초기화 
    (단, 글꼴에 관련된 값은 주석처리 
 -  초기화 시 css태그의 전역변수로 지정을 해야하는 번거로움이 생김. ) */
-html, body, div, span, applet, object, iframe,
-/* h1, h2, h3, h4, h5, h6, b, u, i, */p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
+html,  div, span, applet, object, iframe,
+/* h1, h2, h3, h4, h5, h6, b, u, i,*/p, blockquote, pre,
+a, abbr, acronym, address, body, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 center,
