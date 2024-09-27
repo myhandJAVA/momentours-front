@@ -3,7 +3,7 @@
     <div class="sidebar" @click.stop>
       <div class="logo-container">
     <div class="momentours-logo">
-      <img src="@/assets/icons/momentours-logo.svg" alt="logo">
+      <img src="@/assets/icons/momentours-logo.svg" alt="logo" class="logo-icon">
     </div>
     <div class="momentours">Momentours</div>
   </div>
@@ -42,10 +42,14 @@ const closeSidebar = () => {
 
 <style src="@/assets/css/side.css"></style>
 <style scoped>
-  .link-button {
-  background-color: #F9F5EA;
-  border-radius: 4px;
-  text-decoration: none;
-  color: #333;
-  }
+  .menu-item2:hover,
+.menu-item2:hover :deep(a),
+.menu-item2:hover :deep(*) {
+  color: #FFFFFF;
+}
+.menu-item:hover,
+.menu-item:hover :deep(a),
+.menu-item:hover :deep(*) {
+  color: #FFFFFF;
+}
 </style>

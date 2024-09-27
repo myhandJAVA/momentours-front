@@ -15,7 +15,7 @@
 import {ref,reactive} from 'vue';
 import Calendar from '@/components/schedule/Calendar.vue';
     
-const scheduleList = restView();
+// const scheduleList = restView();
 
 const events = reactive([
     { id:'1',start: '2024-09-25', end: '2024-09-25', title: '회의' , content: '메모',contentType:'schedule'},
