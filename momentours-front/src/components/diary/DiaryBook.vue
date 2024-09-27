@@ -2,7 +2,7 @@
     <div class="page-container">
         <div class="book-container">
             <div class="ellipse left-arrow">
-                <img src="@/assets/icons/arrow-left.svg" alt="왼쪽 화살표">
+                <img src="@/assets/icons/prePage.svg" alt="왼쪽 화살표">
             </div>
             <div class="book-overlay">
                 <div class="book-left"></div>
@@ -15,7 +15,7 @@
                 <div class="book-right" style="margin-right: 20px;"></div>
             </div>
             <div class="ellipse right-arrow">
-                <img src="@/assets/icons/arrow-right.svg" alt="오른쪽 화살표">
+                <img src="@/assets/icons/nextPage.svg" alt="오른쪽 화살표">
             </div>
         </div>
     </div>
@@ -55,7 +55,6 @@
 
 .book-right {
     position: absolute;
-    margin-top: 60px;
     margin-left: 590px;
     width: 530px;
     height: 573px;
@@ -67,7 +66,6 @@
 
 .book-left {
     position: absolute;
-    margin-top: 60px;
     margin-right: 510px;
     width: 530px;
     height: 573px;
