@@ -147,11 +147,12 @@ const handleRemove = () => {
 
 const handleRegist = (newEvent) => {
     jsonRegist(newEvent);
-    event.title = newEvent.title;
-    event.content = newEvent.content;
-    event.start = newEvent.start;
-    event.end = newEvent.end;
-    event.contentType = newEvent.contentType;
+    for (let key in event) {
+    if (event.hasOwnProperty(key)) {
+        event[key] = ''; 
+    }
+}
+
 };
 
 </script>
