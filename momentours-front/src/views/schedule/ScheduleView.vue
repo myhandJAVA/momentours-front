@@ -45,7 +45,7 @@
         router.push('/schedule/edit');
     };
     function toRemoveRouter(){
-        window.alert("삭제모달창 추가예정");
+        router.push('/schedule/remove');
     };
 
 </script>
