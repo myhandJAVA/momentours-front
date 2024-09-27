@@ -1,31 +1,38 @@
 <template>
-<div>
+<div class="container">
     <template v-if="localEvent.clickType === 'Schedule'">
         <template v-if="localEvent.contentType === 'schedule'">
-            <h2>일정제목: </h2>
-            <input v-model="localEvent.title" />
-            <h2>일정메모: </h2>
-            <input v-model="localEvent.content" />
-            <h2>일정시작일: </h2>
-            <input type="date" v-model="localEvent.start"/>
-            <h2>일정종료일: </h2>
-            <input type="date" v-model="localEvent.end"/>
-            <br><br><br>
-            <button type="button" @click="submitEvent">수정하기</button>
+            <div class="content-box">
+                <h2>일정제목: </h2>
+                <input v-model="localEvent.title" />
+                <h2>일정메모: </h2>
+                <input v-model="localEvent.content" />
+                <h2>일정시작일: </h2>
+                <input type="date" v-model="localEvent.start"/>
+                <h2>일정종료일: </h2>
+                <input type="date" v-model="localEvent.end"/>
+                <br><br><br>
+                <button class="common-button" type="button" @click="submitEvent">수정하기</button>
+            </div>
         </template>
 
         <template v-if="localEvent.contentType === 'todocourse'">
+            <div class="content-box">
             <h3>일정제목: {{ localEvent.title }}</h3>
             <h3>일정메모: {{ localEvent.content }}</h3>
             <h3>일정시작일: {{ localEvent.start }}</h3>
             <h3>일정종료일: {{ localEvent.end }}</h3>
             <button @click="goToTodoCourseEdit">예정코스 수정하러가기</button>
             <br><br><br>
+            </div>
         </template>
     </template>
 
     <template v-if="localEvent.clickType === 'Day'">
-    <h1>수정할 일정을 선택해주세요</h1>
+        <div class="content-box">
+    <h3>수정할 일정을 선택해주세요</h3>
+    <button @click="goToViewPage">뒤로가기</button>
+    </div>
     </template>
 </div>
 </template>
@@ -63,8 +70,29 @@ if(localEvent.value.title === ''){
 const goToTodoCourseEdit = () => {
 router.push('/todocourse/edit/' + localEvent.value.id);
 };
+
+const goToViewPage = ()=>{
+    router.push('/schedule');
+};
 </script>
 
 <style scoped>
-/* 스타일링을 원하는 경우 여기에 추가하세요 */
+.container {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    min-height: 65vh;
+}
+    .content-box{
+    
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 자식 요소 중앙 정렬 */
+        padding: 2rem; /* 내부 여백 */
+        border: 1px solid #ccc; /* 테두리 */
+        border-radius: 8px; /* 모서리 둥글게 */
+        background-color: white; /* 배경색 */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+
+    }
 </style>

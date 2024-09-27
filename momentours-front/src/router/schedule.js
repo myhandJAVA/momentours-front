@@ -15,6 +15,10 @@ export default [
             {
                 path: 'remove',
                 component: () => import('@/views/schedule/ScheduleRemove.vue')
+            },
+            {
+                path: 'regist',
+                component: () => import('@/views/schedule/ScheduleRegist.vue')
             }
         ]
     }
