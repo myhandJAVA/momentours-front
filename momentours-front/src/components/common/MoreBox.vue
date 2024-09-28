@@ -5,7 +5,7 @@
         <div v-if="isMenuOpen" class="menu-dropdown">
             <ul>
                 <li>수정</li>
-                <hr class="">
+                <hr class="hr-mr">
                 <li style="color: red;">삭제</li>
             </ul>
         </div>
@@ -58,13 +58,13 @@ onBeforeUnmount(() => {
 .menu-dropdown {
     position: absolute;
     right: 0;
-    top: 30px;
+    top: 10px;
     width: 100px;
     background-color: white;
     border: 1px solid #ddd;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 10;
-    padding: 10px;
+    padding: 4px;
     border-radius: 4px;
 }
 
@@ -83,5 +83,9 @@ onBeforeUnmount(() => {
 
 .menu-dropdown li:hover {
     background-color: #f0f0f0;
+}
+
+.hr-mr {
+    margin: 2px !important;
 }
 </style>
