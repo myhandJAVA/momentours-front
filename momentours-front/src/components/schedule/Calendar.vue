@@ -31,6 +31,7 @@
 </script>
 
 <style scoped>
+
     .vuecal--month-view .vuecal__cell {
         height: 50px;
     }
@@ -47,4 +48,5 @@
 .vuecal--month-view .vuecal__no-event {
     display: none;
     } 
+
 </style>

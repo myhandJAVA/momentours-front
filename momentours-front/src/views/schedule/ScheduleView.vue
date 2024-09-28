@@ -1,16 +1,16 @@
 <template>
-    
+<div class="main-box">
     <div class="board-box-schedule" v-if="event.clickType == 'Schedule'">
-        <h2 class="title">일정 제목: {{ event.title }}</h2>
-        <h2 class="content">일정 메모: {{ event.content }}</h2>
-        <h2 class="date">일정 시작일: {{ event.start }}</h2>
-        <h2 class="date">일정 종료일: {{ event.end }}</h2>
+        <p class="title">일정 제목: {{ event.title }}</p>
+        <p class="content">일정 메모: {{ event.content }}</p>
+        <p class="date">일정 시작일: {{ event.start }}</p>
+        <p class="date">일정 종료일: {{ event.end }}</p>
         
-        <div v-if="event.contentType == 'schedule'" class="action-buttons">
+        <div v-if="event.class == 'schedule'" class="action-buttons">
             <button class="common-button edit" @click="toEditRouter">수정</button>
             <button class="common-button delete" @click="toRemoveRouter">삭제</button>
         </div>
-        <div v-if="event.contentType == 'todocourse'" class="action-buttons">
+        <div v-if="event.class == 'todocourse'" class="action-buttons">
             <button class="common-button delete" @click="toTodoCourseRouter">예정데이트코스</button>
         </div>
 
@@ -29,10 +29,9 @@
 
     <div class="board-box-no-event" v-if="event.clickType == 'Day' && dayEvents.length == 0">
         <h2 class="no-event">이 날의 일정이 없습니다</h2>
-
     </div>
-    <div class="button-container">
-        <button class="common-button" @click="toRegistRouter">등록</button>
+
+        <button class="common-button regist" @click="toRegistRouter">등록</button>
     </div>
 </template>
 
@@ -58,7 +57,7 @@ function dayEventClicked(clickedEvent) {
         content: clickedEvent.content,
         start: formatDate(clickedEvent.start),
         end: formatDate(clickedEvent.end),
-        contentType: clickedEvent.contentType,
+        class: clickedEvent.class,
         clickType: 'Schedule'
     });
 }
@@ -85,6 +84,12 @@ function toTodoCourseRouter(){
 
 
 <style scoped>
+
+.main-box {
+    position: relative;
+    top:20vh;
+}
+
 [class^="board-box"] {
     display: flex; /* flexbox 사용 */
     flex-direction: column; /* 세로 방향으로 정렬 */
@@ -175,5 +180,14 @@ function toTodoCourseRouter(){
 
 .common-button.delete:hover {
     background-color: #f572ce;
+}
+
+.common-button.regist {
+    background-color:  #c5fdd1;
+    width: 7vw;
+}
+
+.common-button.regist:hover {
+    background-color: #8bee5d;
 }
 </style>
