@@ -19,12 +19,19 @@
         <div class="arrow-container">
             <img src="@/assets/icons/arrow-right.svg" alt="Right Arrow" class="arrow" @click="nextDate">
         </div>
-        <button class="common-button bg-color-pink num">일기작성</button>
+        <button class="common-button bg-color-pink num" @click="goToDiaryRegist">일기작성</button>
     </div>
 </template>
 
 <script setup>
 import { ref, onMounted, watch } from 'vue'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const goToDiaryRegist = () => {
+    router.push('/diary/regist'); // 일기 작성 페이지로 이동
+};
 
 const selectedDate = ref(3) // 기본적으로 중간 날짜 선택
 const dates = ref([

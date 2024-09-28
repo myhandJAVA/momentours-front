@@ -47,7 +47,7 @@
 .common-button {
     color: #333;
     border: none;
-    padding: 7px 22px;
+    padding: 6px 22px;
     border-radius: 20px;
     font-size: 13px;
     font-weight: bold;
@@ -57,7 +57,6 @@
 
 /* border-radius: 7px인 버튼 */
 .common-button-radi7 {
-    background-color: #C5B697;
     color: #333;
     border: none;
     padding: 7px 22px;

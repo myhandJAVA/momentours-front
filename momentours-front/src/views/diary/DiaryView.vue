@@ -1,14 +1,16 @@
 <template>
-    <DiaryCalendar/>
-    <DiaryBook/>
+    <div class="wrap">
+        <div><DiaryContent /></div>
+        <div style="margin-left: 48px;"><DiaryContent /></div>
+    </div>
 </template>
 
 <script setup>
-    import DiaryBook from '@/components/diary/DiaryBook.vue';
-    import DiaryCalendar from '@/components/diary/DiaryCalendar.vue';
-
+import DiaryContent from '@/components/diary/DiaryContent.vue';
 </script>
 
 <style scoped>
-
+.wrap {
+    display: flex;
+}
 </style>
