@@ -1,16 +1,16 @@
 <template>
     <div class="regist-container">
     <div class="regist-box">
-        <h2>일정 제목:</h2>
+        <p>일정 제목</p>
         <input v-model="localEvent.title" />
-
-        <h2>일정 메모:</h2>
+        <hr>
+        <p>일정 메모</p>
         <input v-model="localEvent.content" />
-
-        <h2>일정 시작일:</h2>
+        <hr>
+        <p>일정 시작일</p>
         <input type="date" v-model="localEvent.start" />
-
-        <h2>일정 종료일:</h2>
+        <hr>
+        <p>일정 종료일</p>
         <input type="date" v-model="localEvent.end" />
 
         <div class="button-box">
@@ -32,7 +32,7 @@ const localEvent = reactive({
     content: '',
     start: '',
     end: '',
-    contentType:"schedule"
+    class:"schedule"
 });
 
 const emit = defineEmits(['update:regist']);
