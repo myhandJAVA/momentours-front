@@ -29,6 +29,15 @@
     background-color: #999999;
 }
 
+/* 배경 연회색(코스에 사용(ex. 장소 삭제 버튼)) */
+.bg-color-lightgray {
+    background-color: #D8D8D8;
+}
+/* 배경 진한핑크색(코스에 사용(ex. 메모 삭제 버튼)) */
+.bg-color-darkpink {
+    background-color: #FFABAB;
+}
+
 /* 컬러 흰색 */
 .color-white {
     color: white;
@@ -52,17 +61,52 @@
     font-size: 13px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    /* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */
 }
 
 /* border-radius: 7px인 버튼 */
 .common-button-radi7 {
-    background-color: #C5B697;
     color: #333;
     border: none;
     padding: 7px 22px;
     border-radius: 7px;
     font-size: 13px;
     cursor: pointer;
+    /* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */
+}
+
+/* 코스에 사용되는 내용, 메모 등과 관련된 content-box css */
+/* 장소 메모 */
+.course-location-memo {
+    color: #333;
+    background-color: #FFC7C7;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 7px;
+    font-size: 13px;
+    outline: none;
+}
+/* 게시글 메모 */
+.course-post-memo {
+    color: #333;
+    background-color: #F9F5EA;
+    width: 100%;
+    height: 130px;
+    padding: 10px;
+    border: none;
+    font-size: 13px;
+    outline: none;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+/* 장소 정보 */
+.course-location-info {
+    color: #333;
+    background-color: #f9f9f9;
+    width: 100%;
+    border: none;
+    border-radius: 7px;
+    padding: 10px;
+    padding-left: 30px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
