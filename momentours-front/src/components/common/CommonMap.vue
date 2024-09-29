@@ -47,7 +47,7 @@ import {reactive, onMounted} from 'vue';
             // 장소 검색
             const searchLocation = () => {
                 clearMarkers();
-                state.placeService.keywordSearch(staet.searchQuery, placeSearchCB);
+                state.placeService.keywordSearch(state.searchQuery, placeSearchCB);
             };
 
             // 검색 콜백 함수
