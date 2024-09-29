@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Search :options1="selectOptions1" :options2="selectOptions2" />
+        <Search :options1="selectOptions1" :options2="selectOptions2" navigateTo="/todocourse/regist"/>
 
         <PostList :headers="['번호', '제목', '기간', '작성일']" :posts="posts" :currentPage="currentPage"
             :postsPerPage="postsPerPage" @page-changed="handlePageChange" />
