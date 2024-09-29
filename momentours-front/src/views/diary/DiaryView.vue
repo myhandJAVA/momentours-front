@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import DiaryContent from '@/components/diary/DiaryContent.vue';
+import DiaryContent from '@/components/diary/DiaryViewContent.vue';
 </script>
 
 <style scoped>

@@ -13,7 +13,7 @@
             뭐먹을 지 너무 고민이 되는 오늘 점심을 뭐먹을 지 너무 고민이 되는
             데 뭐 먹을까? 나 점심때 ...
         </div>
-        <div class="comment-wrap">
+        <div class="comment-wrap" >
             <div class="name-wrap">
                 <div>
                     <span class="nickname">야야야얍</span>
