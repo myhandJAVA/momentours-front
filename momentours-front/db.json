@@ -35,6 +35,18 @@
       "mbti": "INTJ",
       "gender": "",
       "joinDate": "2024-09-29"
+    },
+    {
+      "id": "f72a",
+      "email": "caolian200@naver.com",
+      "pwd": "123123",
+      "name": "123123",
+      "nickname": "123123",
+      "phone": "010-4499-0742",
+      "birth": "2024-09-18",
+      "mbti": "ISTP",
+      "gender": "",
+      "joinDate": "2024-09-29"
     }
   ]
 }
