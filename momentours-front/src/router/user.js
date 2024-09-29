@@ -13,4 +13,9 @@ export default [
         path: '/signup',
         component: () => import('@/views/user/UserSignUp.vue'),
     },
+
+    {
+        path: '/mypage',
+        component: () => import('@/views/user/UserMyPage.vue'),
+    },
 ];
