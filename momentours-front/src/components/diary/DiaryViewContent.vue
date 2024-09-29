@@ -9,7 +9,9 @@
                     <img src="@/assets/icons/user-profile-image.svg" alt="Profile" class="profile-image" />
                     <div>{{ diaryData.diaryUserNo === 12 ? '나' : '파트너' }}</div>
                 </div>
-                <div><MoreBox/></div>
+                <div>
+                    <MoreBox :diaryId="diaryData.id" @delete-diary="toRemoveRouter" />
+                </div>
             </div>
             <div class="content-wrap">
                 {{ diaryData.diaryContent }}
@@ -21,7 +23,6 @@
                         <span class="seq">|</span>
                         <span class="time">{{ formatCommentTime(comment.commentCreateDate) }}</span>
                     </div>
-                    <div><MoreBox/></div>
                 </div>
                 <div style="margin-top: 5px;">
                     <span>{{ comment.commentContent }}</span>
@@ -32,7 +33,8 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import MoreBox from '@/components/common/MoreBox.vue';
 
 const props = defineProps({
@@ -46,12 +48,19 @@ const props = defineProps({
     }
 });
 
+const router = useRouter();
+
+const toRemoveRouter = (diaryId) => {
+    router.push({ path: '/diary/remove', query: { diaryId } });
+};
+
 const formatCommentTime = (dateString) => {
-    // 여기에 날짜 포맷팅 로직을 구현하세요
-    // 예: "3분전", "1시간 전" 등으로 변환
-    return "3분전"; // 임시 반환값
+    // 댓글 시간 포맷팅 로직
+    return "3분전"; // 임시 값
 };
 </script>
+
+
 
 <style scoped>
 .container {

@@ -8,6 +8,10 @@ export default [
                 path: 'view',
                 component: () => import('@/views/diary/DiaryView.vue'),
             },
+            {
+                path: 'remove',
+                component: () => import('@/views/diary/DiaryRemove.vue'),
+            },
         ],
     },
     {

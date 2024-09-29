@@ -4,15 +4,15 @@
             <DiaryContent 
                 v-if="Object.keys(selectedDiary).length" 
                 :diaryData="selectedDiary" 
-                :showWritePrompt="!selectedDiary.diaryNo"
+                :showWritePrompt="!selectedDiary.id"
             />
-            <div v-else>일기가 없습니다.</div>
+            <div class="wrap-w" v-else>일기가 없습니다.</div>
         </div>
         <div style="margin-left: 48px;">
             <DiaryContent 
                 v-if="Object.keys(partnerDiary).length" 
                 :diaryData="partnerDiary" 
-                :showWritePrompt="!partnerDiary.diaryNo"
+                :showWritePrompt="!partnerDiary.id"
             />
             <div v-else>파트너의 일기가 없습니다.</div>
         </div>
@@ -68,5 +68,9 @@ watch(() => route.path, async () => {
 <style scoped>
 .wrap {
     display: flex;
+}
+
+.wrap-w {
+    width: 480px;
 }
 </style>
