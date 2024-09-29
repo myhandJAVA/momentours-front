@@ -38,19 +38,6 @@ const props = defineProps({
     },
 });
 
-// 일기 데이터를 가져오는 함수
-const fetchDiaries = async () => {
-    try {
-        const response = await fetch(`http://localhost:8080/diary?date=${props.selectedDate}`);
-        if (!response.ok) {
-            throw new Error('서버 응답이 실패했습니다.');
-        }
-        return await response.json(); // 데이터를 반환
-    } catch (error) {
-        console.error('일기 데이터를 가져오는 중 오류 발생:', error);
-    }
-};
-
 const selectedDiary = computed(() => {
     return props.diaryData.find(diary => diary.diaryUserNo === 12) || {};
 });

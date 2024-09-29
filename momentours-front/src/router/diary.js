@@ -15,7 +15,8 @@ export default [
         component: () => import('@/views/diary/DiaryRegist.vue'),
     },
     {
-        path: '/diary/edit',
+        path: '/diary/edit/:id',
         component: () => import('@/views/diary/DiaryEdit.vue'),
+        props: true, // URL 파라미터를 props로 받을 수 있게 설정
     },
 ];

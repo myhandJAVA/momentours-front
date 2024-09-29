@@ -34,13 +34,13 @@ const emit = defineEmits(['update:modelValue'])
 
 const selectedDate = ref(3)
 const dates = ref([
-    "24. 09. 26 (목)",
     "24. 09. 27 (금)",
     "24. 09. 28 (토)",
     "24. 09. 29 (일)",
     "24. 09. 30 (월)",
     "24. 10. 1 (화)",
-    "24. 10. 2 (수)"
+    "24. 10. 2 (수)",
+    "24. 10. 3 (목)"
 ])
 const displayedDates = ref([])
 const todayIndex = ref(-1)

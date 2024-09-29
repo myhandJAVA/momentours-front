@@ -28,7 +28,7 @@ const jsonView = async () =>  {
     });
     const todocourseResponse = await fetch("http://localhost:8080/todocourse",{
         method:"GET"
-    });
+    }); 
     const metdayResponse = await fetch("http://localhost:8080/metdays",{
         method:"GET"
     });

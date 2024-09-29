@@ -19,7 +19,7 @@ import DiaryBook from '@/components/diary/DiaryBook.vue';
 import DiaryCalendar from '@/components/diary/DiaryCalendar.vue';
 import { RouterView } from 'vue-router';
 
-const selectedDate = ref('2024-09-29'); // 초기값 설정
+const selectedDate = ref('2024-09-30'); // 초기값 설정
 const diaryData = ref([]);
 
 const updateDiaryData = (newData) => {
@@ -48,28 +48,6 @@ const filteredDiaryData = computed(() => {
     });
 });
 
-const jsonRegist = async(newEvent) => {
-    await fetch(`http://localhost:8080/diary`,{
-        method:"POST",
-        body: JSON.stringify({
-            "diaryContent":`${newEvent.start}`,
-            "class":`${newEvent.class}`
-        })
-    })
-    const newEvents = await fetchDiaryData();
-    events.length = 0;
-    events.push(...newEvents);
-}
-
-const handleRegist = (newEvent) => {
-    jsonRegist(newEvent);
-    for (let key in event) {
-    if (event.hasOwnProperty(key)) {
-        event[key] = ''; 
-    }
-}
-
-};
 
 // 컴포넌트가 마운트될 때 데이터를 가져옴
 onMounted(fetchDiaryData);
