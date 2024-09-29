@@ -10,7 +10,12 @@
             </div>
             <div class="bg-b">
                 <ul class="moment-list">
-                    <li v-for="(moment, index) in paginatedPosts" :key="index + 1" class="moment-item">
+                    <li 
+                        v-for="(moment, index) in paginatedPosts" 
+                        :key="index + 1" 
+                        class="moment-item"
+                        @click="goToDetail(moment.momentNo)" 
+                    >
                         <span class="item number">{{ (currentPage - 1) * postsPerPage + index + 1 }}</span>
                         <span class="item title">{{ moment.momentTitle }}</span>
                         <span class="item likes">{{ moment.momentLike }}</span>
@@ -33,37 +38,42 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import Pagination from './Pagination.vue';
 
-export default {
-    components: { Pagination },
-    props: {
-        headers: { type: Array, required: true },
-        posts: { type: Array, default: () => [] }, // 기본값으로 빈 배열 설정
-        currentPage: { type: Number, default: 1 },
-        postsPerPage: { type: Number, default: 10 }
-    },
-    computed: {
-        totalPosts() {
-            return this.posts.length; // this.moments -> this.posts로 변경
-        },
-        paginatedPosts() {
-            const start = (this.currentPage - 1) * this.postsPerPage;
-            const end = start + this.postsPerPage;
-            return this.posts.slice(start, end); // this.moments -> this.posts로 변경
-        }
-    },
-    methods: {
-        handlePageChange(page) {
-            this.$emit('page-changed', page); // 부모 컴포넌트에 페이지 변경 이벤트 전달
-        }
-    }
+// Props 받아오기
+const props = defineProps({
+    headers: { type: Array, required: true },
+    posts: { type: Array, default: () => [] },
+    currentPage: { type: Number, default: 1 },
+    postsPerPage: { type: Number, default: 10 }
+});
+
+const router = useRouter();
+
+// 클릭 이벤트 함수 정의
+const goToDetail = (momentNo) => {
+    router.push(`/moment/detail/${momentNo}`); // 디테일 페이지로 이동
+};
+
+// Computed Properties
+const totalPosts = computed(() => props.posts.length);
+
+const paginatedPosts = computed(() => {
+    const start = (props.currentPage - 1) * props.postsPerPage;
+    const end = start + props.postsPerPage;
+    return props.posts.slice(start, end);
+});
+
+// 부모 컴포넌트로 페이지 변경 이벤트 전달
+const handlePageChange = (page) => {
+    emit('page-changed', page);
 };
 </script>
 
 <style scoped>
-
     .flex-row-f {
         margin: 50px 0 0 300px;
         z-index: 124;
@@ -92,15 +102,15 @@ export default {
     }
 
     .number {
-        flex-basis: 10%; /* 번호 항목은 상대적으로 더 좁은 공간 할당 */
+        flex-basis: 10%;
     }
 
     .title {
-        flex-basis: 50%; /* 제목은 더 넓은 공간 할당 */
+        flex-basis: 50%;
     }
 
     .likes {
-        flex-basis: 20%; /* 나머지 항목들은 균등하게 할당 */
+        flex-basis: 20%;
     }
 
     .views {
@@ -121,7 +131,7 @@ export default {
         list-style: none;
         padding: 0;
     }
-    
+
     li {
         display: flex;
         width: 45vw;
@@ -132,7 +142,7 @@ export default {
     }
 
     li:hover {
-        background-color: #f0f0f0; /* 연한 회색 배경색 */
+        background-color: #f0f0f0;
         cursor: pointer;
     }
 

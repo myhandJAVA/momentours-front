@@ -22,7 +22,7 @@ import PostList from '@/components/moment/PostList.vue';
 const moments = ref([]); // moments 데이터를 가져옴
 const currentPage = ref(1);
 const momentsPerPage = ref(10);
-const headers = ['번호', '제목', '좋아요', '조회수', '생성 날짜'];
+const headers = ['번호', '제목', '좋아요', '조회수', '작성일'];
 const isLoading = ref(true); // 로딩 상태 추가
 
 const router = useRouter();
@@ -32,7 +32,7 @@ const goToRegist = () => {
 }
 
 const handlePageChange = (page) => {
-  currentPage.value = page; // 페이지 변경 시 currentPage 업데이트
+  currentPage.value = page; // 페이지 변경 시 currentPage 업데이트  
 };
 
 const fetchMoments = async () => {
