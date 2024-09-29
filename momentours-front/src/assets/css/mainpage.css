@@ -1,5 +1,5 @@
- /* 기본 스타일 초기화 */
- * {
+/* 기본 스타일 초기화 */
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -7,9 +7,9 @@
 
 /* 전체 화면 크기 설정 */
 body, html {
-    width: 90%;
+    width: 100%;
     height: 100%;
-    margin: 0 auto; /* 중앙 정렬 */
+    margin: 0 auto;
 }
 
 /* 메인 태그 설정 */
@@ -18,6 +18,10 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 1200px; /* 최대 너비 설정 */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* 메인 배너 스타일 */
@@ -27,25 +31,34 @@ main {
     align-items: center;
     position: relative;
     margin: 20px 0;
+    width: 100%;
 }
 
 /* 배너 안 요소 */
 .banner-item {
-    min-width: 620px; /* 배너 너비를 두 배로 설정 */
-    width: 1240px; /* 배너 전체 너비 */
-    height: 320px; /* 배너 높이 유지 */
+    width: 100%;
+    height: 320px;
     border: 1px solid #ccc;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 0px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 10px;
     border-radius: 20px;
 }
 
-/* 좌우 버튼 스타일 (배너 밖으로 이동) */
+.banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    background-size: cover;
+    border-radius: 20px;
+}
+
+/* 좌우 버튼 스타일 */
 .prev, .next {
     position: absolute;
     top: 50%;
@@ -65,71 +78,127 @@ main {
     right: -60px;
 }
 
-
+/* 투어 딜 섹션 */
 .tour-deals {
+    width: 100%;
     text-align: center;
-    margin: 20px;
+    margin: 20px 0;
     background-color: #fff;
     border-radius: 20px;
-    
-
 }
 
+/* 필터 옵션 */
 .filter-options {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 10px;
-    border-radius: 20px;
+    margin-bottom: 20px;
 }
 
-/* 아래 card 요소의 부모 요소 */
+.filter-options button {
+    border-radius: 45px;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.filter-options button:hover {
+    background-color: #e0e0e0;
+}
+
+.filter-options button.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* 카드 컨테이너 */
 .deal-cards {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 20px;
-    overflow-x: auto;
+    width: 100%;
 }
 
-/* best 게시글이 보여질 card section */
+/* 카드 스타일 */
 .card {
+    width: calc(33.333% - 14px);
+    height: 300px;
     border: 1px solid #ccc;
-    width:28vw;
-    height: 240px;
-    padding: 10px;
+    padding: 0px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
 }
 
 .card img {
     width: 100%;
-    height: 70%; /* 카드의 70%를 이미지로 채움 */
-    object-fit: cover; /* 이미지가 요소에 맞춰지게 조정 */
-    border-radius: 20px 20px 0 0; /* 상단 부분만 둥글게 설정 */
-    border-bottom: 1px solid #ccc; /* 이미지와 텍스트 사이에 구분선을 추가 */
+    height: 80%;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
 }
 
 .card-content {
-    padding: 10px;
-    height: 30%; /* 카드의 30%를 텍스트로 채움 */
+    padding: 12px;
+    height: 30%;
     text-align: center;
     font-size: 0.9em;
     color: #666;
 }
 
-/* 버튼에 대한 css */
-.filter-options button {
-    border-radius: 45px;
-    padding: 10px 10px;
-    border: 1px solid #ccc;
-    background-color: #ffffff;
-    cursor: pointer;
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    .main-banner {
+        width: 90%;
+    }
+    
+    .card {
+        width: calc(50% - 10px);
+    }
 }
 
-/* 버튼의 호버 기능 */
-.filter-options button:hover {
-    background-color: #e0e0e0;
+@media (max-width: 768px) {
+    .main-banner {
+        width: 95%;
+    }
+    
+    .banner-item {
+        height: 250px;
+    }
+    
+    .prev, .next {
+        display: none;
+    }
+    
+    .card {
+        width: 100%;
+    }
 }
+
+@media (max-width: 480px) {
+    .banner-item {
+        height: 200px;
+    }
+    
+    .filter-options {
+        flex-wrap: wrap;
+    }
+    
+    .filter-options button {
+        width: calc(50% - 5px);
+    }
+}
+
+/* card-content와 간격을 넓히기 위해 만듦 */
+    p {
+        padding:8px;
+    }
