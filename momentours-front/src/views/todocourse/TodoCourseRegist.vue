@@ -70,7 +70,7 @@ const handleStartDateChange = () => {
         localEvent.end = localEvent.start;
     } else if (selectedOption === '연일 데이트') {
         localEvent.end = '';
-    }
+    } 
 };
 
 // 옵션에 따른 날짜 필드 초기화 처리
