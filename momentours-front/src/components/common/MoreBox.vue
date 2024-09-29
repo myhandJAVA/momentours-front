@@ -19,23 +19,27 @@ const props = defineProps({
         type: Number,
         required: true,
     },
+    diaryContent: { // diaryContent prop 추가
+        type: String,
+        required: true,
+    }
 });
 
-const emit = defineEmits(['delete-diary']);
+const emit = defineEmits(['delete-diary', 'edit-diary']);
 const isMenuOpen = ref(false);
 
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
 };
 
-// 삭제 클릭 시 diaryId emit
 const deleteItem = () => {
-    emit('delete-diary', props.diaryId); // diaryId를 부모 컴포넌트로 전달
+    emit('delete-diary', props.diaryId);
+};
+
+const editItem = () => {
+    emit('edit-diary', { id: props.diaryId, content: props.diaryContent }); // ID와 내용 함께 emit
 };
 </script>
-
-
-
 
 <style scoped>
 .more-options {

@@ -101,7 +101,7 @@ const registerDiary = async () => {
         console.log('일기가 성공적으로 등록되었습니다:', result);
 
         // 일기 등록 후 페이지 이동 전에 이벤트 emit
-        emit('refreshDiaryData'); // 데이터 새로 고침 요청
+        // emit('refreshDiaryData'); // 데이터 새로 고침 요청
 
         // 일기 등록 후 페이지 이동
         router.push('/diary/view');

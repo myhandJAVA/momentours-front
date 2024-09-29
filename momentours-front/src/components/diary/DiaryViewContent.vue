@@ -10,7 +10,12 @@
                     <div>{{ diaryData.diaryUserNo === 12 ? '나' : '파트너' }}</div>
                 </div>
                 <div>
-                    <MoreBox :diaryId="diaryData.id" @delete-diary="toRemoveRouter" />
+                    <MoreBox 
+                        :diaryId="diaryData.id" 
+                        :diaryContent="diaryData.diaryContent"
+                        @delete-diary="toRemoveRouter" 
+                        @edit-diary="toEditRouter"
+                    />
                 </div>
             </div>
             <div class="content-wrap">
@@ -21,7 +26,7 @@
                     <div>
                         <span class="nickname">{{ comment.commentUserNo === 12 ? '나' : '파트너' }}</span>
                         <span class="seq">|</span>
-                        <span class="time">{{ formatCommentTime(comment.commentCreateDate) }}</span>
+                        <span class="time">{{ comment.commentCreateDate }}</span>
                     </div>
                 </div>
                 <div style="margin-top: 5px;">
@@ -33,7 +38,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref } from 'vue';
+import { defineProps } from 'vue';
 import { useRouter } from 'vue-router';
 import MoreBox from '@/components/common/MoreBox.vue';
 
@@ -50,14 +55,15 @@ const props = defineProps({
 
 const router = useRouter();
 
+const toEditRouter = ({ id, content }) => {
+    // ID와 내용을 함께 넘기기
+    router.push({ path: `/diary/edit/${id}`, query: { content } });
+};
+
 const toRemoveRouter = (diaryId) => {
     router.push({ path: '/diary/remove', query: { diaryId } });
 };
 
-const formatCommentTime = (dateString) => {
-    // 댓글 시간 포맷팅 로직
-    return "3분전"; // 임시 값
-};
 </script>
 
 

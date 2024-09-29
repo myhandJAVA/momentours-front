@@ -33,6 +33,7 @@ const confirmDelete = async () => {
 
 const cancelDelete = () => {
     isVisible.value = false; // 모달 닫기
+    router.push('/diary/view');
 };
 
 const deleteDiary = async (diaryId) => {

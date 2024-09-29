@@ -20,7 +20,8 @@ export default [
     },
     {
         path: '/diary/edit/:id',
+        name: 'DiaryEdit',
         component: () => import('@/views/diary/DiaryEdit.vue'),
-        props: true, // URL 파라미터를 props로 받을 수 있게 설정
+        props: true,
     },
 ];

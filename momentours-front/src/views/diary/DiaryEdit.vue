@@ -7,7 +7,7 @@
             <img class="img-box" src="@/assets/icons/img-box.svg" alt="사진 이미지" @click="selectImage">
         </div>
         <div class="regist-content">
-            <button :class="uploadButtonClass" @click="openModal">업로드</button>
+            <button :class="uploadButtonClass" @click="updateDiary">수정완료</button>
             <button :class="tempSaveButtonClass" @click="showAlert">임시저장</button>
             <button class="common-button bg-color-gray color-white">임시저장 글</button>
         </div>
@@ -28,32 +28,47 @@
 
 <script setup>
 import Modal from '@/components/common/Modal.vue';
-import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, computed, onMounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 
 const textContent = ref('');
 const isModalVisible = ref(false);
 const router = useRouter();
+const route = useRoute(); // useRoute 추가
 const dismissSecs = 2;
 const dismissCountDown = ref(0);
 const isLoading = ref(false);
 const errorMessage = ref('');
 
-const props = defineProps({
-    id: String, // URL에서 가져올 일기 ID
-});
-
-
-// ID를 사용하여 일기 내용을 가져오는 로직
-onMounted(async () => {
-    const response = await fetch(`http://localhost:8080/diary/${props.id}`);
-    if (response.ok) {
-        const data = await response.json();
-        textContent.value = data.textContent; // 가져온 내용으로 설정
-    } else {
-        console.error('일기 데이터를 가져오는 데 실패했습니다.');
+// 컴포넌트가 마운트될 때 URL 쿼리 파라미터에서 content 가져오기
+onMounted(() => {
+    const content = route.query.content; // URL에서 content 가져오기
+    if (content) {
+        textContent.value = content; // textarea에 내용 설정
     }
 });
+
+// 일기 업데이트 함수
+const updateDiary = async () => {
+    const diaryId = route.params.id;
+    try {
+        const response = await fetch(`http://localhost:8080/diary/edit/${diaryId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                textContent: textContent.value,
+            }),
+        });
+        if (!response.ok) {
+            throw new Error('Failed to update diary');
+        }
+        router.push('/diary/view');
+    } catch (error) {
+        console.error('Error updating diary:', error);
+    }
+};
 
 // 업로드 버튼과 임시저장 버튼의 클래스 동적 변경
 const uploadButtonClass = computed(() => {
@@ -82,45 +97,24 @@ const closeModal = () => {
     isModalVisible.value = false;
 };
 
-const formatDate = (date) => {
-    const pad = (n) => (n < 10 ? '0' + n : n);
-    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
-};
-
-const saveDiary = async () => {
-    // 저장 로직을 추가합니다.
-    console.log('저장된 일기 내용:', diaryContent.value);
-};
-
 // 모달에서 Yes를 누르면 일기 등록 후 이동
 const confirmUpload = () => {
     closeModal();
-    registerDiary();
+    updateDiary();
 };
 
 // 임시 저장 함수
 const saveTemporarily = () => {
-    // 여기에 임시 저장 로직을 추가합니다.
     console.log('임시 저장되었습니다:', textContent.value);
     showAlert(); // 경고 알림 표시
 };
 
-// 이미지 선택하기
-const selectImage = () => {
-    // fileInput 참조를 사용하여 파일 선택 창 열기
-    fileInput.value.click(); // 파일 선택 창 열기
-};
-
-const countDownChanged = (dismissCountDown) => {
-    dismissCountDown = dismissCountDown;
-};
-
+// 알림 함수
 const showAlert = () => {
-    dismissCountDown.value = dismissSecs; // dismissCountDown을 재설정
+    dismissCountDown.value = dismissSecs; // dismissCountDown 재설정
 };
 
 </script>
-
 
 <style scoped>
 .regist-wrap {
