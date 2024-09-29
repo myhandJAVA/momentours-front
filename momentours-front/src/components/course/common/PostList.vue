@@ -79,7 +79,7 @@ export default {
     border: 1px solid #c5b697;
     z-index: 124;
     border-radius: 14px 14px 0 0;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    /* box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25); */
     padding: 0 20px;
 }
 
@@ -112,7 +112,7 @@ export default {
 .course-list {
     list-style: none;
     padding: 0;
-    margin-top: 42px
+    margin-top: 47px
 }
 
 ul {
