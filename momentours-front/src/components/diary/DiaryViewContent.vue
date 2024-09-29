@@ -1,41 +1,56 @@
 <template>
     <div class="container">
-        <div class="top-wrap">
-            <div class="profile">
-                <img src="@/assets/icons/user-profile-image.svg" alt="Profile" class="profile-image" />
-                <div>야야야ㅑ야</div>
-            </div>
-            <div><MoreBox/></div>
+        <div v-if="showWritePrompt" class="write-prompt">
+            일기를 작성해주세요.
         </div>
-        <div class="content-wrap">
-            오늘 점심을 뭐먹을 지 너무 고민이 되는 데 뭐 먹을까? 나 점심때 
-            오늘 점심을 뭐먹을 지 너무 고민이 되는 데 뭐 먹을까? 오늘 점심을 
-            뭐먹을 지 너무 고민이 되는 오늘 점심을 뭐먹을 지 너무 고민이 되는
-            데 뭐 먹을까? 나 점심때 ...
-        </div>
-        <div class="comment-wrap" >
-            <div class="name-wrap">
-                <div>
-                    <span class="nickname">야야야얍</span>
-                    <span class="seq">|</span>
-                    <span class="time">3분전</span>
+        <template v-else>
+            <div class="top-wrap">
+                <div class="profile">
+                    <img src="@/assets/icons/user-profile-image.svg" alt="Profile" class="profile-image" />
+                    <div>{{ diaryData.diaryUserNo === 12 ? '나' : '파트너' }}</div>
                 </div>
                 <div><MoreBox/></div>
             </div>
-            <div style="margin-top: 5px;">
-                <span>너무 맛있는 점심을 먹고싶은데...</span>
+            <div class="content-wrap">
+                {{ diaryData.diaryContent }}
             </div>
-        </div>
-        <!-- <div class="textarea-container">
-                <textarea class="comment-text" placeholder="댓글을 입력하세요."></textarea>
-                <button class="submit-button common-button bg-color-brown">댓글작성</button>
-        </div> -->
+            <div v-for="comment in diaryData.comments" :key="comment.commentNo" class="comment-wrap">
+                <div class="name-wrap">
+                    <div>
+                        <span class="nickname">{{ comment.commentUserNo === 12 ? '나' : '파트너' }}</span>
+                        <span class="seq">|</span>
+                        <span class="time">{{ formatCommentTime(comment.commentCreateDate) }}</span>
+                    </div>
+                    <div><MoreBox/></div>
+                </div>
+                <div style="margin-top: 5px;">
+                    <span>{{ comment.commentContent }}</span>
+                </div>
+            </div>
+        </template>
     </div>
 </template>
 
 <script setup>
+import { defineProps } from 'vue';
 import MoreBox from '@/components/common/MoreBox.vue';
 
+const props = defineProps({
+    diaryData: {
+        type: Object,
+        default: () => ({}),
+    },
+    showWritePrompt: {
+        type: Boolean,
+        default: false
+    }
+});
+
+const formatCommentTime = (dateString) => {
+    // 여기에 날짜 포맷팅 로직을 구현하세요
+    // 예: "3분전", "1시간 전" 등으로 변환
+    return "3분전"; // 임시 반환값
+};
 </script>
 
 <style scoped>

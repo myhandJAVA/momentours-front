@@ -2,12 +2,7 @@
     <div class="regist-wrap">
         <div class="left-space"></div> <!-- 왼쪽 여백 -->
         <div class="text-image-wrap">
-            <textarea 
-                class="textareat-content" 
-                placeholder="본문을 작성해주세요." 
-                v-model="textContent"
-                @input="adjustHeight"
-                :style="{ height: textAreaHeight + 'px' }">
+            <textarea class="textareat-content" placeholder="본문을 작성해주세요." v-model="localEvent.diaryContent" @input="adjustHeight">
             </textarea>
             <img class="img-box" src="@/assets/icons/img-box.svg" alt="사진 이미지" @click="selectImage">
         </div>
@@ -24,28 +19,28 @@
         </Modal>
 
         <!-- Alert for temporary save -->
-        <b-alert
-      show="dismissCountDown"
-      dismissible
-      variant="warning"
-      @dismissed="dismissCountDown=0"
-      @dismiss-count-down="countDownChanged"
-    >
-      This alert will dismiss after {{ dismissCountDown }} seconds...
-    </b-alert>:
+        <b-alert show="dismissCountDown" dismissible variant="warning" @dismissed="dismissCountDown = 0"
+            @dismiss-count-down="countDownChanged">
+            This alert will dismiss after {{ dismissCountDown }} seconds...
+        </b-alert>:
     </div>
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue';
-import { useRouter } from 'vue-router'; // Router 기능을 위해 추가
+import { ref, computed } from 'vue';
+import { useRouter,reactive } from 'vue-router';
 import Modal from '../common/Modal.vue';
+
+// Emit 정의
+const emit = defineEmits(['update:regist']);
 
 const textContent = ref('');
 const isModalVisible = ref(false);
 const router = useRouter();
-const dismissSecs = 2; // 알림 지속 시간
-const dismissCountDown = 0;
+const dismissSecs = 2;
+const dismissCountDown = ref(0);
+const isLoading = ref(false);
+const errorMessage = ref('');
 
 // 업로드 버튼과 임시저장 버튼의 클래스 동적 변경
 const uploadButtonClass = computed(() => {
@@ -62,7 +57,11 @@ const tempSaveButtonClass = computed(() => {
 
 // 모달 열기
 const openModal = () => {
-    isModalVisible.value = true;
+    if (textContent.value.trim() !== '') {
+        isModalVisible.value = true;
+    } else {
+        errorMessage.value = '일기 내용을 입력해주세요.';
+    }
 };
 
 // 모달 닫기
@@ -70,10 +69,80 @@ const closeModal = () => {
     isModalVisible.value = false;
 };
 
+// const formatDate = (date) => {
+//     const pad = (n) => (n < 10 ? '0' + n : n);
+//     return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+// };
+
+// 일기 등록 함수
+// const registerDiary = async () => {
+//     isLoading.value = true;
+//     errorMessage.value = '';
+
+//     try {
+//         const response = await fetch('http://localhost:8080/diary', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({
+//                 diaryContent: textContent.value,
+//                 diaryCreateDate: formatDate(new Date()),
+//                 diaryUserNo: 12,  // 현재 사용자 번호
+//                 coupleNo: 5,  // 커플 번호 (예시)
+//                 diaryIsDeleted: 0,
+//                 files: [],  // 파일 업로드 기능이 구현되면 이 부분을 수정
+//                 comments: []
+//             }),
+//         });
+
+//         if (!response.ok) {
+//             throw new Error('서버 응답이 실패했습니다.');
+//         }
+
+//         const result = await response.json();
+//         console.log('일기가 성공적으로 등록되었습니다:', result);
+
+//         // 일기 등록 후 페이지 이동 전에 이벤트 emit
+//         emit('refreshDiaryData'); // 데이터 새로 고침 요청
+
+//         // 일기 등록 후 페이지 이동
+//         router.push('/diary/view');
+//     } catch (error) {
+//         console.error('일기 등록 중 오류 발생:', error);
+//         errorMessage.value = '일기 등록에 실패했습니다. 다시 시도해주세요.';
+//     } finally {
+//         isLoading.value = false;
+//     }
+// };
+
+const registEvent = async () => {
+    if (localEvent.diaryContent === '') {
+        window.alert("내용을 입력해주세요.");
+    } else {
+        emit('update:regist', localEvent);
+        router.push('/diary/view');
+    }
+};
+
+const localEvent = reactive({
+    diaryContent: '',
+    class:"diary"
+});
+
 // 모달에서 Yes를 누르면 일기 등록 후 이동
 const confirmUpload = () => {
-    // 예를 눌렀을 때 페이지 이동
-    router.push('/diary/view');
+    closeModal();
+    // registerDiary();
+    registEvent();
+
+};
+
+// 임시 저장 함수
+const saveTemporarily = () => {
+    // 여기에 임시 저장 로직을 추가합니다.
+    console.log('임시 저장되었습니다:', textContent.value);
+    showAlert(); // 경고 알림 표시
 };
 
 // 이미지 선택하기
@@ -82,15 +151,16 @@ const selectImage = () => {
     fileInput.value.click(); // 파일 선택 창 열기
 };
 
-const countDownChanged= (dismissCountDown) => {
-        dismissCountDown = dismissCountDown;
+const countDownChanged = (dismissCountDown) => {
+    dismissCountDown = dismissCountDown;
 };
 
 const showAlert = () => {
-    dismissCountDown = dismissSecs;
+    dismissCountDown.value = dismissSecs; // dismissCountDown을 재설정
 };
 
 </script>
+
 
 <style scoped>
 .regist-wrap {
@@ -151,5 +221,10 @@ const showAlert = () => {
     justify-content: center;
     align-items: center;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
 }
 </style>

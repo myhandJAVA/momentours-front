@@ -24,16 +24,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, computed } from 'vue'
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-const goToDiaryRegist = () => {
-    router.push('/diary/regist'); // 일기 작성 페이지로 이동
-};
+const props = defineProps(['modelValue'])
+const emit = defineEmits(['update:modelValue'])
 
-const selectedDate = ref(3) // 기본적으로 중간 날짜 선택
+const selectedDate = ref(3)
 const dates = ref([
     "24. 09. 26 (목)",
     "24. 09. 27 (금)",
@@ -45,6 +44,16 @@ const dates = ref([
 ])
 const displayedDates = ref([])
 const todayIndex = ref(-1)
+
+const formattedSelectedDate = computed(() => {
+    const date = dates.value[selectedDate.value]
+    const [year, month, day] = date.split('. ')
+    return `20${year}-${month}-${day.split(' ')[0]}`
+})
+
+watch(formattedSelectedDate, (newValue) => {
+    emit('update:modelValue', newValue)
+})
 
 const updateDisplayedDates = () => {
     let start = Math.max(0, selectedDate.value - 3)
@@ -72,6 +81,10 @@ const nextDate = () => {
     }
 }
 
+const goToDiaryRegist = () => {
+    router.push('/diary/regist'); // 일기 작성 페이지로 이동
+};
+
 onMounted(() => {
     const today = new Date()
     const todayString = `24. ${String(today.getMonth() + 1).padStart(2, '0')}. ${String(today.getDate()).padStart(2, '0')}`
@@ -83,6 +96,9 @@ onMounted(() => {
 })
 
 watch(selectedDate, updateDisplayedDates)
+
+watch(selectedDate, updateDisplayedDates)
+
 </script>
 
 <style scoped>
@@ -154,5 +170,6 @@ watch(selectedDate, updateDisplayedDates)
 
 .num {
     flex-basis: 8%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 </style>
