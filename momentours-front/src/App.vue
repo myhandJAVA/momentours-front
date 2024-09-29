@@ -13,7 +13,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import Footer from './components/common/footer.vue';
+import Footer from './components/common/Footer.vue';
 import Header from './components/common/Header.vue';
 import Sidebar from './components/common/Sidebar.vue';
 
