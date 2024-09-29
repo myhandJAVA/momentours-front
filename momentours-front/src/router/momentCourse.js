@@ -1,7 +1,7 @@
 export default [
     {
         path: '/momentcourse',
-        component: () => import('@/views/momentcourse/MomentCourseRoot.vue'),
+        component: () => import('@/views/momentcourse/MomentCourseList.vue'),
         children: [
             {
                 path: '/list',

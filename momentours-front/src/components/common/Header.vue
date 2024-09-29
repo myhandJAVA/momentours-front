@@ -3,11 +3,11 @@
       <button class="menu-icon" @click="$emit('toggle-sidebar')">
         ☰
       </button>
-      <div class="logo">
+      <div class="logo" @click="toHomeRouter">
         <img src="@/assets/icons/momentours-logo.svg" alt="Momentours icon" class="logo-icon" />
         <span class="oooh-baby-regular">Momentours</span>
       </div>
-      <div class="profile">
+      <div class="profile" @click="toMyPageRouter">
         <img src="@/assets/icons/user-profile-image.svg" alt="Profile" class="profile-image" />
         <div class="profile-info">
           <span class="profile-name">Moni Roy</span>
@@ -18,7 +18,16 @@
   </template>
   
   <script setup>
+  import { useRouter } from 'vue-router';
+  const router = useRouter();
   defineEmits(['toggle-sidebar']);
+  const toHomeRouter = ()=>{
+    router.push('/');
+};
+
+  const toMyPageRouter = ()=>{
+    router.push('/mypage');
+  };
   </script>
   
   <style scoped>
@@ -46,6 +55,8 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    cursor: pointer; 
+    user-select: none; 
   }
   
   .logo-icon {
@@ -63,6 +74,7 @@
   .profile {
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
   
   .profile-image {
