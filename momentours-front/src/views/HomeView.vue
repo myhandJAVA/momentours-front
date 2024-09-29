@@ -27,7 +27,7 @@
             <article class="card" v-for="review in filteredReviews" :key="review.id">
               <img :src="review.image" :alt="review.title">
               <div class="card-content">
-                <h3>{{ review.title }}</h3>
+                <h5>{{ review.title }}</h5>
                 <p>{{ review.description }}</p>
               </div>
             </article>
