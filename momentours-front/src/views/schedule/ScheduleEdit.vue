@@ -1,16 +1,20 @@
 <template>
 <div class="container">
     <template v-if="localEvent.clickType === 'Schedule'">
-        <template v-if="localEvent.contentType === 'schedule'">
+        <template v-if="localEvent.class === 'schedule'">
             <div class="content-box">
-                <h2>일정제목: </h2>
+                <p>일정제목 </p>
                 <input v-model="localEvent.title" />
-                <h2>일정메모: </h2>
+                <hr>
+                <p>일정메모</p>
                 <input v-model="localEvent.content" />
-                <h2>일정시작일: </h2>
+                <hr>
+                <p>일정시작일</p>
                 <input type="date" v-model="localEvent.start"/>
-                <h2>일정종료일: </h2>
+                <hr>
+                <p>일정종료일</p>
                 <input type="date" v-model="localEvent.end"/>
+                <hr>
                 <div class="button-box">
                     <button class="common-button" type="button" @click="submitEvent">수정하기</button>
                     <button class="common-button" type="button" @click="goToViewPage">뒤로가기</button>
@@ -18,14 +22,16 @@
             </div>
         </template>
 
-        <template v-if="localEvent.contentType === 'todocourse'">
+        <template v-if="localEvent.class === 'todocourse'">
             <div class="content-box">
             <h3>일정제목: {{ localEvent.title }}</h3>
             <h3>일정메모: {{ localEvent.content }}</h3>
             <h3>일정시작일: {{ localEvent.start }}</h3>
             <h3>일정종료일: {{ localEvent.end }}</h3>
-            <button @click="goToTodoCourseEdit">예정코스 수정하러가기</button>
-            <br><br><br>
+            <div class="button-box">
+            <button class="common-button" @click="goToTodoCourseEdit">예정코스 수정하러가기</button>
+            <button class="common-button" @click="goToViewPage">뒤로가기</button>
+        </div>
             </div>
         </template>
     </template>
@@ -95,6 +101,7 @@ const goToViewPage = ()=>{
     border-radius: 8px; /* 모서리 둥글게 */
     background-color: white; /* 배경색 */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    
 
     
 }

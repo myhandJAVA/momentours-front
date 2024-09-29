@@ -55,7 +55,6 @@
 
 .book-right {
     position: absolute;
-    margin-top: 60px;
     margin-left: 590px;
     width: 530px;
     height: 573px;
@@ -67,7 +66,6 @@
 
 .book-left {
     position: absolute;
-    margin-top: 60px;
     margin-right: 510px;
     width: 530px;
     height: 573px;

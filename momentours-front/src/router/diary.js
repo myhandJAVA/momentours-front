@@ -1,12 +1,17 @@
 export default [
     {
         path: '/diary',
-        component: () => import('@/views/diary/DiaryView.vue'), // Diary 루트 컴포넌트
+        component: () => import('@/views/diary/DiaryRoot.vue'), // Diary 루트 컴포넌트
+        redirect: {path:"/diary/view"},
         children: [
             {
-                path: '/list',
+                path: 'view',
                 component: () => import('@/views/diary/DiaryView.vue'),
             },
         ],
+    },
+    {
+        path: '/diary/regist',
+        component: () => import('@/views/diary/DiaryRegist.vue'),
     },
 ];

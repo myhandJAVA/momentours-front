@@ -41,7 +41,7 @@ return [...schedules,...metdays,...todocourses];
 };
 
 const jsonEdit = async() => {
-    await fetch(`http://localhost:8080/${event.contentType}/${event.id}`,{
+    await fetch(`http://localhost:8080/${event.class}/${event.id}`,{
         method: "PUT",
         body: JSON.stringify({
             "id":`${event.id}`,
@@ -49,7 +49,7 @@ const jsonEdit = async() => {
             "end":`${event.end}`,
             "title":`${event.title}`,
             "content":`${event.content}`,
-            "contentType":`${event.contentType}`
+            "class":`${event.class}`
         })
     });
     const newEvents = await jsonView();
@@ -74,7 +74,7 @@ const jsonRegist = async(newEvent)=>{
             "end":`${newEvent.end}`,
             "title":`${newEvent.title}`,
             "content":`${newEvent.content}`,
-            "contentType":`${newEvent.contentType}`
+            "class":`${newEvent.class}`
         })
     })
     const newEvents = await jsonView();
@@ -95,7 +95,7 @@ try {
 }
 });
 
-const event = reactive({id:'', title:'', content:'', start:'', end:'', clickType:'', selectedDay:'', contentType:''});
+const event = reactive({id:'', title:'', content:'', start:'', end:'', clickType:'', selectedDay:'', class:''});
 const dayEvents = reactive([]);
 
 const eventClicked = (clickEvent) => {
@@ -105,7 +105,7 @@ Object.assign(event, {
     content: clickEvent.content,
     start: formatDate(clickEvent.start),
     end: formatDate(clickEvent.end),
-    contentType: clickEvent.contentType,
+    class: clickEvent.class,
     clickType: "Schedule"
 });
 };
@@ -142,7 +142,7 @@ const handleRemove = () => {
     event.end = '';
     event.clickType = '';
     event.selectedDay = '';
-    event.contentType = '';
+    event.class = '';
 };
 
 const handleRegist = (newEvent) => {
@@ -158,6 +158,7 @@ const handleRegist = (newEvent) => {
 </script>
 
 <style scoped>
+
 .flex-container {
 display: flex;
 padding: 2rem;
@@ -199,4 +200,26 @@ overflow: auto;
     height: auto;
 }
 }
+:deep(.vuecal__event.schedule) {
+    background-color: rgba(167, 255, 217, 0.9);
+    border: 1px solid rgb(205, 253, 255);
+    }
+
+:deep(.vuecal__event.todocourse) {
+        background-color: #ffeab2;
+    border: 1px solid rgb(241, 224, 173);
+    color: #000000;
+}
+
+:deep(.vuecal__event.memorial) {
+        background-color: #FFC7C7;
+    border: 1px solid rgb(241, 182, 182);
+    color: #2b2b2b;
+}
+
+.main-box {
+    position: relative;
+    top:20vh;
+}
+
 </style>
