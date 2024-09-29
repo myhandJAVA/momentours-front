@@ -65,7 +65,7 @@
   font-weight: 600;
   color: #000000;
   margin: -5px 5px 10px -5px;
-  padding: 17px 32px;
+  padding:  7px 32px;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -116,5 +116,5 @@
   width: 100%;
   height: 1px;
   background-color: rgba(0, 0, 0, 0.1);
-  margin: 20px 0 20px 0;
+  margin: 9px 0 20px 0;
 }
