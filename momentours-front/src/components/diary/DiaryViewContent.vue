@@ -35,6 +35,7 @@
 
 <script setup>
 import MoreBox from '@/components/common/MoreBox.vue';
+
 </script>
 
 <style scoped>

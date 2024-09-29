@@ -2,7 +2,11 @@
     <div class="regist-wrap">
         <div class="left-space"></div> <!-- 왼쪽 여백 -->
         <div class="text-image-wrap">
-            <textarea class="textareat-content" placeholder="본문을 작성해주세요." v-model="textContent" @input="adjustHeight"
+            <textarea 
+                class="textareat-content" 
+                placeholder="본문을 작성해주세요." 
+                v-model="textContent"
+                @input="adjustHeight"
                 :style="{ height: textAreaHeight + 'px' }">
             </textarea>
             <img class="img-box" src="@/assets/icons/img-box.svg" alt="사진 이미지" @click="selectImage">
@@ -20,10 +24,15 @@
         </Modal>
 
         <!-- Alert for temporary save -->
-        <b-alert show="dismissCountDown" dismissible variant="warning" @dismissed="dismissCountDown = 0"
-            @dismiss-count-down="countDownChanged">
-            임시저장 되었습니다.
-        </b-alert>:
+        <b-alert
+      show="dismissCountDown"
+      dismissible
+      variant="warning"
+      @dismissed="dismissCountDown=0"
+      @dismiss-count-down="countDownChanged"
+    >
+      This alert will dismiss after {{ dismissCountDown }} seconds...
+    </b-alert>:
     </div>
 </template>
 
@@ -73,8 +82,8 @@ const selectImage = () => {
     fileInput.value.click(); // 파일 선택 창 열기
 };
 
-const countDownChanged = (dismissCountDown) => {
-    dismissCountDown = dismissCountDown;
+const countDownChanged= (dismissCountDown) => {
+        dismissCountDown = dismissCountDown;
 };
 
 const showAlert = () => {

@@ -14,4 +14,8 @@ export default [
         path: '/diary/regist',
         component: () => import('@/views/diary/DiaryRegist.vue'),
     },
+    {
+        path: '/diary/edit',
+        component: () => import('@/views/diary/DiaryEdit.vue'),
+    },
 ];
