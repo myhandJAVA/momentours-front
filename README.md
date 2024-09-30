@@ -219,7 +219,22 @@
 </details>
 
 <details>
-  <summary>예정코스</summary>
+  <summary>예정데이트코스</summary>
+     
+  - <details>
+      <summary>예정데이트코스목록조회</summary>
+    
+      ![테스트](./docs/gif/test/예정데이트코스/예정데이트코스목록조회.gif)
+    
+    </details>
+
+      
+  - <details>
+      <summary>예정데이트코스작성</summary>
+    
+      ![테스트](./docs/gif/test/예정데이트코스/예정데이트코스작성.gif)
+    
+    </details>
 </details>
 
 <details>
