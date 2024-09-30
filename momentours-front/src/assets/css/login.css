@@ -1,0 +1,109 @@
+main {
+    font-family: Arial, sans-serif ;
+    background-color: #ffffff ;
+    display: flex ; 
+    justify-content: center ;
+    align-items: center ;
+    height: 100vh ;
+    margin: 0 ;
+}
+
+.login-container {
+    background-color: #ffffff;
+    width: 570px;
+    /* margin-top: 50px;
+    margin-left: 425px; */
+    padding: 40px;
+    border-radius: 100px;
+    border: 2px solid #F9F5EA;
+    text-align: center;
+} 
+
+
+/* p태그 1개 사용 margin을 위함*/
+p {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: small;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* 특정성 높이기 위해 !important 사용 */
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px !important; 
+    font-size: 16px;
+}
+
+.password-input {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.login-btn, .signup-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.login-btn {
+    background-color: #F9F5EA;
+    color: hsl(0, 0%, 0%);
+}
+
+.signup-btn {
+    background-color: #C5B697;
+    color: #ffffff;
+}
+
+.additional-links {
+    margin-top: 20px;
+}
+
+.additional-links a {
+    color: #0000ff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.additional-links a:hover {
+    text-decoration: underline;
+}
+
+.login-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
