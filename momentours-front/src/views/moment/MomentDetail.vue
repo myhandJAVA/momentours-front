@@ -14,7 +14,7 @@
                 </div>
                 <div class="button-container">
                     <button @click="goToEdit" class="edit-button">수정하기</button>
-                    <button @click="isDeleteModalVisible = true" class="delete-button">삭제하기</button>
+                    <button @click="modalOpen" class="delete-button">삭제하기</button>
                 </div>
             </div>
         </div>
@@ -22,9 +22,10 @@
             <CommonMap v-if="state.momentLocation" :singleMarker="state.momentLocation" :initialCenter="state.momentLocation" :level="5" />
         </div>
         <MomentRemove 
-            :modelValue="isDeleteModalVisible"
-            @update:modelValue="isDeleteModalVisible =$event"
-            @onConfirm="onDeleteConfirm" 
+            :isVisible="isVisible"
+            :isYes="isYes"
+            @update:isVisible="isVisible = $event"
+            @update:isYes="onDeleteConfirm($event)" 
         />
     </div>
     <div v-else>
@@ -44,7 +45,12 @@ const state = reactive({
     momentData: null,
     momentLocation: null
 });
-const isDeleteModalVisible = ref(false);
+const isVisible = ref(false);
+const isYes = ref(false);
+
+const modalOpen = () => {
+    isVisible.value = true;
+}
 
 const fetchMomentData = async () => {
     try {
@@ -73,28 +79,36 @@ const fetchMomentData = async () => {
 };
 
 const goToEdit = () => {
-    router.push(`/moment/edit/${route.params.momentNo}`);
+    router.push(`/moment/edit/${state.momentData.id}`);
 };
 
-const onDeleteConfirm = async () => {
-    console.log('삭제 확인 클릭')
-    try {
-        const momentNo = route.params.momentNo;
-        const response = await fetch(`http://localhost:3000/Moments/${momentNo}`, {
-            method: 'DELETE',
-        });
+const onDeleteConfirm = async (yes) => {
+    console.log('삭제 확인 클릭', yes)
+    isYes.value = yes;
 
-        if (response.ok) {
-            alert('삭제가 완료되었습니다.');
-            router.push(`/moment`);
-        } else {
-            throw new Error('삭제 요청 실패');
+    if (isYes.value) {
+        try {
+            const id = state.momentData.id;
+            console.log(`삭제요청 보냄 : id = ${id}`);
+            const response = await fetch(`http://localhost:3000/Moments/${id}`, {
+                method: 'DELETE',
+            });
 
+            if (response.ok) {
+                console.log('삭제 성공')
+                alert('삭제가 완료되었습니다.');
+                router.push(`/moment`);
+            } else {
+                console.error('삭제 실패', response.status);
+                throw new Error('삭제 요청 실패');
+
+            }
+        } catch (error) {
+            console.error('삭제 중 문제가 발생했습니다.', error);
+        } finally {
+            isVisible.value = false;
+            isYes.value = false;
         }
-    } catch (error) {
-        console.error('삭제 중 문제가 발생했습니다.', error);
-    } finally {
-        isDeleteModalVisible.value = false;
     }
 };
 

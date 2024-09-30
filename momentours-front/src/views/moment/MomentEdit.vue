@@ -98,7 +98,7 @@ const saveChanges = async () => {
 
         if (response.ok) {
             alert('수정이 완료되었습니다.');
-            router.push(`/moment/detail/${id}`); // 'id'로 변경
+            router.push(`/moment/detail/${state.momentData.momentNo}`); // 'id'로 변경
         } else {
             console.error('수정 요청 실패');
         }
