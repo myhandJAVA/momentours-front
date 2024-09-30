@@ -214,7 +214,34 @@
 
 <details>
   <summary>일기</summary>
+
+  - <details>
+      <summary>일기조회</summary>
+    
+      ![테스트](./docs/gif/test/일기/일기조회.gif)
+    </details>
+
+  - <details>
+      <summary>일기등록</summary>
+    
+      ![테스트](./docs/gif/test/일기/일기작성.gif)
+    </details>
+
+  - <details>
+      <summary>일기수정</summary>
+    
+      ![테스트](./docs/gif/test/일기/일기수정.gif)
+    </details>
+
+  - <details>
+      <summary>일기삭제</summary>
+    
+      ![테스트](./docs/gif/test/일기/일기삭제.gif)
+    
+    </details>
+
 </details>
+
 
 <details>
   <summary>일정</summary>
