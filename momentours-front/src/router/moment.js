@@ -12,7 +12,7 @@ export default [
         component: () => import('@/views/moment/MomentDetail.vue'),
     },
     {
-        path: '/moment/list',
-        component: () => import('@/views/moment/MomentList.vue'),
+        path: '/moment/edit/:id',
+        component: () => import('@/views/moment/MomentEdit.vue'),
     }
 ];

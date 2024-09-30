@@ -6,13 +6,13 @@
         <div v-if="reply.randomReplyContent === '텅'" class="no-answer"
           :class="{ 'writing': isWriting && writingReplyNo === reply.randomReplyNo }">
           <img src="@/assets/icons/warmtone.svg" class="no-answer-background">
-          <div v-if="!isWriting || writingReplyNo !== reply.randomReplyNo" class="no-answer-content">
+          <div v-if="!isWriting" class="no-answer-content">
             아직 답변을 작성하지 않으셨네요..!
             <button v-if="index === 0" @click="startWriting(reply.randomReplyNo)" class="wrt-btn">작성하기</button>
           </div>
           <div v-else-if="index === 0" class="writing-area">
             <textarea v-model="newReplyContent" class="edit-textarea" placeholder="답변을 입력하세요..."></textarea>
-            <div class="button-group">
+            <div class="button-group3">
               <button @click="submitNewReply(reply)" class="action-btn save-btn">업로드</button>
               <button @click="cancelWriting" class="action-btn cancel-btn">취소</button>
             </div>
@@ -22,7 +22,7 @@
           <p v-if="editingReplyNo !== reply.randomReplyNo">{{ reply.randomReplyContent }}</p>
           <div v-else-if="index === 0" class="writing-area">
             <textarea v-model="editedContent" class="edit-textarea"></textarea>
-            <div class="button-group">
+            <div class="button-group2">
               <button @click="saveEdit(reply)" class="action-btn save-btn">저장</button>
               <button @click="cancelEdit" class="action-btn cancel-btn">취소</button>
             </div>
@@ -281,10 +281,12 @@ onMounted(() => {
 }
 
 .writing-area {
+  font-family: Dotum;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: calc(100% - 80px);
 }
 
 .edit-textarea {
@@ -297,17 +299,50 @@ onMounted(() => {
   padding: 10px;
   text-align: left;
   vertical-align: top;
+  resize: none; 
 }
 
 .button-group {
+  bottom: 30px;
+  font-family: cursive;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 45px;
   margin-top: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+.button-group3 {
+  bottom: -30px;
+  font-family: cursive;
+  display: flex;
+  justify-content: center;
+  gap: 45px;
+  margin-top: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+.button-group2 {
+  bottom: -30px;
+  font-family: cursive;
+  display: flex;
+  justify-content: center;
+  gap: 45px;
+  margin-top: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
 }
 
 .action-btn {
-  padding: 5px 15px;
+  padding: 1px 15px;
   border: none;
   border-radius: 15px;
   background-color: #FFC7C7;
@@ -351,7 +386,8 @@ onMounted(() => {
   word-break: keep-all;
   overflow-wrap: break-word;
   width: 90%;
-  margin-bottom: 20px;
+  max-height: calc(100% - 80px);  
+  overflow-y: auto; 
 }
 
 .loading {

@@ -9,12 +9,15 @@
     <div v-if="showQuestionList">
       <QuestionList :questions="allQuestions" @selectQuestion="handleQuestionSelection" />
     </div>
+    <div v-else-if="isLoading">
+      <p>데이터를 불러오는 중...</p>
+    </div>
     <div v-else>
       <div class="date-display">
         <span>{{ formattedQuestionDate }}</span>
       </div>
     <RandomQuestion :question="currentQuestion" />
-    <QuestionReply :questionId="currentQuestion?.randQuesNo" @updateReply="handleReplyUpdate" />
+    <QuestionReply :questionId="currentQuestion.randQuesNo" @updateReply="handleReplyUpdate" />
     <NavigationButtons :isFirstQuestion="currentQuestionIndex === 0"
       :isLatestQuestion="currentQuestionIndex === allQuestions.length - 1" @previous="previousQuestion"
       @next="nextQuestion" />
@@ -29,12 +32,13 @@ import QuestionReply from './QuestionReply.vue';
 import NavigationButtons from './NavigationButtons.vue';
 import QuestionList from './QuestionList.vue';
 
-const allQuestions = ref([]);
+const allQuestions = ref({});
 const replies = ref({});
 const currentQuestionIndex = ref(0);
 const showQuestionList = ref(false);
+const isLoading = ref(true);
 
-const currentQuestion = computed(() => allQuestions.value[currentQuestionIndex.value] || null);
+const currentQuestion = computed(() => allQuestions.value[currentQuestionIndex.value]);
 
 const formattedQuestionDate = computed(() => {
   if (!currentQuestion.value) return '';
@@ -50,6 +54,7 @@ function formatDate(dateString) {
 }
 
 async function fetchAllQuestions() {
+  isLoading.value = true;
   try {
     const response = await fetch('http://localhost:8080/all', {
       method: "GET",
@@ -64,8 +69,11 @@ async function fetchAllQuestions() {
     allQuestions.value = data;
   } catch (error) {
     console.error('질문 조회 실패...', error);
+  } finally {
+    isLoading.value = false;
   }
 }
+
 
 function previousQuestion() {
   if (currentQuestionIndex.value > 0) {
@@ -100,6 +108,7 @@ function handleQuestionSelection(question) {
 onMounted(async () => {
   await fetchAllQuestions();
 });
+
 </script>
   
   <style scoped>
