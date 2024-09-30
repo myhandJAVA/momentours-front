@@ -36,6 +36,7 @@ const yesModal = () => {
     emit('update:isYes', true);
 };
 </script>
+
 <style scoped>
 .modal-overlay {
     position: fixed;
@@ -46,7 +47,7 @@ const yesModal = () => {
     background: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
-    align-items: center; /* 화면의 세로 방향 가운데 정렬 */
+    align-items: center;
     z-index: 5;
 }
 
@@ -54,8 +55,8 @@ const yesModal = () => {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center; /* 가로 방향 가운데 정렬 */
-    justify-content: center; /* 세로 방향 가운데 정렬 */
+    align-items: center;
+    justify-content: center;
     background: #f9f4e7;
     padding: 20px;
     border-radius: 5px;
@@ -64,13 +65,13 @@ const yesModal = () => {
 }
 
 .modal-message {
-    font-size: 1.5vw; /* 글씨 크기 */
-    text-align: center; /* 텍스트 가운데 정렬 */
-    margin-bottom: 20px; /* 버튼들과 간격 */
-    flex-grow: 1; /* 가용 공간을 차지하여 가운데 배치 */
+    font-size: 1.5vw; 
+    text-align: center; 
+    margin-bottom: 20px; 
+    flex-grow: 1; 
     display: flex;
     justify-content: center;
-    align-items: center; /* 메시지 세로 가운데 정렬 */
+    align-items: center;
 }
 
 .close-button {

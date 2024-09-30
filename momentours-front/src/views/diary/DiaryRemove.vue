@@ -1,6 +1,5 @@
 <template>
     <div>
-        <button @click="openModal">일기 삭제</button>
         <Modal 
             v-if="isModalVisible" 
             :isVisible="isModalVisible"
@@ -19,7 +18,7 @@ import { useRouter, useRoute } from 'vue-router';
 
 const router = useRouter();
 const route = useRoute();
-const isModalVisible = ref(false);
+const isModalVisible = ref(true);
 const diaryId = ref(null);
 
 onMounted(() => {

@@ -19,7 +19,7 @@ import DiaryBook from '@/components/diary/DiaryBook.vue';
 import DiaryCalendar from '@/components/diary/DiaryCalendar.vue';
 import { RouterView } from 'vue-router';
 
-const selectedDate = ref('2024-09-30'); // 초기값 설정
+const selectedDate = ref('2024-09-30');
 const diaryData = ref([]);
 
 const updateDiaryData = (newData) => {
@@ -47,9 +47,6 @@ const filteredDiaryData = computed(() => {
         return entryDate === selectedDate.value;
     });
 });
-
-
-// 컴포넌트가 마운트될 때 데이터를 가져옴
 onMounted(fetchDiaryData);
 
 // 선택된 날짜가 변경될 때마다 데이터를 다시 가져옴 (필요한 경우)

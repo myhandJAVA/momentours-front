@@ -24,10 +24,8 @@ import { ref, computed, watch, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import DiaryContent from '@/components/diary/DiaryViewContent.vue';
 
-// Emit 정의
 const emit = defineEmits(['update:diaryData']);
 
-// Route 가져오기
 const route = useRoute();
 
 const props = defineProps({
