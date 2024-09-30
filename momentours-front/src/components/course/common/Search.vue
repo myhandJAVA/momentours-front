@@ -20,7 +20,7 @@
         </div>
 
         <div>
-            <button class="common-button bg-color-pink" style="margin-right: 130px">코스등록</button>
+            <button class="common-button bg-color-pink" @click="navigateToPath" style="margin-right: 130px">코스등록</button>
         </div>
     </div>
 </template>
@@ -36,6 +36,10 @@ export default {
             type: Array,
             required: true,
         },
+        navigateTo: {
+            type: String,
+            required: true,
+        }
     },
     data() {
         return {
@@ -49,6 +53,9 @@ export default {
             console.log('검색어:', this.searchQuery);
             // 실제 검색 로직을 여기에 추가
         },
+        navigateToPath() {
+            this.$router.push(this.navigateTo); // Vue Router를 사용한 경로 이동
+        }
     },
 };
 </script>
