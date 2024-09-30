@@ -7,8 +7,8 @@
         </div>
 
         <div class="content-overlay">
-            <RouterView :selected-date="selectedDate" :diary-data="filteredDiaryData" 
-            @update:regist="handleRegist"/>
+            <RouterView :selected-date="selectedDate" :diary-data="filteredDiaryData"
+            :fetchDiaryData="fetchDiaryData"/>
         </div>
     </div>
 </template>

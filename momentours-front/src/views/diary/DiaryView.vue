@@ -46,20 +46,11 @@ const partnerDiary = computed(() => {
     return props.diaryData.find(diary => diary.diaryUserNo !== 12) || {};
 });
 
-// 컴포넌트가 처음 로드될 때 데이터 fetching
-onMounted(async () => {
-    const diaries = await fetchDiaries();
-    if (diaries) {
-        // 부모 컴포넌트에 데이터를 업데이트하는 로직
-        emit('update:diaryData', diaries); // 부모에게 diaryData 업데이트 요청
-    }
-});
-
-// 경로가 변경될 때마다 데이터 fetching
-watch(() => route.path, async () => {
-    const diaries = await fetchDiaries();
-    if (diaries) {
-        emit('update:diaryData', diaries);
+watch(route, (newRoute, oldRoute) => {
+    console.log('라우트가 변경되었습니다.');
+    // 라우트 변경 시 실행할 작업
+    if (newRoute.query.reload) {
+        window.location.reload(); // 새로고침 또는 다른 동작
     }
 });
 </script>

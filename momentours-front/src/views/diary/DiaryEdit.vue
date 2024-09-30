@@ -52,13 +52,13 @@ onMounted(() => {
 const updateDiary = async () => {
     const diaryId = route.params.id;
     try {
-        const response = await fetch(`http://localhost:8080/diary/edit/${diaryId}`, {
+        const response = await fetch(`http://localhost:8080/diary/${diaryId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                textContent: textContent.value,
+                diaryContent: textContent.value,
             }),
         });
         if (!response.ok) {
