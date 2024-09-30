@@ -10,12 +10,8 @@
                     <div>{{ diaryData.diaryUserNo === 12 ? '나' : '파트너' }}</div>
                 </div>
                 <div>
-                    <MoreBox 
-                        :diaryId="diaryData.id" 
-                        :diaryContent="diaryData.diaryContent"
-                        @delete-diary="toRemoveRouter" 
-                        @edit-diary="toEditRouter"
-                    />
+                    <MoreBox :diaryId="diaryData.id" :diaryContent="diaryData.diaryContent"
+                        @delete-diary="toRemoveRouter" @edit-diary="toEditRouter" />
                 </div>
             </div>
             <div class="content-wrap">
@@ -56,7 +52,6 @@ const props = defineProps({
 const router = useRouter();
 
 const toEditRouter = ({ id, content }) => {
-    // ID와 내용을 함께 넘기기
     router.push({ path: `/diary/edit/${id}`, query: { content } });
 };
 
@@ -73,9 +68,9 @@ const toRemoveRouter = (diaryId) => {
     display: flex;
     flex-direction: column;
     width: 25vw;
-    height: 59vh; /* 필요에 따라 높이 조정 */
+    height: 59vh;
     position: relative;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .top-wrap {
@@ -102,12 +97,12 @@ const toRemoveRouter = (diaryId) => {
 
 .comment-wrap {
     width: 100%;
-    height: 120px; /* 높이 조정하여 아래쪽으로 공간을 만듭니다. */
+    height: 120px;
     box-sizing: border-box;
     border-top: 1px solid rgba(0, 0, 0, 0.10);
     margin: 0;
-    position: relative; /* 위치를 상대적으로 설정 */
-    bottom: 0; /* 아래쪽 고정 */
+    position: relative;
+    bottom: 0;
 }
 
 .name-wrap {
@@ -138,11 +133,11 @@ const toRemoveRouter = (diaryId) => {
 
 .comment-wrap {
     width: 100%;
-    height: 120px; /* 높이 조정하여 아래쪽으로 공간을 만듭니다. */
+    height: 120px;
     box-sizing: border-box;
     border-top: 1px solid rgba(0, 0, 0, 0.10);
     margin: 0;
-    position: relative; /* 위치를 상대적으로 설정 */
+    position: relative;
 }
 
 .textarea-container {
@@ -150,21 +145,4 @@ const toRemoveRouter = (diaryId) => {
     width: 100%;
     height: 100%;
 }
-
-/* .comment-text {
-    width: 100%;
-    height: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.20);
-    color: rgba(0, 0, 0, 0.7);
-    outline: none;
-    resize: none;
-    padding-bottom: 40px; 
-    box-sizing: border-box;
-}
-
-.submit-button {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-} */
 </style>

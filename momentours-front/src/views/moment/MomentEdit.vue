@@ -1,8 +1,16 @@
 <template>
-    <div class="MomentDetail" v-if="state.momentData">
+    <div class="MomentEdit" v-if="state.momentData">
         <div class="leftContent">
             <div class="moment-card">
-                <h2 class="moment-title">{{ state.momentData.momentTitle }}</h2>
+                <!-- 제목을 수정할 수 있는 input 필드 -->
+                <h2 class="moment-title">
+                    <input 
+                        v-model="state.momentData.momentTitle" 
+                        type="text" 
+                        class="editable-title" 
+                        placeholder="제목을 입력하세요."
+                    />
+                </h2>
                 <div class="moment-info">
                     <p class="category">카테고리: {{ state.momentData.momentCategory }}</p>
                     <p class="like">좋아요: {{ state.momentData.momentLike }}</p>
@@ -10,24 +18,24 @@
                     <p class="date">작성일: {{ state.momentData.momentCreateDate.split(' ')[0] }}</p>
                 </div>
                 <div class="moment-content">
-                    <h4>{{ state.momentData.momentContent }}</h4>
+                    <!-- 내용을 수정할 수 있는 textarea -->
+                    <textarea 
+                        v-model="state.momentData.momentContent" 
+                        class="editable-content" 
+                        rows="10"
+                        placeholder="내용을 입력하세요."
+                    ></textarea>
                 </div>
-                <div class="button-container">
-                    <button @click="goToEdit" class="edit-button">수정하기</button>
-                    <button @click="showModal = true" class="delete-button">삭제하기</button>
-                </div>
+            </div>
+            <!-- 수정 취소 및 저장 버튼 -->
+            <div class="button-container">
+                <button @click="saveChanges" class="save-button">저장하기</button>
+                <button @click="cancelEdit" class="cancel-button">취소하기</button>
             </div>
         </div>
         <div class="rightContent">
             <CommonMap v-if="state.momentLocation" :singleMarker="state.momentLocation" :initialCenter="state.momentLocation" :level="5" />
         </div>
-
-        <MomentRemove 
-            v-if="showModal" 
-            :isVisible="showModal" 
-            @onConfirm="deleteMoment" 
-            @onCancel="showModal = false" 
-        />
     </div>
     <div v-else>
         <p>데이터를 불러오는 중입니다...</p>
@@ -35,10 +43,9 @@
 </template>
 
 <script setup>
-import { reactive, onMounted, ref } from 'vue';
+import { reactive, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import CommonMap from '@/components/common/CommonMap.vue';
-import MomentRemove from './MomentRemove.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -46,15 +53,14 @@ const state = reactive({
     momentData: null,
     momentLocation: null
 });
-const showModal = ref(false); // 모달 상태 관리
 
 const fetchMomentData = async () => {
     try {
-        const momentNo = route.params.momentNo;
+        const id = route.params.id; // 'id'로 변경
         const response = await fetch(`http://localhost:3000/Moments`);
         if (response.ok) {
             const data = await response.json();
-            const moment = data.find((m) => m.momentNo === Number(momentNo));
+            const moment = data.find((m) => m.id === id); // 'id'로 변경
             if (moment) {
                 state.momentData = moment;
                 state.momentLocation = {
@@ -74,29 +80,37 @@ const fetchMomentData = async () => {
     }
 };
 
-const goToEdit = () => {
-    router.push(`/moment/edit/${route.params.momentNo}`);
-};
-
-// 모달에서 삭제 버튼을 클릭 시 호출되는 함수
-const deleteMoment = async () => {
+// 저장 버튼 클릭 시
+const saveChanges = async () => {
     try {
-        const momentNo = route.params.momentNo;
-        const response = await fetch(`http://localhost:3000/Moments/${momentNo}`, {
-            method: 'DELETE',
+        const id = route.params.id; // 'id'로 변경
+        const response = await fetch(`http://localhost:3000/Moments/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ...state.momentData, // 기존 데이터 유지
+                momentTitle: state.momentData.momentTitle, // 수정된 제목
+                momentContent: state.momentData.momentContent // 수정된 내용
+            })
         });
 
         if (response.ok) {
-            alert('삭제가 완료되었습니다.');
-            router.push(`/moment`); // 삭제 후 moment 목록으로 이동
+            alert('수정이 완료되었습니다.');
+            router.push(`/moment/detail/${id}`); // 'id'로 변경
         } else {
-            console.error('삭제 요청 실패');
+            console.error('수정 요청 실패');
         }
     } catch (error) {
-        console.error('삭제 중 문제가 발생했습니다.', error);
-    } finally {
-        showModal.value = false; // 모달 닫기
+        console.error('저장 중 문제가 발생했습니다.', error);
     }
+};
+
+
+// 취소 버튼 클릭 시
+const cancelEdit = () => {
+    router.push(`/moment/${route.params.id}`); // 'id'로 변경
 };
 
 onMounted(() => {
@@ -105,7 +119,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.MomentDetail {
+.MomentEdit {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
@@ -116,8 +130,62 @@ onMounted(() => {
 .leftContent {
     padding: 20px;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column; /* 세로 정렬 */
+    justify-content: space-between; /* 공간을 균등하게 분배 */
+}
+
+.editable-title {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.editable-content {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.save-button, .cancel-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex; /* flexbox로 버튼을 수평 정렬 */
+    gap: 10px; /* 버튼 간격 */
+    margin-top: auto; /* 가능한 하단으로 이동 */
+}
+
+.save-button {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.save-button:hover {
+    background-color: #d1e7dd;
+}
+
+.cancel-button {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.cancel-button:hover {
+    background-color: #f8d7da;
 }
 
 .moment-card {
@@ -127,7 +195,6 @@ onMounted(() => {
     padding: 20px;
     max-width: 600px;
     width: 100%;
-    position: relative; /* 이 위치에서 우하단에 버튼을 고정하기 위해 relative */
     height: 100%;
 }
 
@@ -169,31 +236,6 @@ onMounted(() => {
     color: #444;
     border-top: 1px solid #ddd;
     padding-top: 20px;
-}
-
-/* 버튼 컨테이너 */
-.button-container {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    gap: 10px;
-}
-
-.edit-button, .delete-button {
-    padding: 10px 20px;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.edit-button:hover {
-    background-color: #d1e7dd;
-}
-
-.delete-button:hover {
-    background-color: #f8d7da;
 }
 
 .rightContent {
