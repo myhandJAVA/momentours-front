@@ -1,8 +1,9 @@
 <template>
     <div class="body">
       <div class="container">
-        <div class="logoimage">
-          <img src="" alt="Momentours Logo">
+        <div class="moment-logo">
+          <img src="@/assets/icons/Momentours-logo.svg" alt="momentours logo">
+          <img src="@/assets/icons/Momentours.svg" alt="momentours logo">
         </div>
         <h2>회원가입 정보를 입력해주세요.</h2>
         <form id="signupForm" @submit.prevent="handleSignup">
@@ -30,7 +31,6 @@
   
           <label for="mbti">MBTI</label>
           <select id="mbti" v-model="mbti" required>
-            <option value="" disabled selected>MBTI를 선택해주세요.</option>
             <option value="" disabled selected>MBTI를 선택해주세요.</option>
         <option value="INTJ">INTJ</option>
         <option value="INTP">INTP</option>
