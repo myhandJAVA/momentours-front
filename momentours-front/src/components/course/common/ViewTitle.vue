@@ -1,36 +1,40 @@
 <template>
     <div class="post-container">
-        
-        <h1 class="title">{{ title }}</h1>
+        <h1 class="title">{{ post.momCourseTitle }}</h1>
 
         <div class="user-info">
             <div class="user-left">
-                <img :src="userImage" alt="userImage" class="user-image"/>
+                <img :src="post.userImage" alt="userImage" class="user-image" />
                 <div class="user-details">
-                    <span class="name">{{ userName }}</span>
-                    <span class="date">| {{ date }}</span>
-                    <span class="type">| {{ type }}</span>
+                    <span class="name">{{ post.userName }}</span>
+                    <span class="date">| {{ post.momCourseCreateDate }}</span>
+                    <span class="type">| {{ post.type }}</span>
                 </div>
             </div>
-            <MoreBox/>
+            <MoreBox />
         </div>
 
         <!-- 수평선 -->
-        <hr/>
+        <hr />
+        <div>
+            {{ post.momCourseMemo }}
+        </div>
     </div>
 </template>
 
 <script setup>
+import { defineProps } from 'vue';
 import MoreBox from '@/components/common/MoreBox.vue';
-import { ref } from 'vue';
 
-// 게시글 정보 예시
-// const title = ref('강릉 데이트');
-// const userName = ref('안녕하세요나는주코야끼');
-// const date = ref('2024. 09. 02.');
-// const type = ref('연일데이트');
-// const userImage = ref('https://via.placeholder.com/40');
+// props로 post 데이터를 받습니다.
+const props = defineProps({
+    post: {
+        type: Object,
+        required: true,
+    },
+});
 </script>
+
 
 <style scoped>
 .post-container {

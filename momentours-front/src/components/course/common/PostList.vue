@@ -10,7 +10,7 @@
             </div>
             <div class="bg-b">
                 <ul class="course-list">
-                    <li v-for="(post, index) in paginatedPosts" :key="index + 1" class="course-item">
+                    <li v-for="(post, index) in paginatedPosts" :key="index + 1" class="course-item" @click="viewPost(post.id)">
                         <span class="item number">{{ (currentPage - 1) * postsPerPage + index + 1 }}</span>
                         <span class="item title">{{ post.momCourseTitle }}</span>
                         <span class="item status">
@@ -35,13 +35,14 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router'; // 여기에서 useRouter를 import합니다.
 import Pagination from './Pagination.vue';
 
 export default {
     components: { Pagination },
     props: {
-        headers: { type: Array, required: true }, // 헤더 데이터를 prop으로 받음
-        posts: { type: Array, required: true },   // 외부에서 데이터를 받아오는 prop
+        headers: { type: Array, required: true },
+        posts: { type: Array, required: true },
         currentPage: { type: Number, default: 1 },
         postsPerPage: { type: Number, default: 10 }
     },
@@ -54,6 +55,15 @@ export default {
             const end = start + this.postsPerPage;
             return this.posts.slice(start, end);
         }
+    },
+    setup() {
+        const router = useRouter(); // setup 함수 내에서 router를 초기화합니다.
+
+        const viewPost = (id) => {
+            router.push(`/momentcourse/view/${id}`); // 상세 조회 페이지로 이동
+        };
+
+        return { viewPost }; // viewPost를 반환하여 템플릿에서 사용할 수 있도록 합니다.
     },
     methods: {
         handlePageChange(page) {

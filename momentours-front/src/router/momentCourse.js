@@ -4,9 +4,13 @@ export default [
         component: () => import('@/views/momentcourse/MomentCourseList.vue'),
         children: [
             {
-                path: '/list',
+                path: 'list',
                 component: () => import('@/views/momentcourse/MomentCourseList.vue'),
             },
         ],
+    },
+    {
+        path: '/momentcourse/view/:id',
+        component: () => import('@/views/momentcourse/MomentCourseView.vue'),
     },
 ];
