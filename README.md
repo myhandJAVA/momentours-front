@@ -222,28 +222,28 @@
   - <details>
       <summary>일정조회</summary>
     
-      ![테스트](./docs/gif/test/일정/캘린더조회.png)
+      ![테스트](./docs/gif/test/일정/캘린더조회.gif)
     
     </details>
   
   - <details>
       <summary>일정수정</summary>
     
-      ![테스트](./docs/gif/test/일정/캘린더수정.png)
+      ![테스트](./docs/gif/test/일정/캘린더수정.gif)
     
     </details>
 
   - <details>
       <summary>일정작성</summary>
     
-      ![테스트](./docs/gif/test/일정/캘린더작성.png)
+      ![테스트](./docs/gif/test/일정/캘린더작성.gif)
     
     </details>
 
   - <details>
       <summary>일정삭제</summary>
     
-      ![테스트](./docs/gif/test/일정/캘린더삭제.png)
+      ![테스트](./docs/gif/test/일정/캘린더삭제.gif)
     
     </details>
 
