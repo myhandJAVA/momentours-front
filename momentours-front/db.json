@@ -47,6 +47,18 @@
       "mbti": "ISTP",
       "gender": "M",
       "joinDate": "2024-09-29"
+    },
+    {
+      "id": "cedb",
+      "email": "caolian2003@naver.com",
+      "pwd": "123123",
+      "name": "123123",
+      "nickname": "123123",
+      "phone": "010-4444-4444",
+      "birth": "2024-09-03",
+      "mbti": "ESFP",
+      "gender": "",
+      "joinDate": "2024-09-30"
     }
   ]
 }
