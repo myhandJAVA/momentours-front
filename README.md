@@ -22,8 +22,7 @@
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
 ## 전체 프로젝트 일정
-**프로젝트 일정 : 2024년 월 일 ~ 2024년 09월 30일**
-<img src="docs/WBS.png"/>
+**프로젝트 일정 : 2024년 9월 23일 ~ 2024년 09월 30일**
 
 ### 목차
 
@@ -52,6 +51,9 @@
 ---
 
 ## 2. 기능 명세서
+
+   ![기능명세서](./docs/img/기능명세서/기능명세서.png)
+
 
 ---
 
@@ -214,7 +216,34 @@
 
 <details>
   <summary>일기</summary>
+
+  - <details>
+      <summary>일기조회</summary>
+    
+      ![테스트](./docs/gif/test/일기/일기조회.gif)
+    </details>
+
+  - <details>
+      <summary>일기등록</summary>
+    
+      ![테스트](./docs/gif/test/일기/일기작성.gif)
+    </details>
+
+  - <details>
+      <summary>일기수정</summary>
+    
+      ![테스트](./docs/gif/test/일기/일기수정.gif)
+    </details>
+
+  - <details>
+      <summary>일기삭제</summary>
+    
+      ![테스트](./docs/gif/test/일기/일기삭제.gif)
+    
+    </details>
+
 </details>
+
 
 <details>
   <summary>일정</summary>
@@ -222,28 +251,28 @@
   - <details>
       <summary>일정조회</summary>
     
-      ![테스트](./docs/gif/test/일정/캘린더조회.png)
+      ![테스트](./docs/gif/test/일정/캘린더조회.gif)
     
     </details>
   
   - <details>
       <summary>일정수정</summary>
     
-      ![테스트](./docs/gif/test/일정/캘린더수정.png)
+      ![테스트](./docs/gif/test/일정/캘린더수정.gif)
     
     </details>
 
   - <details>
       <summary>일정작성</summary>
     
-      ![테스트](./docs/gif/test/일정/캘린더작성.png)
+      ![테스트](./docs/gif/test/일정/캘린더작성.gif)
     
     </details>
 
   - <details>
       <summary>일정삭제</summary>
     
-      ![테스트](./docs/gif/test/일정/캘린더삭제.png)
+      ![테스트](./docs/gif/test/일정/캘린더삭제.gif)
     
     </details>
 
