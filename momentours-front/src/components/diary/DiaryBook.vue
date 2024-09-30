@@ -22,7 +22,6 @@
 </template>
 
 <script setup>
-// 스크립트 내용은 그대로 유지
 </script>
 
 <style scoped>

@@ -33,7 +33,7 @@
       "phone": "010-4499-0742",
       "birth": "2024-09-02",
       "mbti": "INTJ",
-      "gender": "",
+      "gender": "F",
       "joinDate": "2024-09-29"
     },
     {
@@ -45,8 +45,20 @@
       "phone": "010-4499-0742",
       "birth": "2024-09-18",
       "mbti": "ISTP",
-      "gender": "",
+      "gender": "M",
       "joinDate": "2024-09-29"
+    },
+    {
+      "id": "cedb",
+      "email": "caolian2003@naver.com",
+      "pwd": "123123",
+      "name": "123123",
+      "nickname": "123123",
+      "phone": "010-4444-4444",
+      "birth": "2024-09-03",
+      "mbti": "ESFP",
+      "gender": "",
+      "joinDate": "2024-09-30"
     }
   ]
 }

@@ -100,3 +100,10 @@ input {
 .additional-links a:hover {
     text-decoration: underline;
 }
+
+.login-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}

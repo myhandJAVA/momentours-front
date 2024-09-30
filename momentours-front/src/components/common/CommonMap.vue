@@ -155,7 +155,9 @@ export default {
             emit('markerSelected', {
                 lat: place.y,
                 lng: place.x,
-                placeName
+                placeName: place.place_name,
+                place,
+                marker
             });
         };
 

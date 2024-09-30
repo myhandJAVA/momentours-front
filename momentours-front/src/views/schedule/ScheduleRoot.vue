@@ -23,25 +23,19 @@ import '@/assets/css/common.css';
 
 
 const jsonView = async () =>  {
-    const scheduleResponse = await fetch("http://localhost:8080/schedule",{
+    const scheduleResponse = await fetch("http://localhost:8080/calendar",{
         method:"GET"
     });
-    const todocourseResponse = await fetch("http://localhost:8080/todocourse",{
-        method:"GET"
-    });
-    const metdayResponse = await fetch("http://localhost:8080/metdays",{
-        method:"GET"
-    });
+
 
     const schedules = await scheduleResponse.json();
-    const todocourses = await todocourseResponse.json();
-    const metdays = await metdayResponse.json();
 
-return [...schedules,...metdays,...todocourses];
+
+return [...schedules];
 };
 
 const jsonEdit = async() => {
-    await fetch(`http://localhost:8080/${event.class}/${event.id}`,{
+    await fetch(`http://localhost:8080/calendar/${event.id}`,{
         method: "PUT",
         body: JSON.stringify({
             "id":`${event.id}`,
@@ -58,7 +52,7 @@ const jsonEdit = async() => {
 };
 
 const jsonRemove = async()=>{
-    await fetch(`http://localhost:8080/schedule/${event.id}`,{
+    await fetch(`http://localhost:8080/calendar/${event.id}`,{
         method:"DELETE"
     });
     const newEvents = await jsonView();
@@ -67,7 +61,7 @@ const jsonRemove = async()=>{
 };
 
 const jsonRegist = async(newEvent)=>{
-    await fetch(`http://localhost:8080/schedule`,{
+    await fetch(`http://localhost:8080/calendar`,{
         method:"POST",
         body: JSON.stringify({
             "start":`${newEvent.start}`,

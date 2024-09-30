@@ -5,65 +5,110 @@
                 <h2 class="moment-title">{{ state.momentData.momentTitle }}</h2>
                 <div class="moment-info">
                     <p class="category">카테고리: {{ state.momentData.momentCategory }}</p>
-                    <p class="like"> 좋아요: {{ state.momentData.momentLike }}</p>
-                    <p class="view"> 조회수: {{ state.momentData.momentView }}</p>
-                    <p class="date"> 작성일: {{ state.momentData.momentCreateDate.split(' ')[0] }}</p>
+                    <p class="like">좋아요: {{ state.momentData.momentLike }}</p>
+                    <p class="view">조회수: {{ state.momentData.momentView }}</p>
+                    <p class="date">작성일: {{ state.momentData.momentCreateDate.split(' ')[0] }}</p>
                 </div>
                 <div class="moment-content">
                     <h4>{{ state.momentData.momentContent }}</h4>
+                </div>
+                <div class="button-container">
+                    <button @click="goToEdit" class="edit-button">수정하기</button>
+                    <button @click="modalOpen" class="delete-button">삭제하기</button>
                 </div>
             </div>
         </div>
         <div class="rightContent">
             <CommonMap v-if="state.momentLocation" :singleMarker="state.momentLocation" :initialCenter="state.momentLocation" :level="5" />
         </div>
+        <MomentRemove 
+            :isVisible="isVisible"
+            :isYes="isYes"
+            @update:isVisible="isVisible = $event"
+            @update:isYes="onDeleteConfirm($event)" 
+        />
     </div>
-    <div v-else class="loading-container">
+    <div v-else>
         <p>데이터를 불러오는 중입니다...</p>
     </div>
 </template>
 
 <script setup>
-import { reactive, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { reactive, onMounted, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import CommonMap from '@/components/common/CommonMap.vue';
+import MomentRemove from './MomentRemove.vue';
 
 const route = useRoute();
+const router = useRouter();
 const state = reactive({
     momentData: null,
     momentLocation: null
 });
+const isVisible = ref(false);
+const isYes = ref(false);
+
+const modalOpen = () => {
+    isVisible.value = true;
+}
 
 const fetchMomentData = async () => {
     try {
         const momentNo = route.params.momentNo;
-        const response = await fetch(`http://localhost:3000/Moments`); // 전체 Moments 데이터를 가져옴
+        const response = await fetch(`http://localhost:3000/Moments`);
         if (response.ok) {
             const data = await response.json();
-            console.log('받아온 데이터:', data); // 데이터 구조 확인
-
-            // JSON 데이터가 배열이므로 해당하는 moment 찾기
-            if (Array.isArray(data)) {
-                const moment = data.find((m) => m.momentNo === Number(momentNo));
-                if (moment) {
-                    state.momentData = moment;
-                    state.momentLocation = {
-                        lat: moment.momentLatitude,
-                        lng: moment.momentLongitude,
-                        placeName: moment.momentLocationName,
-                        address: moment.momentAddress,
-                    };
-                } else {
-                    console.error('해당하는 모멘트를 찾을 수 없습니다.');
-                }
+            const moment = data.find((m) => m.momentNo === Number(momentNo));
+            if (moment) {
+                state.momentData = moment;
+                state.momentLocation = {
+                    lat: moment.momentLatitude,
+                    lng: moment.momentLongitude,
+                    placeName: moment.momentLocationName,
+                    address: moment.momentAddress,
+                };
             } else {
-                console.error('데이터 형식이 올바르지 않습니다.', data);
+                console.error('해당하는 모멘트를 찾을 수 없습니다.');
             }
         } else {
             console.error('데이터를 가져오는데 실패했습니다.');
         }
     } catch (error) {
         console.error('데이터 전송 요청 중 문제가 발생함', error);
+    }
+};
+
+const goToEdit = () => {
+    router.push(`/moment/edit/${state.momentData.id}`);
+};
+
+const onDeleteConfirm = async (yes) => {
+    console.log('삭제 확인 클릭', yes)
+    isYes.value = yes;
+
+    if (isYes.value) {
+        try {
+            const id = state.momentData.id;
+            console.log(`삭제요청 보냄 : id = ${id}`);
+            const response = await fetch(`http://localhost:3000/Moments/${id}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                console.log('삭제 성공')
+                alert('삭제가 완료되었습니다.');
+                router.push(`/moment`);
+            } else {
+                console.error('삭제 실패', response.status);
+                throw new Error('삭제 요청 실패');
+
+            }
+        } catch (error) {
+            console.error('삭제 중 문제가 발생했습니다.', error);
+        } finally {
+            isVisible.value = false;
+            isYes.value = false;
+        }
     }
 };
 
@@ -79,6 +124,7 @@ onMounted(() => {
     gap: 20px;
     padding: 20px;
     background-color: #f9f9f9;
+    position: relative;
 }
 
 .leftContent {
@@ -95,6 +141,7 @@ onMounted(() => {
     padding: 20px;
     max-width: 600px;
     width: 100%;
+    position: relative; /* 이 위치에서 우하단에 버튼을 고정하기 위해 relative */
     height: 100%;
 }
 
@@ -138,6 +185,31 @@ onMounted(() => {
     padding-top: 20px;
 }
 
+/* 버튼 컨테이너 */
+.button-container {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.edit-button, .delete-button {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.edit-button:hover {
+    background-color: #d1e7dd;
+}
+
+.delete-button:hover {
+    background-color: #f8d7da;
+}
+
 .rightContent {
     display: flex;
     flex-direction: column;
@@ -151,4 +223,5 @@ onMounted(() => {
     font-size: 1.2rem;
     color: #555;
 }
+
 </style>
