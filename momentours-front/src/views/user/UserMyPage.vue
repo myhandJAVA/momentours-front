@@ -4,14 +4,12 @@
         <div class="combined-container">
           <div class="info-container">
 
-            <h2>내 정보 보기</h2>
             <div class="profile-card">
-              <img src="" alt="프로필 사진">
+              <img src="@/assets/icons/user-profile-image.svg" alt="프로필 사진">
               <p>MBTI: {{ userInfo.mbti }}</p>
               <p>나이: {{ calculateAge(userInfo.birth) }}</p>
               <p>가입일: {{ userInfo.joinDate }}</p>
               <p>성별: {{ userInfo.gender }}</p>
-              <button @click="editMode = true">키워드 정보 변경하기</button>
             </div>
           </div>
   
@@ -61,7 +59,7 @@ const userInfo = ref({
   phone: "010-1555-6666",
   birth: "1999-09-09",
   mbti: "ENTP",
-  gender: "M",
+  gender: "F",
   joinDate: "2024.03.02" 
 });
 
@@ -77,12 +75,6 @@ const calculateAge = (birth) => {
   return age;
 };
 
-
-// 사용자 정보를 업데이트하는 메소드 (실제 구현 시 DB와의 연동 필요)
-const updateUserInfo = () => {
-  console.log("Updated User Info:", userInfo.value);
-  // 여기에 DB 업데이트 로직 추가
-}
 </script>
 
 <style src='@/assets/css/mypage.css' scoped>

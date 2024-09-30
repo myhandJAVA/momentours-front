@@ -45,11 +45,8 @@
   
   // 이미지 경로 배열
   const images = [
-    '/src/assets/image/home/event1.jpg',
-    '/src/assets/image/home/event2.jpg',
-    '/src/assets/image/home/event3.jpg',
-    '/src/assets/image/home/event4.jpg',
-    '/src/assets/image/home/event5.jpg'
+    '/src/assets/image/home/moment.png',
+
   ];
   
   // 현재 이미지 인덱스
@@ -73,7 +70,7 @@
   
   // 자동 슬라이딩 시작
   const startSlideShow = () => {
-    slideInterval = setInterval(nextSlide, 5000); // 5초마다 슬라이드 변경
+    slideInterval = setInterval(nextSlide, 10000); // 10초마다 슬라이드 변경
   };
   
   // 자동 슬라이딩 정지
