@@ -274,9 +274,6 @@
 </details>
 
 
-<details>
-  <summary>추억코스</summary>
-</details>
 
 <details>
   <summary>예정데이트코스</summary>
