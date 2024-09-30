@@ -23,25 +23,25 @@ export default {
         const route = useRoute();
         const post = ref(null);
 
-        const fetchPostDetail = async (id) => {
-            try {
-                const response = await fetch(`http://localhost:8080/todocourse/detail/${id}`);
-                if (!response.ok) {
-                    throw new Error(`Http error! status: ${response.status}`);
-                }
-                const post = await response.json();
-                console.log("Fetched post: ", post.value);
-            } catch (error) {
-                console.error("Error fetching post details: ", error);
-            }
-        };
+        // const fetchPostDetail = async (id) => {
+        //     try {
+        //         const response = await fetch(`http://localhost:8080/todocourse/detail/${id}`);
+        //         if (!response.ok) {
+        //             throw new Error(`Http error! status: ${response.status}`);
+        //         }
+        //         const post = await response.json();
+        //         console.log("Fetched post: ", post.value);
+        //     } catch (error) {
+        //         console.error("Error fetching post details: ", error);
+        //     }
+        // };
 
-        onMounted(() => {
-            const id = route.query.id;
-            if (id) {
-                fetchPostDetail(postId);
-            }
-        });
+        // onMounted(() => {
+        //     const id = post.toDOCourseNo;
+        //     if (id) {
+        //         fetchPostDetail(id);
+        //     }
+        // });
 
         return {
             post

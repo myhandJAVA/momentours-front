@@ -33,35 +33,71 @@
 </template>
 
 <script>
+import { ref, computed, defineComponent } from 'vue';
 import Pagination from './Pagination.vue';
 
-export default {
+export default defineComponent({
     components: { Pagination },
     props: {
-        headers: { type: Array, required: true }, // 헤더 데이터를 prop으로 받음
-        posts: { type: Array, required: true },   // 외부에서 데이터를 받아오는 prop
+        headers: { type: Array, required: true },
+        posts: { type: Array, required: true },
         currentPage: { type: Number, default: 1 },
         postsPerPage: { type: Number, default: 10 }
     },
-    computed: {
-        totalPosts() {
-            return this.posts.length;
-        },
-        paginatedPosts() {
-            const start = (this.currentPage - 1) * this.postsPerPage;
-            const end = start + this.postsPerPage;
-            return this.posts.slice(start, end);
-        }
-    },
-    methods: {
-        handlePageChange(page) {
-            this.$emit('page-changed', page);
-        },
-        selectPost(post) {
-            this.$emit('post-selected', post);
-        }
+    setup(props, { emit }) {
+        const totalPosts = computed(() => props.posts.length);
+
+        const paginatedPosts = computed(() => {
+            const start = (props.currentPage - 1) * props.postsPerPage;
+            const end = start + props.postsPerPage;
+            return props.posts.slice(start, end);
+        });
+
+        const handlePageChange = (page) => {
+            emit('page-changed', page);
+        };
+
+        const selectPost = (post) => {
+            emit('post-selected', post);
+        };
+
+        return {
+            totalPosts,
+            paginatedPosts,
+            handlePageChange,
+            selectPost
+        };
     }
-};
+});
+// import Pagination from './Pagination.vue';
+
+// export default {
+//     components: { Pagination },
+//     props: {
+//         headers: { type: Array, required: true }, // 헤더 데이터를 prop으로 받음
+//         posts: { type: Array, required: true },   // 외부에서 데이터를 받아오는 prop
+//         currentPage: { type: Number, default: 1 },
+//         postsPerPage: { type: Number, default: 10 }
+//     },
+//     computed: {
+//         totalPosts() {
+//             return this.posts.length;
+//         },
+//         paginatedPosts() {
+//             const start = (this.currentPage - 1) * this.postsPerPage;
+//             const end = start + this.postsPerPage;
+//             return this.posts.slice(start, end);
+//         }
+//     },
+//     methods: {
+//         handlePageChange(page) {
+//             this.$emit('page-changed', page);
+//         },
+//         selectPost(post) {
+//             this.$emit('post-selected', post);
+//         }
+//     }
+// };
 </script>
 
 
