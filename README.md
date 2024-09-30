@@ -4,11 +4,14 @@
 <img width="925" alt="스크린샷 2024-09-05 오전 9 11 58" src="https://github.com/user-attachments/assets/ffd048ab-f1b5-4910-a58a-8a9dc7a28c1d">
 
 ## 🤝TEAM
-| <img src="docs/최해관.jpg" width="200" height = "160">|<img src="docs/유혜진.jpg" width="200" height = "160">|<img src="docs/장민근.png" width="200" height = "160">|<img src="docs/이우진.jpeg" width="200" height = "160">|<img src="docs/김동혁.jpg" width="200" height = "160">|<img src="docs/김정모.jpg" width="200" height = "160"> |
+| <img src="docs/img/최해관.jpg" width="200" height = "160">|<img src="docs/img/유혜진.jpg" width="200" height = "160">|<img src="docs/img/장민근.png" width="200" height = "160">|<img src="docs/img/이우진.jpeg" width="200" height = "160">|<img src="docs/img/김동혁.jpg" width="200" height = "160">|<img src="docs/img/김정모.jpg" width="200" height = "160"> |
 | :------------------------------------: | :-------------------------------------: | :-----------------------------------: | :--------------------------------------: | :-----------------------------------: | :------------------------------------------: |
 | [🦖최해관](https://github.com/Haegwan-Choe) | [🐰유혜진](https://github.com/yuhyejin) | [😇장민근](https://github.com/caolian2003) | [👀이우진](https://github.com/Vorschlag-bit) | [😺김동혁](https://github.com/dongkh9) | [🐶김정모](https://github.com/mojeeeeong) |
 
 ## 기술스택
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![Vue.js](https://img.shields.io/badge/vue3-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![json_server ](https://img.shields.io/badge/json_server-3955A3?style=for-the-badge&logo=microsoft-visio&logoColor=white)
@@ -25,12 +28,11 @@
 ### 목차
 
 - [1. 프로젝트 개요](#1-프로젝트-개요)
-- [2. 요구사항 명세서](#2-요구사항-명세서)
-- [3. 기능 명세서](#3-기능-명세서)
-- [4. 와이어프레임](#4-와이어프레임)
-- [5. 스토리보드](#5-스토리보드)
-- [6. 테스트](#6-테스트)
-- [7. 팀 회고](#7-팀-회고)
+- [2. 기능 명세서](#3-기능-명세서)
+- [3. 와이어프레임](#4-와이어프레임)
+- [4. 스토리보드](#5-스토리보드)
+- [5. 테스트](#6-테스트)
+- [6. 팀 회고](#7-팀-회고)
 
 ---
 
@@ -49,27 +51,87 @@
 
 ---
 
-## 2. 요구사항 명세서
+## 2. 기능 명세서
 
 ---
 
-## 3. 기능 명세서
+## 3. 와이어프레임
 
 ---
 
-## 4. 와이어프레임
+## 4. 스토리보드
+<details>
+  <summary>회원</summary>
+</details>
+
+<details>
+  <summary>커플</summary>
+</details>
+
+<details>
+  <summary>추억</summary>
+</details>
+
+<details>
+  <summary>추억코스</summary>
+</details>
+
+<details>
+  <summary>예정코스</summary>
+</details>
+
+<details>
+  <summary>랜덤질문</summary>
+</details>
+
+<details>
+  <summary>일기</summary>
+</details>
+
+<details>
+  <summary>일정</summary>
+</details>
 
 ---
 
-## 5. 스토리보드
+## 5. 테스트
+
+<details>
+  <summary>회원</summary>
+</details>
+
+<details>
+  <summary>커플</summary>
+</details>
+
+<details>
+  <summary>추억</summary>
+</details>
+
+<details>
+  <summary>추억코스</summary>
+</details>
+
+<details>
+  <summary>예정코스</summary>
+</details>
+
+<details>
+  <summary>랜덤질문</summary>
+</details>
+
+<details>
+  <summary>일기</summary>
+</details>
+
+<details>
+  <summary>일정</summary>
+</details>
+
 
 ---
 
-## 6. 테스트
-
----
-
-## 7. 팀 회고
+## 6. 팀 회고
 #### 최해관
 > **유혜진**: 
 > 
