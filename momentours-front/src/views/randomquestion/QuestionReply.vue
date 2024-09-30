@@ -3,7 +3,8 @@
     <div v-if="replies.length > 0" v-for="(reply, index) in replies" :key="reply.randomReplyNo" class="answer-section">
       <h3 class="user-name">{{ reply.userName }} 답변</h3>
       <div class="answer-item">
-        <div v-if="reply.randomReplyContent === '텅'" class="no-answer" :class="{ 'writing': isWriting && writingReplyNo === reply.randomReplyNo }">
+        <div v-if="reply.randomReplyContent === '텅'" class="no-answer"
+          :class="{ 'writing': isWriting && writingReplyNo === reply.randomReplyNo }">
           <img src="@/assets/icons/warmtone.svg" class="no-answer-background">
           <div v-if="!isWriting || writingReplyNo !== reply.randomReplyNo" class="no-answer-content">
             아직 답변을 작성하지 않으셨네요..!
@@ -28,17 +29,23 @@
           </div>
           <div v-if="index === 0 && editingReplyNo !== reply.randomReplyNo" class="button-group">
             <button @click="startEdit(reply)" class="action-btn edit-btn">수정</button>
-            <button @click="deleteReply(reply)" class="action-btn delete-btn">삭제</button>
+            <button @click="showDeleteModal(reply)" class="action-btn delete-btn">삭제</button>
           </div>
         </div>
       </div>
     </div>
     <div v-else class="loading">답변을 불러오는 중...</div>
   </div>
+  <Modal :isVisible="isModalVisible" :isYes="isDeleteConfirmed" @update:isVisible="isModalVisible = $event"
+    @update:isYes="confirmDelete">
+    <h4>정말 답변을 삭제하시겠습니까?</h4>
+  </Modal>
 </template>
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
+import { useRouter } from 'vue-router';
+import Modal from '@/components/common/Modal.vue';
 
 const props = defineProps({
   questionId: {
@@ -47,7 +54,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['updateReply']);
+const emit = defineEmits(['updateReply', 'update:remove']);
 
 const replies = ref([]);
 const editingReplyNo = ref(null);
@@ -55,6 +62,10 @@ const isWriting = ref(false);
 const writingReplyNo = ref(null);
 const editedContent = ref('');
 const newReplyContent = ref('');
+const isModalVisible = ref(false);
+const isDeleteConfirmed = ref(false);
+const replyToDelete = ref(null);
+const router = useRouter();
 
 watch(() => props.questionId, (newQuestionId, oldQuestionId) => {
   if (newQuestionId !== oldQuestionId) {
@@ -149,6 +160,19 @@ async function saveEdit(reply) {
   }
 }
 
+function showDeleteModal(reply) {
+  replyToDelete.value = reply;
+  isModalVisible.value = true;
+}
+
+function confirmDelete(confirmed) {
+  isDeleteConfirmed.value = confirmed;
+  if (confirmed && replyToDelete.value) {
+    deleteReply(replyToDelete.value);
+  }
+  isModalVisible.value = false;
+}
+
 async function deleteReply(reply) {
   try {
     const response = await fetch(`http://localhost:8080/replies/${reply.id}`, {
@@ -160,6 +184,7 @@ async function deleteReply(reply) {
       item.randomReplyNo === reply.randomReplyNo ? { ...item, randomReplyContent: "텅" } : item
     );
     emit('updateReply', props.questionId, replies.value);
+    router.push('/randomquestion/view');
   } catch (error) {
     console.error('답변 삭제 중 오류 발생:', error);
     window.alert('삭제 중 오류가 발생했습니다!');
