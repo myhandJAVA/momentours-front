@@ -5,19 +5,21 @@
                 <span class="item number">{{ headers[0] }}</span>
                 <span class="item title">{{ headers[1] }}</span>
                 <span class="item status">{{ headers[2] }}</span>
-                <span class="item date">{{ headers[3] }}</span>
+                <span class="item like">{{ headers[3] }}</span>
+                <span class="item date">{{ headers[4] }}</span>
             </div>
             <div class="bg-b">
                 <ul class="course-list">
                     <li v-for="(post, index) in paginatedPosts" :key="index + 1" class="course-item">
                         <span class="item number">{{ (currentPage - 1) * postsPerPage + index + 1 }}</span>
-                        <span class="item title">{{ post.toDoCourseTitle }}</span>
+                        <span class="item title">{{ post.momCourseTitle }}</span>
                         <span class="item status">
-                            <span v-if="post.toDoCourseSort === 'fewDay'">연일데이트</span>
-                            <span v-else-if="post.toDoCourseSort === 'oneDay'">당일데이트</span>
-                            <span v-else>{{ post.toDoCourseSort }}</span>
+                            <span v-if="post.momCourseSort === 'fewDay'">연일데이트</span>
+                            <span v-else-if="post.momCourseSort === 'oneDay'">당일데이트</span>
+                            <span v-else>{{ post.momCourseSort }}</span>
                         </span>
-                        <span class="item date">{{ post.toDoCourseCreateDate.split('T')[0] }}</span>
+                        <span class="item like">{{ post.momCourseLike }}</span>
+                        <span class="item date">{{ post.momCourseCreateDate.split('T')[0] }}</span>
                     </li>
                 </ul>
             </div>
@@ -92,17 +94,14 @@ export default {
 
 .number {
     flex-basis: 10%;
-    /* 번호 항목은 상대적으로 더 좁은 공간 할당 */
 }
 
 .title {
     flex-basis: 60%;
-    /* 제목은 더 넓은 공간 할당 */
 }
 
-.status {
+.status, .like {
     flex-basis: 20%;
-    /* 나머지 항목들은 균등하게 할당 */
 }
 
 .date {
