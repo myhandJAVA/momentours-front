@@ -190,6 +190,11 @@
 
 ## 5. 테스트
 
+### 테스트 계획서
+
+ ![테스트계획서](./docs/img/테스트계획서/테스트계획서.png)
+
+
 <details>
   <summary>회원</summary>
 </details>
