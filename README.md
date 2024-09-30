@@ -4,7 +4,7 @@
 <img width="925" alt="스크린샷 2024-09-05 오전 9 11 58" src="https://github.com/user-attachments/assets/ffd048ab-f1b5-4910-a58a-8a9dc7a28c1d">
 
 ## 🤝TEAM
-| <img src="docs/img/최해관.jpg" width="200" height = "160">|<img src="docs/img/유혜진.jpg" width="200" height = "160">|<img src="docs/img/장민근.png" width="200" height = "160">|<img src="docs/img/이우진.jpeg" width="200" height = "160">|<img src="docs/img/김동혁.jpg" width="200" height = "160">|<img src="docs/img/김정모.jpg" width="200" height = "160"> |
+| <img src="docs/img/profile/최해관.jpg" width="200" height = "160">|<img src="docs/img/profile/유혜진.jpg" width="200" height = "160">|<img src="docs/img/profile/장민근.png" width="200" height = "160">|<img src="docs/img/profile/이우진.jpeg" width="200" height = "160">|<img src="docs/img/profile/김동혁.jpg" width="200" height = "160">|<img src="docs/img/profile/김정모.jpg" width="200" height = "160"> |
 | :------------------------------------: | :-------------------------------------: | :-----------------------------------: | :--------------------------------------: | :-----------------------------------: | :------------------------------------------: |
 | [🦖최해관](https://github.com/Haegwan-Choe) | [🐰유혜진](https://github.com/yuhyejin) | [😇장민근](https://github.com/caolian2003) | [👀이우진](https://github.com/Vorschlag-bit) | [😺김동혁](https://github.com/dongkh9) | [🐶김정모](https://github.com/mojeeeeong) |
 
@@ -57,6 +57,61 @@
 
 ## 3. 와이어프레임
 
+<details>
+  <summary>회원</summary>
+
+   ![와이어프레임](./docs/img/wireframe/회원.png)
+
+</details>
+
+<details>
+  <summary>커플</summary>
+
+  ![와이어프레임](./docs/img/wireframe/커플.png)
+
+</details>
+
+<details>
+  <summary>추억</summary>
+
+  ![와이어프레임](./docs/img/wireframe/추억.png)
+
+</details>
+
+<details>
+  <summary>추억코스</summary>
+
+  ![와이어프레임](./docs/img/wireframe/추억코스.png)
+
+</details>
+
+<details>
+  <summary>예정코스</summary>
+
+  ![와이어프레임](./docs/img/wireframe/예정코스.png)
+
+</details>
+
+<details>
+  <summary>랜덤질문</summary>
+
+  ![와이어프레임](./docs/img/wireframe/랜덤질문.png)
+
+</details>
+
+<details>
+  <summary>일기</summary>
+
+  ![와이어프레임](./docs/img/wireframe/일기.png)
+
+</details>
+
+<details>
+  <summary>일정</summary>
+
+  ![와이어프레임](./docs/img/wireframe/일정.png)
+
+</details>
 ---
 
 ## 4. 스토리보드
@@ -90,7 +145,44 @@
 
 <details>
   <summary>일정</summary>
+  
+  - <details>
+      <summary>일정조회</summary>
+    
+      ![스토리보드](./docs/img/storyboard/일정/일정조회.png)
+    
+    </details>
+  
+  - <details>
+      <summary>일정상세조회</summary>
+    
+      ![스토리보드](./docs/img/storyboard/일정/일정상세조회.png)
+    
+    </details>
+
+  - <details>
+      <summary>일정작성</summary>
+    
+      ![스토리보드](./docs/img/storyboard/일정/일정작성.png)
+    
+    </details>
+
+  - <details>
+      <summary>일정수정</summary>
+    
+      ![스토리보드](./docs/img/storyboard/일정/일정수정.png)
+    
+    </details>
+
+  - <details>
+      <summary>일정삭제</summary>
+    
+      ![스토리보드](./docs/img/storyboard/일정/일정삭제.png)
+    
+    </details>
+  
 </details>
+
 
 ---
 
