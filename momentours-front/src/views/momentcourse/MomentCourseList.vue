@@ -2,7 +2,7 @@
     <div>
         <Search :options1="selectOptions1" :options2="selectOptions2" />
 
-        <PostList :headers="['번호', '제목', '기간', '작성일']" :posts="posts" :currentPage="currentPage"
+        <PostList :headers="['번호', '제목', '기간', '좋아요', '작성일']" :posts="posts" :currentPage="currentPage"
             :postsPerPage="postsPerPage" @page-changed="handlePageChange" />
     </div>
 </template>
@@ -29,7 +29,7 @@ export default {
             selectOptions2: [
                 { value: '전체', text: '전체' },
                 { value: '당일데이트', text: '당일데이트' },
-                { value: '연인데이트', text: '연인데이트' },
+                { value: '연일데이트', text: '연일데이트' },
                 { value: '선택없음', text: '선택없음' },
             ],
         };
@@ -40,7 +40,7 @@ export default {
         },
         async fetchPosts() {
             try {
-                const response = await fetch('http://localhost:8080/posts');
+                const response = await fetch('http://localhost:8080/momentcourse');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
