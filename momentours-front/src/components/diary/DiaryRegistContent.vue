@@ -2,7 +2,7 @@
     <div class="regist-wrap">
         <div class="left-space"></div> <!-- 왼쪽 여백 -->
         <div class="text-image-wrap">
-            <textarea class="textareat-content" placeholder="본문을 작성해주세요." v-model="textContent" @input="adjustHeight">
+            <textarea class="textareat-content" placeholder="본문을 작성해주세요." v-model="localEvent.textContent" @input="adjustHeight">
             </textarea>
             <img class="img-box" src="@/assets/icons/img-box.svg" alt="사진 이미지" @click="selectImage">
         </div>
@@ -27,9 +27,12 @@
 </template>
 
 <script setup>
-import Modal from '@/components/common/Modal.vue';
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import Modal from '../common/Modal.vue';
+
+// Emit 정의
+const emit = defineEmits(['refreshDiaryData']);
 
 const textContent = ref('');
 const isModalVisible = ref(false);
@@ -101,7 +104,7 @@ const registerDiary = async () => {
         console.log('일기가 성공적으로 등록되었습니다:', result);
 
         // 일기 등록 후 페이지 이동 전에 이벤트 emit
-        // emit('refreshDiaryData'); // 데이터 새로 고침 요청
+        emit('refreshDiaryData'); // 데이터 새로 고침 요청
 
         // 일기 등록 후 페이지 이동
         router.push('/diary/view');

@@ -40,7 +40,7 @@
 
 /* 컬러 흰색 */
 .color-white {
-    color: white;
+    color: white !important;
 }
 
 /* 컬러 검정 */
