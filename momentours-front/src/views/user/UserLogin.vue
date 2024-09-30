@@ -1,7 +1,9 @@
 <template>  
     <main class=""> 
         <div class="login-container">
-            <h1>Momentours</h1>
+            <img src="@/assets/icons/Momentours-logo.svg" alt="momentours logo">
+            <img src="@/assets/icons/Momentours.svg" alt="momentours logo">
+            
            <b><p>아이디와 비밀번호를 입력해주세요.</p></b>
             
             <form @submit.prevent="handleLogin">
