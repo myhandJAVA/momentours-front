@@ -35,9 +35,11 @@
 </template>
 
 <script>
-import { reactive } from 'vue';
+import { reactive } from 'vue'; // reactive를 import
 import axios from 'axios';
 import CommonMap from '@/components/common/CommonMap.vue';
+import { format } from 'date-fns';
+import { useRouter } from 'vue-router';
 
 export default {
     components: {
@@ -48,28 +50,36 @@ export default {
         const categories = ['맛집', '여행', '카페', '체험', '산책'];
         const publics = ['공개', '비공개'];
 
+        // reactive로 상태 관리
         const state = reactive({
-            selectedMarker: null,   // 선택한 마커 정보
-            momentTitle: '',
+            momentTitle: '', // ref 대신 직접 문자열 사용
             momentContent: '',
             selectedCategory: '', // 선택한 카테고리
             selectedPublic: '', // 공개 여부
-            selectedPlace: null // 선택된 장소 정보
+            selectedPlace: null, // 선택된 장소 정보
+            selectedMarker: null   // 선택한 마커 정보
         });
 
-// 마커 선택 시 호출
-const selectMarker = ({ marker, place }) => {
-    // place 객체가 없을 경우 기본값 설정
-    const { place_name = 'Unknown Location', road_address_name = '', address_name = '' } = place;
+        const router = useRouter();
 
-    state.selectedMarker = marker;
-    state.selectedPlace = {
-        placeName: place_name,
-        roadAddress: road_address_name || address_name,
-        lat: marker.getPosition().getLat(),
-        lng: marker.getPosition().getLng()
-    };
-};
+        // 마커 선택 시 호출
+        const selectMarker = (markerData) => {
+            const {lat, lng, place, marker} = markerData;
+            const { place_name = 'Unknown Location', road_address_name = '', address_name = '' } = place || {};
+
+            if (!marker) {
+                console.error('marker is not defined');
+                return;
+            }
+
+            state.selectedMarker = marker;
+            state.selectedPlace = {
+                placeName: place_name,
+                roadAddress: road_address_name || address_name,
+                lat,
+                lng
+            };
+        };
 
         // 글 등록 함수
         const registerMoment = async () => {
@@ -89,13 +99,16 @@ const selectMarker = ({ marker, place }) => {
                 // 새 momentNo 할당
                 const newMomentNo = lastMomentNo + 1;
 
+                const now = new Date();
+                const formattedDate = format(now, 'yyyy-MM-dd HH:mm:ss');
+
                 // 새로운 moment 객체 생성
                 const newMoment = {
                     momentNo: newMomentNo,
                     momentTitle: state.momentTitle,
                     momentCategory: state.selectedCategory,
                     momentContent: state.momentContent,
-                    momentCreateDate: new Date().toISOString(), // 현재 날짜와 시간
+                    momentCreateDate: formattedDate, // 현재 날짜와 시간
                     momentUpdateDate: null,
                     momentIsPublic: state.selectedPublic === '공개',
                     momentLike: 0,
@@ -112,6 +125,8 @@ const selectMarker = ({ marker, place }) => {
                 const postResponse = await axios.post('http://localhost:3000/Moments', newMoment);
                 console.log('등록 성공:', postResponse.data);
                 alert('추억이 성공적으로 등록되었습니다.');
+
+                router.push('/moment'); // momentList로 이동
             } catch (error) {
                 console.error('등록 중 오류가 발생했습니다:', error);
                 alert('추억 등록에 실패했습니다.');
@@ -128,6 +143,7 @@ const selectMarker = ({ marker, place }) => {
     }
 };
 </script>
+
 
 <style scoped>
 /* 전체 레이아웃 */
