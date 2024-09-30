@@ -23,6 +23,11 @@ export default [
             {
                 path: 'view',
                 component: () => import('@/views/todocourse/TodoCourseView.vue'),
+            },
+            {
+                path: 'detail/:id',
+                // name: 'TodoCourseDetailView',
+                component: () => import('@/views/todocourse/TodoCourseDetailView.vue'),
             }
         ],
     },

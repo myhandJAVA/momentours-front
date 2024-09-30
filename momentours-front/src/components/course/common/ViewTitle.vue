@@ -22,14 +22,29 @@
 
 <script setup>
 import MoreBox from '@/components/common/MoreBox.vue';
-import { ref } from 'vue';
+import { ref, defineProps } from 'vue';
+
+const props = defineProps ({
+    title: {
+        type: String,
+        required: true,
+    },
+    date: {
+        type: String,
+        required: true,
+    },
+    type: {
+        type: String,
+        required: true,
+    }
+});
 
 // 게시글 정보 예시
-// const title = ref('강릉 데이트');
-// const userName = ref('안녕하세요나는주코야끼');
+// const title = ref('강릉데이트');
+const userName = ref('안녕하세요나는주코야끼');
 // const date = ref('2024. 09. 02.');
 // const type = ref('연일데이트');
-// const userImage = ref('https://via.placeholder.com/40');
+const userImage = ref('https://via.placeholder.com/40');
 </script>
 
 <style scoped>

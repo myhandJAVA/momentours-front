@@ -9,7 +9,7 @@
             </div>
             <div class="bg-b">
                 <ul class="course-list">
-                    <li v-for="(post, index) in paginatedPosts" :key="index + 1" class="course-item">
+                    <li v-for="(post, index) in paginatedPosts" :key="index + 1" class="course-item" @click="selectPost(post)">
                         <span class="item number">{{ (currentPage - 1) * postsPerPage + index + 1 }}</span>
                         <span class="item title">{{ post.toDoCourseTitle }}</span>
                         <span class="item status">
@@ -56,6 +56,9 @@ export default {
     methods: {
         handlePageChange(page) {
             this.$emit('page-changed', page);
+        },
+        selectPost(post) {
+            this.$emit('post-selected', post);
         }
     }
 };

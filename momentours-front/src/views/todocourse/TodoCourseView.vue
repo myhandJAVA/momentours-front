@@ -3,11 +3,12 @@
         <Search :options1="selectOptions1" :options2="selectOptions2" navigateTo="/todocourse/regist"/>
 
         <PostList :headers="['번호', '제목', '기간', '작성일']" :posts="posts" :currentPage="currentPage"
-            :postsPerPage="postsPerPage" @page-changed="handlePageChange" />
+            :postsPerPage="postsPerPage" @page-changed="handlePageChange" @post-selected="goToDetail" />
     </div>
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
 import Search from '@/components/course/common/Search.vue';
 import PostList from '@/components/course/common/PostList.vue';
 
@@ -45,11 +46,20 @@ export default {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-                this.posts = data;  // 받아온 데이터를 this.posts에 저장
+                this.post = data;  // 받아온 데이터를 this.posts에 저장
             } catch (error) {
                 console.error("Error fetching posts: ", error);
             }
         },
+        goToDetail(post) {
+            this.$router.push({
+                path: `/todocourse/detail/${id}`,
+                query: { id: post.toDoCourseNo }
+                // name: 'TodoCourseDetailView', params: { id: 1 }
+                // name: 'TodoCourseDetailView',
+                // params: { id: post.toDoCourseNo }
+            });
+        }
     },
     mounted() {
         this.fetchPosts();
