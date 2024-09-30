@@ -7,7 +7,7 @@
             <img class="img-box" src="@/assets/icons/img-box.svg" alt="사진 이미지" @click="selectImage">
         </div>
         <div class="regist-content">
-            <button :class="uploadButtonClass" @click="openModal">업로드</button>
+            <button :class="uploadButtonClass" @click="updateDiary">수정완료</button>
             <button :class="tempSaveButtonClass" @click="showAlert">임시저장</button>
             <button class="common-button bg-color-gray color-white">임시저장 글</button>
         </div>
@@ -15,7 +15,7 @@
         <!-- Modal component -->
         <Modal v-if="isModalVisible" :isVisible="isModalVisible" @update:isVisible="closeModal"
             @update:isYes="confirmUpload">
-            일기를 등록하시겠습니까?
+            일기를 수정하시겠습니까?
         </Modal>
 
         <!-- Alert for temporary save -->
@@ -28,16 +28,47 @@
 
 <script setup>
 import Modal from '@/components/common/Modal.vue';
-import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, computed, onMounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 
 const textContent = ref('');
 const isModalVisible = ref(false);
 const router = useRouter();
+const route = useRoute(); // useRoute 추가
 const dismissSecs = 2;
 const dismissCountDown = ref(0);
 const isLoading = ref(false);
 const errorMessage = ref('');
+
+// 컴포넌트가 마운트될 때 URL 쿼리 파라미터에서 content 가져오기
+onMounted(() => {
+    const content = route.query.content; // URL에서 content 가져오기
+    if (content) {
+        textContent.value = content; // textarea에 내용 설정
+    }
+});
+
+// 일기 업데이트 함수
+const updateDiary = async () => {
+    const diaryId = route.params.id;
+    try {
+        const response = await fetch(`http://localhost:8080/diary/edit/${diaryId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                textContent: textContent.value,
+            }),
+        });
+        if (!response.ok) {
+            throw new Error('Failed to update diary');
+        }
+        router.push('/diary/view');
+    } catch (error) {
+        console.error('Error updating diary:', error);
+    }
+};
 
 // 업로드 버튼과 임시저장 버튼의 클래스 동적 변경
 const uploadButtonClass = computed(() => {
@@ -66,82 +97,24 @@ const closeModal = () => {
     isModalVisible.value = false;
 };
 
-const formatDate = (date) => {
-    const pad = (n) => (n < 10 ? '0' + n : n);
-    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
-};
-
-// 일기 등록 함수
-const registerDiary = async () => {
-    isLoading.value = true;
-    errorMessage.value = '';
-
-    try {
-        const response = await fetch('http://localhost:8080/diary', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                diaryContent: textContent.value,
-                diaryCreateDate: formatDate(new Date()),
-                diaryUserNo: 12,  // 현재 사용자 번호
-                coupleNo: 5,  // 커플 번호 (예시)
-                diaryIsDeleted: 0,
-                files: [],  // 파일 업로드 기능이 구현되면 이 부분을 수정
-                comments: []
-            }),
-        });
-
-        if (!response.ok) {
-            throw new Error('서버 응답이 실패했습니다.');
-        }
-
-        const result = await response.json();
-        console.log('일기가 성공적으로 등록되었습니다:', result);
-
-        // 일기 등록 후 페이지 이동 전에 이벤트 emit
-        // emit('refreshDiaryData'); // 데이터 새로 고침 요청
-
-        // 일기 등록 후 페이지 이동
-        router.push('/diary/view');
-    } catch (error) {
-        console.error('일기 등록 중 오류 발생:', error);
-        errorMessage.value = '일기 등록에 실패했습니다. 다시 시도해주세요.';
-    } finally {
-        isLoading.value = false;
-    }
-};
-
 // 모달에서 Yes를 누르면 일기 등록 후 이동
 const confirmUpload = () => {
     closeModal();
-    registerDiary();
+    updateDiary();
 };
 
 // 임시 저장 함수
 const saveTemporarily = () => {
-    // 여기에 임시 저장 로직을 추가합니다.
     console.log('임시 저장되었습니다:', textContent.value);
     showAlert(); // 경고 알림 표시
 };
 
-// 이미지 선택하기
-const selectImage = () => {
-    // fileInput 참조를 사용하여 파일 선택 창 열기
-    fileInput.value.click(); // 파일 선택 창 열기
-};
-
-const countDownChanged = (dismissCountDown) => {
-    dismissCountDown = dismissCountDown;
-};
-
+// 알림 함수
 const showAlert = () => {
-    dismissCountDown.value = dismissSecs; // dismissCountDown을 재설정
+    dismissCountDown.value = dismissSecs; // dismissCountDown 재설정
 };
 
 </script>
-
 
 <style scoped>
 .regist-wrap {
