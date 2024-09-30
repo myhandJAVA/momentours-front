@@ -22,8 +22,7 @@
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
 ## 전체 프로젝트 일정
-**프로젝트 일정 : 2024년 월 일 ~ 2024년 09월 30일**
-<img src="docs/WBS.png"/>
+**프로젝트 일정 : 2024년 9월 23일 ~ 2024년 09월 30일**
 
 ### 목차
 
@@ -52,6 +51,9 @@
 ---
 
 ## 2. 기능 명세서
+
+   ![기능명세서](./docs/img/기능명세서/기능명세서.png)
+
 
 ---
 
