@@ -102,7 +102,6 @@ watch(selectedDate, updateDisplayedDates)
 </script>
 
 <style scoped>
-/* 스타일은 이전과 동일하게 유지 */
 .calendar-container {
     display: flex;
     align-items: center;

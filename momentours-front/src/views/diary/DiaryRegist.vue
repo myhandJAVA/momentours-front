@@ -1,6 +1,6 @@
 <template>
     <div class="regist-wrap">
-        <div class="left-space"></div> <!-- 왼쪽 여백 -->
+        <div class="left-space"></div>
         <div class="text-image-wrap">
             <textarea class="textareat-content" placeholder="본문을 작성해주세요." v-model="textContent" @input="adjustHeight">
             </textarea>
@@ -12,13 +12,11 @@
             <button class="common-button bg-color-gray color-white">임시저장 글</button>
         </div>
 
-        <!-- Modal component -->
         <Modal v-if="isModalVisible" :isVisible="isModalVisible" @update:isVisible="closeModal"
             @update:isYes="confirmUpload">
             일기를 등록하시겠습니까?
         </Modal>
 
-        <!-- Alert for temporary save -->
         <b-alert show="dismissCountDown" dismissible variant="warning" @dismissed="dismissCountDown = 0"
             @dismiss-count-down="countDownChanged">
             This alert will dismiss after {{ dismissCountDown }} seconds...
@@ -85,10 +83,10 @@ const registerDiary = async () => {
             body: JSON.stringify({
                 diaryContent: textContent.value,
                 diaryCreateDate: formatDate(new Date()),
-                diaryUserNo: 12,  // 현재 사용자 번호
-                coupleNo: 5,  // 커플 번호 (예시)
+                diaryUserNo: 12, 
+                coupleNo: 5, 
                 diaryIsDeleted: 0,
-                files: [],  // 파일 업로드 기능이 구현되면 이 부분을 수정
+                files: [],
                 comments: []
             }),
         });
@@ -99,9 +97,6 @@ const registerDiary = async () => {
 
         const result = await response.json();
         console.log('일기가 성공적으로 등록되었습니다:', result);
-
-        // 일기 등록 후 페이지 이동 전에 이벤트 emit
-        // emit('refreshDiaryData'); // 데이터 새로 고침 요청
 
         // 일기 등록 후 페이지 이동
         router.push('/diary/view');
@@ -121,27 +116,16 @@ const confirmUpload = () => {
 
 // 임시 저장 함수
 const saveTemporarily = () => {
-    // 여기에 임시 저장 로직을 추가합니다.
     console.log('임시 저장되었습니다:', textContent.value);
-    showAlert(); // 경고 알림 표시
+    showAlert();
 };
 
 // 이미지 선택하기
 const selectImage = () => {
-    // fileInput 참조를 사용하여 파일 선택 창 열기
-    fileInput.value.click(); // 파일 선택 창 열기
-};
-
-const countDownChanged = (dismissCountDown) => {
-    dismissCountDown = dismissCountDown;
-};
-
-const showAlert = () => {
-    dismissCountDown.value = dismissSecs; // dismissCountDown을 재설정
+    fileInput.value.click();
 };
 
 </script>
-
 
 <style scoped>
 .regist-wrap {

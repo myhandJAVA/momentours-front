@@ -1,6 +1,6 @@
 <template>
     <div class="regist-wrap">
-        <div class="left-space"></div> <!-- 왼쪽 여백 -->
+        <div class="left-space"></div>
         <div class="text-image-wrap">
             <textarea class="textareat-content" placeholder="본문을 작성해주세요." v-model="textContent" @input="adjustHeight">
             </textarea>
@@ -12,13 +12,11 @@
             <button class="common-button bg-color-gray color-white">임시저장 글</button>
         </div>
 
-        <!-- Modal component -->
         <Modal v-if="isModalVisible" :isVisible="isModalVisible" @update:isVisible="closeModal"
             @update:isYes="confirmUpload">
             일기를 수정하시겠습니까?
         </Modal>
 
-        <!-- Alert for temporary save -->
         <b-alert show="dismissCountDown" dismissible variant="warning" @dismissed="dismissCountDown = 0"
             @dismiss-count-down="countDownChanged">
             This alert will dismiss after {{ dismissCountDown }} seconds...
@@ -34,7 +32,7 @@ import { useRouter, useRoute } from 'vue-router';
 const textContent = ref('');
 const isModalVisible = ref(false);
 const router = useRouter();
-const route = useRoute(); // useRoute 추가
+const route = useRoute();
 const dismissSecs = 2;
 const dismissCountDown = ref(0);
 const isLoading = ref(false);
@@ -52,13 +50,13 @@ onMounted(() => {
 const updateDiary = async () => {
     const diaryId = route.params.id;
     try {
-        const response = await fetch(`http://localhost:8080/diary/edit/${diaryId}`, {
+        const response = await fetch(`http://localhost:8080/diary/${diaryId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                textContent: textContent.value,
+                diaryContent: textContent.value,
             }),
         });
         if (!response.ok) {
@@ -108,12 +106,6 @@ const saveTemporarily = () => {
     console.log('임시 저장되었습니다:', textContent.value);
     showAlert(); // 경고 알림 표시
 };
-
-// 알림 함수
-const showAlert = () => {
-    dismissCountDown.value = dismissSecs; // dismissCountDown 재설정
-};
-
 </script>
 
 <style scoped>
