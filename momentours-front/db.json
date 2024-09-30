@@ -1,0 +1,52 @@
+{
+  "user-info": [
+    {
+      "email": "gildong@naver.com",
+      "pwd": "gildong123",
+      "name": "홍길동",
+      "nickname": "gildong",
+      "phone": "010-1555-6666",
+      "birth": "1999-09-09",
+      "mbti": "ENTP",
+      "gender": "M",
+      "joinDate": "2024-03-02",
+      "id": "e480"
+    },
+    {
+      "email": "kwansoon@naver.com",
+      "pwd": "kwansoon123",
+      "name": "유관순",
+      "nickname": "kwansoon",
+      "phone": "010-8888-7777",
+      "birth": "2999-09-09",
+      "mbti": "ENTJ",
+      "gender": "F",
+      "joinDate": "2024.03.02",
+      "id": "2cf4"
+    },
+    {
+      "id": "9f67",
+      "email": "caolian2003@naver.com",
+      "pwd": "123123",
+      "name": "Jang",
+      "nickname": "min",
+      "phone": "010-4499-0742",
+      "birth": "2024-09-02",
+      "mbti": "INTJ",
+      "gender": "F",
+      "joinDate": "2024-09-29"
+    },
+    {
+      "id": "f72a",
+      "email": "caolian200@naver.com",
+      "pwd": "123123",
+      "name": "123123",
+      "nickname": "123123",
+      "phone": "010-4499-0742",
+      "birth": "2024-09-18",
+      "mbti": "ISTP",
+      "gender": "M",
+      "joinDate": "2024-09-29"
+    }
+  ]
+}

@@ -1,41 +1,72 @@
 <template>
     <div class="container">
-        <div class="top-wrap">
-            <div class="profile">
-                <img src="@/assets/icons/user-profile-image.svg" alt="Profile" class="profile-image" />
-                <div>야야야ㅑ야</div>
-            </div>
-            <div><MoreBox/></div>
+        <div v-if="showWritePrompt" class="write-prompt">
+            일기를 작성해주세요.
         </div>
-        <div class="content-wrap">
-            오늘 점심을 뭐먹을 지 너무 고민이 되는 데 뭐 먹을까? 나 점심때 
-            오늘 점심을 뭐먹을 지 너무 고민이 되는 데 뭐 먹을까? 오늘 점심을 
-            뭐먹을 지 너무 고민이 되는 오늘 점심을 뭐먹을 지 너무 고민이 되는
-            데 뭐 먹을까? 나 점심때 ...
-        </div>
-        <div class="comment-wrap">
-            <div class="name-wrap">
-                <div>
-                    <span class="nickname">야야야얍</span>
-                    <span class="seq">|</span>
-                    <span class="time">3분전</span>
+        <template v-else>
+            <div class="top-wrap">
+                <div class="profile">
+                    <img src="@/assets/icons/user-profile-image.svg" alt="Profile" class="profile-image" />
+                    <div>{{ diaryData.diaryUserNo === 12 ? '나' : '파트너' }}</div>
                 </div>
-                <div><MoreBox/></div>
+                <div>
+                    <MoreBox 
+                        :diaryId="diaryData.id" 
+                        :diaryContent="diaryData.diaryContent"
+                        @delete-diary="toRemoveRouter" 
+                        @edit-diary="toEditRouter"
+                    />
+                </div>
             </div>
-            <div style="margin-top: 5px;">
-                <span>너무 맛있는 점심을 먹고싶은데...</span>
+            <div class="content-wrap">
+                {{ diaryData.diaryContent }}
             </div>
-        </div>
-        <!-- <div class="textarea-container">
-                <textarea class="comment-text" placeholder="댓글을 입력하세요."></textarea>
-                <button class="submit-button common-button bg-color-brown">댓글작성</button>
-        </div> -->
+            <div v-for="comment in diaryData.comments" :key="comment.commentNo" class="comment-wrap">
+                <div class="name-wrap">
+                    <div>
+                        <span class="nickname">{{ comment.commentUserNo === 12 ? '나' : '파트너' }}</span>
+                        <span class="seq">|</span>
+                        <span class="time">{{ comment.commentCreateDate }}</span>
+                    </div>
+                </div>
+                <div style="margin-top: 5px;">
+                    <span>{{ comment.commentContent }}</span>
+                </div>
+            </div>
+        </template>
     </div>
 </template>
 
 <script setup>
+import { defineProps } from 'vue';
+import { useRouter } from 'vue-router';
 import MoreBox from '@/components/common/MoreBox.vue';
+
+const props = defineProps({
+    diaryData: {
+        type: Object,
+        default: () => ({}),
+    },
+    showWritePrompt: {
+        type: Boolean,
+        default: false
+    }
+});
+
+const router = useRouter();
+
+const toEditRouter = ({ id, content }) => {
+    // ID와 내용을 함께 넘기기
+    router.push({ path: `/diary/edit/${id}`, query: { content } });
+};
+
+const toRemoveRouter = (diaryId) => {
+    router.push({ path: '/diary/remove', query: { diaryId } });
+};
+
 </script>
+
+
 
 <style scoped>
 .container {

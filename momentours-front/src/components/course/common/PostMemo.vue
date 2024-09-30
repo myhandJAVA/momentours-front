@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <!-- <div> -->
         <textarea
                 :value="memo"
                 :placeholder="placeholderMemo"
@@ -11,7 +11,7 @@
         ></textarea>
         <p>{{ charCount }}/{{ maxChars }}</p>
         <p v-if="charCount >= maxChars" class="error">글자 수 제한을 초과했습니다.</p>
-    </div>
+    <!-- </div> -->
 </template>
 
 <script setup>
@@ -76,11 +76,12 @@ onMounted(() => {
         background-color: #F9F5EA;
         width: 100%;
         height: 130px;
+        margin-left: -10px;
         padding: 10px;
         border: none;
         font-size: 13px;
         outline: none;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        /* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */
         resize: none;
         overflow: hidden;
     }

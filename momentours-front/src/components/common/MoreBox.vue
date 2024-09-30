@@ -1,52 +1,44 @@
-<!-- MoreBox.vue -->
 <template>
     <div class="more-options" @click.stop="toggleMenu">
         <img src="@/assets/icons/threeDots.svg" alt="threeDots">
         <div v-if="isMenuOpen" class="menu-dropdown">
             <ul>
-                <li>수정</li>
+                <li @click="editItem">수정</li>
                 <hr class="hr-mr">
-                <li style="color: red;">삭제</li>
+                <li @click="deleteItem" style="color: red;">삭제</li>
             </ul>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, defineProps, defineEmits } from 'vue';
 
+const props = defineProps({
+    diaryId: {
+        type: Number,
+        required: true,
+    },
+    diaryContent: { // diaryContent prop 추가
+        type: String,
+        required: true,
+    }
+});
+
+const emit = defineEmits(['delete-diary', 'edit-diary']);
 const isMenuOpen = ref(false);
 
-// 더보기 메뉴 상태 전환
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
 };
 
-// 더보기 메뉴 이외의 클릭 시 메뉴 닫기
-const closeMenu = () => {
-    isMenuOpen.value = false;
+const deleteItem = () => {
+    emit('delete-diary', props.diaryId);
 };
 
-// 클릭 이벤트 감지
-const handleClickOutside = (event) => {
-    const moreOptionsElement = document.querySelector('.more-options');
-    if (moreOptionsElement && !moreOptionsElement.contains(event.target)) {
-        closeMenu();
-    }
+const editItem = () => {
+    emit('edit-diary', { id: props.diaryId, content: props.diaryContent }); // ID와 내용 함께 emit
 };
-
-/* 메뉴 액션 함수 작성!! */
-
-
-// 컴포넌트가 마운트될 때 클릭 이벤트 등록
-onMounted(() => {
-    document.addEventListener('click', handleClickOutside);
-});
-
-// 컴포넌트가 언마운트될 때 클릭 이벤트 제거
-onBeforeUnmount(() => {
-    document.removeEventListener('click', handleClickOutside);
-});
 </script>
 
 <style scoped>
