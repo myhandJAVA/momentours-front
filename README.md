@@ -194,10 +194,29 @@
 
  ![테스트계획서](./docs/img/테스트계획서/테스트계획서.png)
 
-
 <details>
   <summary>회원</summary>
+
+  - <details>
+      <summary>회원가입</summary>
+     
+      ![테스트](./docs/gif/test/회원/회원가입.gif)
+    </details>
+
+  - <details>
+      <summary>로그인</summary>
+     
+      ![테스트](./docs/gif/test/회원/로그인.gif)
+    </details>
+
+  - <details>
+      <summary>개인정보 수정</summary>
+     
+      ![테스트](./docs/gif/test/회원/개인정보수정.gif)
+    </details>
+
 </details>
+
 
 <details>
   <summary>커플</summary>
@@ -219,7 +238,22 @@
 </details>
 
 <details>
-  <summary>예정코스</summary>
+  <summary>예정데이트코스</summary>
+     
+  - <details>
+      <summary>예정데이트코스목록조회</summary>
+    
+      ![테스트](./docs/gif/test/예정데이트코스/예정데이트코스목록조회.gif)
+    
+    </details>
+
+      
+  - <details>
+      <summary>예정데이트코스작성</summary>
+    
+      ![테스트](./docs/gif/test/예정데이트코스/예정데이트코스작성.gif)
+    
+    </details>
 </details>
 
 <details>
