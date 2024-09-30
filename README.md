@@ -218,8 +218,36 @@
 
 <details>
   <summary>일정</summary>
-</details>
+  
+  - <details>
+      <summary>일정조회</summary>
+    
+      ![테스트](./docs/gif/test/일정/캘린더조회.png)
+    
+    </details>
+  
+  - <details>
+      <summary>일정수정</summary>
+    
+      ![테스트](./docs/gif/test/일정/캘린더수정.png)
+    
+    </details>
 
+  - <details>
+      <summary>일정작성</summary>
+    
+      ![테스트](./docs/gif/test/일정/캘린더작성.png)
+    
+    </details>
+
+  - <details>
+      <summary>일정삭제</summary>
+    
+      ![테스트](./docs/gif/test/일정/캘린더삭제.png)
+    
+    </details>
+
+</details>
 
 ---
 
