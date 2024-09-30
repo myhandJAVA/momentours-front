@@ -201,6 +201,13 @@
 
 <details>
   <summary>커플</summary>
+
+   - <details>
+      <summary>커플페이지조회</summary>
+      
+        ![테스트](./docs/gif/test/커플/커플페이지조회.gif)
+      
+       </details>
 </details>
 
 <details>
