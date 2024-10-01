@@ -232,6 +232,49 @@
 
 <details>
   <summary>예정코스</summary>
+
+   <details>
+   <summary>예정코스 목록</summary>
+
+  <img src="docs/img/storyboard/예정코스/예정코스 목록.png">
+
+  </details>
+   
+   <details>
+   <summary>예정코스 검색</summary>
+
+  <img src="docs/img/storyboard/예정코스/예정코스 검색.png">
+
+  </details>
+
+   <details>
+   <summary>예정코스 작성</summary>
+
+  <img src="docs/img/storyboard/예정코스/예정코스 작성.png">
+
+  </details>
+
+   <details>
+   <summary>예정코스 수정</summary>
+
+  <img src="docs/img/storyboard/예정코스/예정코스 수정.png">
+
+  </details>
+
+   <details>
+   <summary>예정코스 삭제</summary>
+
+  <img src="docs/img/storyboard/예정코스/예정코스 삭제.png">
+
+  </details>
+
+   <details>
+   <summary>예정코스 상세 조회</summary>
+
+  <img src="docs/img/storyboard/예정코스/예정코스 상세 조회.png">
+
+  </details>
+
 </details>
 
 <details>
