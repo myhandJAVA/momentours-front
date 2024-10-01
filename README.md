@@ -8,7 +8,7 @@
 | :------------------------------------: | :-------------------------------------: | :-----------------------------------: | :--------------------------------------: | :-----------------------------------: | :------------------------------------------: |
 | [🦖최해관](https://github.com/Haegwan-Choe) | [🐰유혜진](https://github.com/yuhyejin) | [😇장민근](https://github.com/caolian2003) | [👀이우진](https://github.com/Vorschlag-bit) | [😺김동혁](https://github.com/dongkh9) | [🐶김정모](https://github.com/mojeeeeong) |
 
-## 기술스택
+## 🛠️기술스택
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -16,26 +16,26 @@
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![json_server ](https://img.shields.io/badge/json_server-3955A3?style=for-the-badge&logo=microsoft-visio&logoColor=white)
 
-## 협업 툴
+## 📢협업 툴
 ![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
 ![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
-## 전체 프로젝트 일정
+## 📋전체 프로젝트 일정
 **프로젝트 일정 : 2024년 9월 23일 ~ 2024년 09월 30일**
 
 ### 목차
 
 - [1. 프로젝트 개요](#1-프로젝트-개요)
-- [2. 기능 명세서](#3-기능-명세서)
-- [3. 와이어프레임](#4-와이어프레임)
-- [4. 스토리보드](#5-스토리보드)
-- [5. 테스트](#6-테스트)
-- [6. 팀 회고](#7-팀-회고)
+- [2. 기능 명세서](#2-기능-명세서)
+- [3. 와이어프레임](#3-와이어프레임)
+- [4. 스토리보드](#4-스토리보드)
+- [5. 테스트](#5-테스트)
+- [6. 팀 회고](#6-팀-회고)
 
 ---
 
-## 1. 프로젝트 개요
+## 🍀1. 프로젝트 개요
 | 연인과의 소중한 추억을 기록하고, 여러분만의 데이트 코스를 공유하고 추천받는 웹 서비스 입니다.
 
 ### 1.1 프로젝트 소개
@@ -50,14 +50,25 @@
 
 ---
 
-## 2. 기능 명세서
+### 1.2 프로젝트 배경
+
+<img src="docs/img/프로젝트개요/시장조사1.jpeg">
+<img src="docs/img/프로젝트개요/시장조사2.jpeg">
+
+------
+
+## 1.3 국내외 유사 서비스와 차별성
+
+<img src="docs/img/프로젝트개요/타서비스.jpeg">
+
+## 🍀2. 기능 명세서
 
    ![기능명세서](./docs/img/기능명세서/기능명세서.png)
 
 
 ---
 
-## 3. 와이어프레임
+## 🍀3. 와이어프레임
 
 <details>
   <summary>회원</summary>
@@ -114,11 +125,82 @@
   ![와이어프레임](./docs/img/wireframe/일정.png)
 
 </details>
+
 ---
 
-## 4. 스토리보드
+## 🍀4. 스토리보드
+
 <details>
   <summary>회원</summary>
+
+  <details>
+    <summary>회원가입</summary>
+  <details>
+    <summary>회원가입 화면</summary>
+      <img src="docs/img/storyboard/회원/회원가입.png">
+  </details>
+
+  <details>
+    <summary>회원가입 - 성공</summary>
+      <img src="docs/img/storyboard/회원/회원가입성공.png">
+  </details>
+  </details>
+
+  <details>
+    <summary>로그인</summary>
+    
+  <details>
+    <summary>로그인 화면</summary>
+
+  <img src="docs/img/storyboard/회원/로그인화면.png">
+  
+  </details>
+
+  <details>
+    <summary>로그인 성공</summary>
+
+  <img src="docs/img/storyboard/회원/로그인성공.png">
+  
+  </details>
+
+  <details>
+    <summary>로그인 실패</summary>
+
+  <img src="docs/img/storyboard/회원/로그인실패.png">
+  
+  </details>
+    </details>
+    
+  <details>
+    <summary>마이페이지</summary>
+  <details>
+    <summary>마이페이지 화면</summary>
+      <img src="docs/img/storyboard/회원/마이페이지.png">
+    
+  </details>
+
+  <details>
+    <summary>마이페이지 정보 수정</summary>
+      <img src="docs/img/storyboard/회원/마이페이지-모달창.png">
+      <img src="docs/img/storyboard/회원/마이페이지-수정됨.png">
+  </details>
+  </details>
+</details>
+
+<details>
+  <summary>홈</summary>
+
+  <details>
+    <summary>홈페이지 화면</summary>
+      <img src="docs/img/storyboard/홈페이지/홈페이지.png">
+    
+  </details>
+
+  <details>
+    <summary>홈페이지 - 사이드바</summary>
+      <img src="docs/img/storyboard/홈페이지/홈페이지-사이드바.png">
+  </details>
+   
 </details>
 
 <details>
@@ -131,6 +213,21 @@
 
 <details>
   <summary>추억코스</summary>
+
+  <details>
+    <summary>추억코스 목록</summary>
+
+   <img src="docs/img/storyboard/추억코스/추억코스 목록.png">
+
+  </details>
+
+  <details>
+    <summary>추억코스 상세조회</summary>
+
+   <img src="docs/img/storyboard/추억코스/추억코스 상세조회.png">
+
+  </details>
+
 </details>
 
 <details>
@@ -143,6 +240,43 @@
 
 <details>
   <summary>일기</summary>
+
+
+  <details>
+    <summary>일기조회 - 일기 없는 버전</summary>
+
+  <img src="docs/img/storyboard/일기/일기 조회 - 일기 없는 버전.png">
+
+  </details>
+
+  <details>
+    <summary>일기조회 - 일기 있는 버전</summary>
+
+  <img src="docs/img/storyboard/일기/일기 조회 - 일기 있는 버전.png">
+
+  </details>
+
+  <details>
+    <summary>일기등록</summary>
+
+  <img src="docs/img/storyboard/일기/일기 등록.png">
+
+  </details>
+
+  <details>
+    <summary>일기수정</summary>
+
+  <img src="docs/img/storyboard/일기/일기 수정.png">
+
+  </details>
+
+  <details>
+    <summary>일기삭제</summary>
+
+  <img src="docs/img/storyboard/일기/일기 삭제.png">
+
+  </details>
+
 </details>
 
 <details>
@@ -188,7 +322,7 @@
 
 ---
 
-## 5. 테스트
+## 🍀5. 테스트
 
 ### 테스트 계획서
 
@@ -416,7 +550,7 @@
 
 ---
 
-## 6. 팀 회고
+## 🍀6. 팀 회고
 #### 최해관
 > **유혜진**: 척척박사 해관쓰! 백엔드와 프론트 프로젝트 기간 동안 함께 할 수 있어서 너무너무 재밌었습니다! 침대에서 누워서 코딩할 정도로 의지가 대단한 친구랍니다! 이번에 지도 API도 잘 연동하고 마지막까지 Json server 연동 끝내서 좋았습니다! 
 > 
@@ -509,5 +643,4 @@
 
 > **장민근**:언제나 자신의 몫을 해내는 든든한 팀원이 바로 이우진 팀원을 보고 하는 말이 아닐까 생각한다. 비록 모두가 프론트앤드 프로젝트가 처음이라 많이 어려워했지만 그럼에도 불구하고 자신의 기능뿐 아니라 공통 컴포넌트 개발에도 기여하며 팀원들이 프로젝트를 수월하게 진행하도록 하는데 큰 기여를 했다.
 > 
-
 
