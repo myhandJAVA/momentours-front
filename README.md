@@ -209,6 +209,44 @@
 
 <details>
   <summary>추억</summary>
+
+   - <details>
+      <summary>추억 목록</summary>
+
+      <img src="docs/img/storyboard/추억/추억-목록.png">
+      
+   </details>
+   
+   - <details>
+      <summary>추억 등록</summary>
+
+      <img src="docs/img/storyboard/추억/추억-등록-화면.png">
+      <img src="docs/img/storyboard/추억/추억-등록-성공.png">
+      <img src="docs/img/storyboard/추억/추억-등록-실패.png">
+      
+   </details>
+
+   - <details>
+      <summary>추억 상세 조회</summary>
+
+      <img src="docs/img/storyboard/추억/추억-상세-조회.png">
+      
+   </details>
+
+   - <details>
+      <summary>추억 수정</summary>
+
+      <img src="docs/img/storyboard/추억/추억-수정.png">
+      
+   </details>
+
+   - <details>
+      <summary>추억 삭제</summary>
+
+      <img src="docs/img/storyboard/추억/추억-삭제.png">
+      
+   </details>
+   
 </details>
 
 <details>
